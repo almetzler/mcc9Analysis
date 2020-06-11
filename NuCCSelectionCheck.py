@@ -566,8 +566,8 @@ for field in dirtInfo:
 
 print trackDirt.head(3)
 print trackExtC2.head(3)
-print interactionInfo.head(3)
 print trackData.head(3)
+print filteredData.head(3)
 print filteredEvents.head(3)
 # weightsPreAverage = dirtCVWeights['wgt_tune'].to_numpy()
 # weightsPreAverageRMS = np.nanstd(weightsPreAverage)
