@@ -564,40 +564,39 @@ for field in dirtInfo:
   trackDirt = trackDirt.join(filteredDirt['%s' % field], on=["run", "subrun", "event"])
 
 
-weightsPreAverage = dirtCVWeights['wgt_tune'].to_numpy()
-weightsPreAverageRMS = np.nanstd(weightsPreAverage)
-
-plt.hist(weightsPreAverage, bins=100, stacked=False, range=(0.0, 4.0), color = 'black')
-text = r'$\sigma = %.3f$' % weightsPreAverageRMS
-ax = plt.gca()
-ymax = ax.get_ylim()[1] 
-xmax = ax.get_xlim()[1]
-plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
-plt.savefig("PlotDir/DirtWeightsPreAverage.png")
-plt.close()  
-
-dirtCVWeightMeans     = dirtCVWeights.groupby(level=["run", "subrun", "event"]).agg({"wgt_tune" : ["mean"]})
-dirtSplineWeightMeans = dirtSplineWeights.groupby(level=["run", "subrun", "event"]).agg({"wgt_spline" : ["mean"]})
-
-dirtCVWeightMeans.columns = ["_".join(x) for x in dirtCVWeightMeans.columns.ravel()]
-dirtCVWeightMeans.rename(columns={"wgt_tune_mean" : "wgt_tune"}, inplace=True)
-
-weightsPostAverage = dirtCVWeightMeans['wgt_tune'].to_numpy()
-weightsPostAverageRMS = np.nanstd(weightsPostAverage)
-
-plt.hist(weightsPostAverage, bins=100, stacked=False, range=(0.0, 4.0), color = 'black')
-text = r'$\sigma = %.3f$' % weightsPostAverageRMS
-ax = plt.gca()
-ymax = ax.get_ylim()[1] 
-xmax = ax.get_xlim()[1]
-plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
-plt.savefig("PlotDir/DirtWeightsPostAverage.png")
-plt.close()  
-
-dirtSplineWeightMeans.columns = ["_".join(x) for x in dirtSplineWeightMeans.columns.ravel()]
-dirtSplineWeightMeans.rename(columns={"wgt_spline_mean" : "wgt_spline"}, inplace=True)
-
 print trackDirt.head(5)
+# weightsPreAverage = dirtCVWeights['wgt_tune'].to_numpy()
+# weightsPreAverageRMS = np.nanstd(weightsPreAverage)
+
+# plt.hist(weightsPreAverage, bins=100, stacked=False, range=(0.0, 4.0), color = 'black')
+# text = r'$\sigma = %.3f$' % weightsPreAverageRMS
+# ax = plt.gca()
+# ymax = ax.get_ylim()[1] 
+# xmax = ax.get_xlim()[1]
+# plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
+# plt.savefig("PlotDir/DirtWeightsPreAverage.png")
+# plt.close()  
+
+# dirtCVWeightMeans     = dirtCVWeights.groupby(level=["run", "subrun", "event"]).agg({"wgt_tune" : ["mean"]})
+# dirtSplineWeightMeans = dirtSplineWeights.groupby(level=["run", "subrun", "event"]).agg({"wgt_spline" : ["mean"]})
+
+# dirtCVWeightMeans.columns = ["_".join(x) for x in dirtCVWeightMeans.columns.ravel()]
+# dirtCVWeightMeans.rename(columns={"wgt_tune_mean" : "wgt_tune"}, inplace=True)
+
+# weightsPostAverage = dirtCVWeightMeans['wgt_tune'].to_numpy()
+# weightsPostAverageRMS = np.nanstd(weightsPostAverage)
+
+# plt.hist(weightsPostAverage, bins=100, stacked=False, range=(0.0, 4.0), color = 'black')
+# text = r'$\sigma = %.3f$' % weightsPostAverageRMS
+# ax = plt.gca()
+# ymax = ax.get_ylim()[1] 
+# xmax = ax.get_xlim()[1]
+# plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
+# plt.savefig("PlotDir/DirtWeightsPostAverage.png")
+# plt.close()  
+
+# dirtSplineWeightMeans.columns = ["_".join(x) for x in dirtSplineWeightMeans.columns.ravel()]
+# dirtSplineWeightMeans.rename(columns={"wgt_spline_mean" : "wgt_spline"}, inplace=True)
 
 #SAVE THIS
 #print dirtCVWeights.at[(6553, 129, 6458), 'wgt_tune']
