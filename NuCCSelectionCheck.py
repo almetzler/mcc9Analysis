@@ -598,8 +598,8 @@ plt.close()
 dirtSplineWeightMeans.columns = ["_".join(x) for x in dirtSplineWeightMeans.columns.ravel()]
 dirtSplineWeightMeans.rename(columns={"wgt_spline_mean" : "wgt_spline"}, inplace=True)
 
-SAVE THIS
-print dirtCVWeights.at[(6553, 129, 6458), 'wgt_tune']
+#SAVE THIS
+#print dirtCVWeights.at[(6553, 129, 6458), 'wgt_tune']
 
 for field in dirtInfo:
   trackData  = trackData.join(filteredData['%s' % field], on=["run", "subrun", "event"])
@@ -637,8 +637,8 @@ exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceSco
 
 makeDataMCHistogram(incSliceScoreStack, incSliceScorekWeights, trackData['nu_score'].to_numpy(), trkScoreRange, 25, "IncSliceScore", ["Slice Score", "Score", "Number of Daughters"])
 
-exec( "incIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlaySliceScoreStack) )
-#exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceScoreStack) )
+# exec( "incIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlaySliceScoreStack) )
+# #exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceScoreStack) )
 
 makeDataMCHistogram(incIsSelectedStack, incSliceScorekWeights, trackData['nu_mu_cc_selected'].to_numpy(), isSelectedRange, 2, "IncIsSelected", ["Selected", "Selected", "Number of Daughters"])
 
@@ -693,7 +693,7 @@ exec( "incChiSqrPStackWeights     = "  + re.sub(r'VAR', 'wgt',      overlayPIDSt
 makeDataMCHistogram(incChiSqrPStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_proton'].to_numpy(), chi2PRange, 35, "IncChi2Proton", ["Chi2 Proton", "Chi2", "Number of Tracks"])
 
 exec( "incChiSqrPMuStack   = "  + re.sub(r'VAR', 'track_chi2_ratio', overlayPIDStack) )
-#exec( "incChiSqrPStackWeights     = "  + re.sub(r'VAR', 'wgt',      overlayPIDStack) )
+# #exec( "incChiSqrPStackWeights     = "  + re.sub(r'VAR', 'wgt',      overlayPIDStack) )
 
 makeDataMCHistogram(incChiSqrPMuStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_ratio'].to_numpy(), chi2Range, 50, "IncChi2Ratio", ["Chi2 Proton", "Chi2", "Number of Tracks"])
 
@@ -702,7 +702,7 @@ dirtMuonCandidates     = trackDirt.query('DuplicatedEvent == False & track_score
 overlayMuonCandidates  = trackOverlay.query('DuplicatedEvent == False & track_score > @minMuonTrackScore & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2')
 dataMuonCandidates    = trackData.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2')
 
-#Select only the primary muon track based on the longest track
+# #Select only the primary muon track based on the longest track
 '''
 AggregateFrame(extMuonCandidates, "track_length", "max")
 AggregateFrame(dirtMuonCandidates, "track_length", "max")
@@ -730,9 +730,9 @@ statFrame.columns = ["_".join(x) for x in statFrame.columns.ravel()]
 dataMuonCandidates = dataMuonCandidates.join(statFrame['track_length_max'], on=["run", "subrun", "event"])  
 dataMuonCandidates.eval('isLongestTrack = (track_length == track_length_max)', inplace=True)
 
-#leadingDataMuons   = dataMuons.groupby(level=["run", "subrun", "event"]).agg({"track_mcs_mom" : ["max", "count"]})
+# #leadingDataMuons   = dataMuons.groupby(level=["run", "subrun", "event"]).agg({"track_mcs_mom" : ["max", "count"]})
 
-#isMax_track_length
+# #isMax_track_length
 overlayPrimMuonStack = '''[overlayMuonCandidates.query('mc_channel == "QE" & isLongestTrack == True')['VAR'].to_numpy(), overlayMuonCandidates.query('mc_channel == "RES" & isLongestTrack == True')['VAR'].to_numpy(), overlayMuonCandidates.query('mc_channel == "DIS" & isLongestTrack == True')['VAR'].to_numpy(), overlayMuonCandidates.query('mc_channel == "2p2h" & isLongestTrack == True')['VAR'].to_numpy(), overlayMuonCandidates.query('mc_channel == "NC / Other" & isLongestTrack == True')['VAR'].to_numpy(), dirtMuonCandidates.query('isLongestTrack == True')['VAR'].to_numpy(), extMuonCandidates.query('isLongestTrack == True')['VAR'].to_numpy()]'''
 
 exec( "incPrimMuonStack   = "  + re.sub(r'VAR', 'track_length', overlayPrimMuonStack) )
@@ -783,7 +783,7 @@ makeDataMCHistogram(incPrimMuonIsFiducialStack, incPrimMuonStackWeights, dataMuo
 exec( "incPrimMuonFlashChi2Ratio   = "  + re.sub(r'VAR', 'flash_chi2_ratio', overlayPrimMuonStack) )
 
 makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (5,16), 11, "PrimMuonFlashChi2Ratio", ["Flash Chi2", "Chi2 Ratio", "Number of Events"])
-#exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
+# #exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
 
 
 maxFlashChi2 = 10
@@ -799,8 +799,8 @@ overlayInclusiveEvents = overlayMuonCandidates.query('isLongestTrack == True & i
 dataInclusiveEvents = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
 
-#SAVE THIS
-#print dataInclusiveEvnets.loc[(5774, 15,762 ),('track_chi2_muon', 'track_chi2_proton', 'track_chi2_ratio', 'isFiducial', 'nu_score', 'nu_flash_chi2', 'nu_mu_cc_selected')]
+# #SAVE THIS
+# #print dataInclusiveEvnets.loc[(5774, 15,762 ),('track_chi2_muon', 'track_chi2_proton', 'track_chi2_ratio', 'isFiducial', 'nu_score', 'nu_flash_chi2', 'nu_mu_cc_selected')]
 
 event = (6752, 114, 5716)
 
@@ -829,6 +829,6 @@ exec( "overlayPrimMuonPhiInclusiveStack     = "  + re.sub(r'VAR', 'phi', overlay
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['phi'].to_numpy(), phiRange, 30, "InclusiveEventsPrimMuonPhi", ["Muon Phi Angle", "Angle / pi (radians)", "Number of Primary Muons"])
 
 
-#print dataInclusiveEvents.query('nu_mu_cc_selected == False')
+# #print dataInclusiveEvents.query('nu_mu_cc_selected == False')
 
 sys.exit()
