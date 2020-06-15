@@ -637,7 +637,7 @@ exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceSco
 
 makeDataMCHistogram(incSliceScoreStack, incSliceScorekWeights, trackData['nu_score'].to_numpy(), trkScoreRange, 25, "IncSliceScore", ["Slice Score", "Score", "Number of Daughters"])
 
-# exec( "incIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlaySliceScoreStack) )
+exec( "incIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlaySliceScoreStack) )
 # #exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceScoreStack) )
 
 makeDataMCHistogram(incIsSelectedStack, incSliceScorekWeights, trackData['nu_mu_cc_selected'].to_numpy(), isSelectedRange, 2, "IncIsSelected", ["Selected", "Selected", "Number of Daughters"])
@@ -778,7 +778,7 @@ makeDataMCHistogram(incPrimMuonPDGStack, incPrimMuonStackWeights, dataMuonCandid
 exec( "incPrimMuonIsFiducialStack   = "  + re.sub(r'VAR', 'isFiducial', overlayPrimMuonStack) )
 
 makeDataMCHistogram(incPrimMuonIsFiducialStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['isFiducial'].to_numpy(), isSelectedRange, 2, "PrimMuonDaugthersIsFiducial", ["Is Fiducial", "Vertices in Fiducial Volume", "Number of Events"])
-#exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
+exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
 
 exec( "incPrimMuonFlashChi2Ratio   = "  + re.sub(r'VAR', 'flash_chi2_ratio', overlayPrimMuonStack) )
 
