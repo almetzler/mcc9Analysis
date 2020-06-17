@@ -336,7 +336,7 @@ def getInel(Ehad, Enu):
       return -1.0
 
 ############### Alexis written function ###############
-def Stack(dataframe, dirtDF, extDF, variables, qry, longest = False):
+def Stack(dataframe, dirtDF, extDF, variable, qry, longest = False):
   retlist=[]
   addons = ''
   
@@ -361,8 +361,8 @@ def Stack(dataframe, dirtDF, extDF, variables, qry, longest = False):
       call = '{} == "{}"'.format(q_attribute,value) + addons
       item = dataframe.query(call)[variable].to_numpy()
       retlist.append(item)
-    retlist.append(dirt)
-    retlist.append(ext)
+  retlist.append(dirt)
+  retlist.append(ext)
   return retlist
 ########## End of Alexis written stuff ############
 
