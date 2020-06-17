@@ -650,7 +650,7 @@ trackDirt.eval('wgt = pot_wgt*wgt_tune*wgt_spline', inplace=True)
 
 overlaySliceScoreStack = '''[trackOverlay.query('mc_channel == "QE"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "RES"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "DIS"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "2p2h"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "NC / Other"')['VAR'].to_numpy(), trackDirt['VAR'].to_numpy(), trackExt['VAR'].to_numpy()]'''
 #exec( "incSliceScoreStack   = "  + re.sub(r'VAR', 'nu_score', overlaySliceScoreStack) ) #alexis converted this to a stack function call
-incSliceScorekWeights = Stack(trackOverlay, trackDirt, trackExt,'nu_score', 'mc_channel',channels)
+incSliceScoreStack = Stack(trackOverlay, trackDirt, trackExt,'nu_score', 'mc_channel',channels)
 # exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceScoreStack) ) # alexis converted this to a stack call
 incSliceScorekWeights = Stack(trackOverlay, trackDirt, trackExt,'wgt', 'mc_channel',channels)
 
