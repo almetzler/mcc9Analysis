@@ -664,14 +664,14 @@ trackDirt.eval('wgt = pot_wgt*wgt_tune*wgt_spline', inplace=True)
 
 # overlaySliceScoreStack = '''[trackOverlay.query('mc_channel == "QE"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "RES"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "DIS"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "2p2h"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "NC / Other"')['VAR'].to_numpy(), trackDirt['VAR'].to_numpy(), trackExt['VAR'].to_numpy()]'''
 #exec( "incSliceScoreStack   = "  + re.sub(r'VAR', 'nu_score', overlaySliceScoreStack) ) #alexis converted this to a stack() call
-incSliceScoreStack = Stack(trackOverlay, trackDirt, trackExt,'nu_score', 'channel')
+incSliceScoreStack = Stack(trackOverlay, trackDirt, trackExt,'nu_score', 'particle')
 # exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceScoreStack) ) # alexis converted this to a stack() call
-incSliceScorekWeights = Stack(trackOverlay, trackDirt, trackExt,'wgt', 'channel')
+incSliceScorekWeights = Stack(trackOverlay, trackDirt, trackExt,'wgt', 'particle')
 
 makeDataMCHistogram(incSliceScoreStack, incSliceScorekWeights, trackData['nu_score'].to_numpy(), trkScoreRange, 25, "IncSliceScore", ["Slice Score", "Score", "Number of Daughters"])
 
 # exec( "incIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlaySliceScoreStack) ) # alexis converted to Stack() call
-incIsSelectedStack = Stack(trackOverlay, trackDirt, trackExt,'nu_mu_cc_selected', 'channel')
+incIsSelectedStack = Stack(trackOverlay, trackDirt, trackExt,'nu_mu_cc_selected', 'particle')
 # #exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceScoreStack) )
 
 
@@ -687,9 +687,9 @@ dataNuScore    = trackData.query('DuplicatedEvent == False')
 # overlayTrackScoreStack = '''[overlayNuScore.query('mc_channel == "QE"')['VAR'].to_numpy(), overlayNuScore.query('mc_channel == "RES"')['VAR'].to_numpy(), overlayNuScore.query('mc_channel == "DIS"')['VAR'].to_numpy(), overlayNuScore.query('mc_channel == "2p2h"')['VAR'].to_numpy(), overlayNuScore.query('mc_channel == "NC / Other"')['VAR'].to_numpy(), dirtNuScore['VAR'].to_numpy(), extNuScore['VAR'].to_numpy()]'''
 
 # exec( "incTrkScoreStack   = "  + re.sub(r'VAR', 'track_score', overlayTrackScoreStack) )
-incTrkScoreStack = Stack(overlayNuScore, dirtNuScore, extNuScore, 'track_score','channel')
+incTrkScoreStack = Stack(overlayNuScore, dirtNuScore, extNuScore, 'track_score','particle')
 # exec( "incTrkScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlayTrackScoreStack) )
-incTrkScorekWeights = Stack(overlayNuScore, dirtNuScore, extNuScore, 'wgt','channel')
+incTrkScorekWeights = Stack(overlayNuScore, dirtNuScore, extNuScore, 'wgt','particle')
 
 makeDataMCHistogram(incTrkScoreStack, incTrkScorekWeights, dataNuScore['track_score'].to_numpy(), trkScoreRange, 25, "IncTrkScore", ["Track Score", "Score", "Number of Tracks"])
 
@@ -702,14 +702,14 @@ dataTrackScore    = trackData.query('DuplicatedEvent == False & track_score > @m
 # overlayTrackScoreStack = '''[overlayTrackScore.query('mc_channel == "QE"')['VAR'].to_numpy(), overlayTrackScore.query('mc_channel == "RES"')['VAR'].to_numpy(), overlayTrackScore.query('mc_channel == "DIS"')['VAR'].to_numpy(), overlayTrackScore.query('mc_channel == "2p2h"')['VAR'].to_numpy(), overlayTrackScore.query('mc_channel == "NC / Other"')['VAR'].to_numpy(), dirtTrackScore['VAR'].to_numpy(), extTrackScore['VAR'].to_numpy()]'''
 
 # exec( "incVtxStack   = "  + re.sub(r'VAR', 'vtx_distance', overlayTrackScoreStack) )
-incVtxStack = Stack(overlayTrackScore, dirtTrackScore, extTrackScore, 'vtx_distance', 'channel')
+incVtxStack = Stack(overlayTrackScore, dirtTrackScore, extTrackScore, 'vtx_distance', 'particle')
 # exec( "incChiSqrStackWeights     = "  + re.sub(r'VAR', 'wgt',    overlayTrackScoreStack) )
-incChiSqrStackWeights = Stack(overlayTrackScore, dirtTrackScore, extTrackScore, 'wgt', 'channel')
+incChiSqrStackWeights = Stack(overlayTrackScore, dirtTrackScore, extTrackScore, 'wgt', 'particle')
 
 makeDataMCHistogram(incVtxStack, incChiSqrStackWeights, dataTrackScore['vtx_distance'].to_numpy(), vtxRange, 30, "VtxDistance", ["Vertex Distance", "Distance to Vertex (cm)", "Number of Tracks"])
 
 # exec( "incTrkLStack   = "  + re.sub(r'VAR', 'track_length', overlayTrackScoreStack) )
-incTrkLStack = Stack(overlayTrackScore, dirtTrackScore, extTrackScore, 'track_length', 'channel')
+incTrkLStack = Stack(overlayTrackScore, dirtTrackScore, extTrackScore, 'track_length', 'particle')
 
 makeDataMCHistogram(incTrkLStack, incChiSqrStackWeights, dataTrackScore['track_length'].to_numpy(), lengthRange, 20, "TrkL", ["Track Length", "Track Length (cm)", "Number of Tracks"])
 
@@ -722,21 +722,21 @@ dataPIDScore    = trackData.query('DuplicatedEvent == False & track_score > @min
 
 
 # exec( "incChiSqrStack   = "  + re.sub(r'VAR', 'track_chi2_muon', overlayPIDStack) )
-incChiSqrStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_muon','channel')
+incChiSqrStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_muon','particle')
 # exec( "incChiSqrStackWeights     = "  + re.sub(r'VAR', 'wgt',    overlayPIDStack) )
-incChiSqrStackWeights = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_muon','channel')
+incChiSqrStackWeights = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_muon','particle')
 
 makeDataMCHistogram(incChiSqrStack, incChiSqrStackWeights, dataPIDScore['track_chi2_muon'].to_numpy(), chi2Range, 50, "IncChi2Muon", ["Chi2 Muon", "Chi2", "Number of Tracks"])
 
 # exec( "incChiSqrPStack   = "  + re.sub(r'VAR', 'track_chi2_proton', overlayPIDStack) )
-incChiSqrPStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_proton','channel')
+incChiSqrPStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_proton','particle')
 # exec( "incChiSqrPStackWeights     = "  + re.sub(r'VAR', 'wgt',      overlayPIDStack) )
-incChiSqrPStackWeights = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'wgt','channel')
+incChiSqrPStackWeights = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'wgt','particle')
 
 makeDataMCHistogram(incChiSqrPStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_proton'].to_numpy(), chi2PRange, 35, "IncChi2Proton", ["Chi2 Proton", "Chi2", "Number of Tracks"])
 
 # exec( "incChiSqrPMuStack   = "  + re.sub(r'VAR', 'track_chi2_ratio', overlayPIDStack) )
-incChiSqrPMuStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_ratio','channel')
+incChiSqrPMuStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_ratio','particle')
 # #exec( "incChiSqrPStackWeights     = "  + re.sub(r'VAR', 'wgt',      overlayPIDStack) )
 
 makeDataMCHistogram(incChiSqrPMuStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_ratio'].to_numpy(), chi2Range, 50, "IncChi2Ratio", ["Chi2 Proton", "Chi2", "Number of Tracks"])
@@ -783,7 +783,6 @@ overlayPrimMuonStack = '''[overlayMuonCandidates.query('mc_channel == "QE" & isL
 incPrimMuonStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'track_length', 'channel', True)
 # exec( "incPrimMuonStackWeights     = "  + re.sub(r'VAR', 'wgt', overlayPrimMuonStack) )
 incPrimMuonStackWeights = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'wgt', 'channel', True)
-print [len(x) for x in incPrimMuonStackWeights]
 
 ######### Havn't switched any of the exec commands beyond this point to be Stack() calls ##############
 
@@ -791,7 +790,6 @@ print [len(x) for x in incPrimMuonStackWeights]
 makeDataMCHistogram(incPrimMuonStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_length'].to_numpy(), lengthRange, 20, "PrimMuonL", ["Track Length", "Track Length (cm)", "Number of Events"])
 
 exec( "incPrimMuonChi2Mu  = "  + re.sub(r'VAR', 'track_chi2_muon', overlayPrimMuonStack) )
-print [len(x) for x in incPrimMuonChi2Mu]
 
 makeDataMCHistogram(incPrimMuonChi2Mu, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_chi2_muon'].to_numpy(), chi2Range, 50, "PrimMuonChi2Muon", ["Chi2 Muon", "Chi2", "Number of Events"])
 
