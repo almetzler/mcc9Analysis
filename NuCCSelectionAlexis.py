@@ -340,26 +340,29 @@ def Stack(dataframe, dirtDF, extDF, variables, qry, longest = False):
   retlist=[]
   addons = ''
   
-  if qry = 'channel':
+  if qry == 'channel':
     q_attribute = 'mc_channel'
     value_list = ['QE','RES','DIS','2p2h','NC / Other']
-  elif qry = 'particle':
+  elif qry == 'particle':
     q_attribute = 'mc_pdg'
     value_list = ['muon', 'proton','pion','electron','other']
   else:
     print('please enter either channel or particle')
 
+  dirt = dirtDF[variable].to_numpy()
+  ext = extDF[variable].to_numpy()
+
   if longest:
     addons = " & isLongestTrack == True"
+    dirt = dirtDF.query('isLongestTrack == True')[variable].to_numpy()
+    ext = extDF.query('isLongestTrack == True')[variable].to_numpy()
 
   for value in value_list:
       call = '{} == "{}"'.format(q_attribute,value) + addons
       item = dataframe.query(call)[variable].to_numpy()
       retlist.append(item)
-  dirt = dirtDF[variable].to_numpy()
-  retlist.append(dirt)
-  ext = extDF[variable].to_numpy()
-  retlist.append(ext)
+    retlist.append(dirt)
+    retlist.append(ext)
   return retlist
 ########## End of Alexis written stuff ############
 
@@ -780,7 +783,7 @@ overlayPrimMuonStack = '''[overlayMuonCandidates.query('mc_channel == "QE" & isL
 incPrimMuonStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'track_length', 'channel', True)
 # exec( "incPrimMuonStackWeights     = "  + re.sub(r'VAR', 'wgt', overlayPrimMuonStack) )
 incPrimMuonStackWeights = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'wgt', 'channel', True)
-
+print [len(x) for x in incPrimMuonStackWeights]
 
 ######### Havn't switched any of the exec commands beyond this point to be Stack() calls ##############
 
@@ -788,6 +791,7 @@ incPrimMuonStackWeights = Stack(overlayMuonCandidates, dirtMuonCandidates, extMu
 makeDataMCHistogram(incPrimMuonStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_length'].to_numpy(), lengthRange, 20, "PrimMuonL", ["Track Length", "Track Length (cm)", "Number of Events"])
 
 exec( "incPrimMuonChi2Mu  = "  + re.sub(r'VAR', 'track_chi2_muon', overlayPrimMuonStack) )
+print [len(x) for x in incPrimMuonChi2Mu]
 
 makeDataMCHistogram(incPrimMuonChi2Mu, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_chi2_muon'].to_numpy(), chi2Range, 50, "PrimMuonChi2Muon", ["Chi2 Muon", "Chi2", "Number of Events"])
 
