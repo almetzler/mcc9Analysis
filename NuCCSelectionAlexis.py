@@ -804,47 +804,59 @@ print [len(x) for x in incPrimMuonStack]
 
 makeDataMCHistogram(incPrimMuonStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_length'].to_numpy(), lengthRange, 20, "PrimMuonL", ["Track Length", "Track Length (cm)", "Number of Events"])
 
-exec( "incPrimMuonChi2Mu  = "  + re.sub(r'VAR', 'track_chi2_muon', overlayPrimMuonStack) )
+# exec( "incPrimMuonChi2Mu  = "  + re.sub(r'VAR', 'track_chi2_muon', overlayPrimMuonStack) )
+incPrimMuonChi2Mu = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'track_chi2_muon', 'channel', True)
 
 makeDataMCHistogram(incPrimMuonChi2Mu, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_chi2_muon'].to_numpy(), chi2Range, 50, "PrimMuonChi2Muon", ["Chi2 Muon", "Chi2", "Number of Events"])
 
-exec( "incPrimMuonChi2Proton  = "  + re.sub(r'VAR', 'track_chi2_proton', overlayPrimMuonStack) )
+# exec( "incPrimMuonChi2Proton  = "  + re.sub(r'VAR', 'track_chi2_proton', overlayPrimMuonStack) )
+incPrimMuonChi2Proton = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'track_chi2_proton', 'channel', True)
 
 makeDataMCHistogram(incPrimMuonChi2Proton, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_chi2_proton'].to_numpy(), chi2PRange, 35, "PrimMuonChi2Proton", ["Chi2 Proton", "Chi2", "Number of Events"])
 
-exec( "incPrimMuonChi2Ratio  = "  + re.sub(r'VAR', 'track_chi2_ratio', overlayPrimMuonStack) )
+# exec( "incPrimMuonChi2Ratio  = "  + re.sub(r'VAR', 'track_chi2_ratio', overlayPrimMuonStack) )
+incPrimMuonChi2Ratio = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'track_chi2_ratio', 'channel', True)
 
 makeDataMCHistogram(incPrimMuonChi2Ratio, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_chi2_ratio'].to_numpy(), chi2Range, 50, "PrimMuonChi2Ratio", ["Chi2 Ratio", "Chi2", "Number of Events"])
 
-exec( "incPrimMuonNuScoreStack   = "  + re.sub(r'VAR', 'nu_score', overlayPrimMuonStack) )
+# exec( "incPrimMuonNuScoreStack   = "  + re.sub(r'VAR', 'nu_score', overlayPrimMuonStack) )
+incPrimMuonNuScoreStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'nu_score', 'channel', True)
 
 makeDataMCHistogram(incPrimMuonNuScoreStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['nu_score'].to_numpy(), trkScoreRange, 50, "PrimMuonNuSocre", ["Topological Score", "Neutrino ID", "Number of Events"])
 
-exec( "incPrimMuonChi2FlashStack   = "  + re.sub(r'VAR', 'nu_flash_chi2', overlayPrimMuonStack) )
+# exec( "incPrimMuonChi2FlashStack   = "  + re.sub(r'VAR', 'nu_flash_chi2', overlayPrimMuonStack) )
+incPrimMuonChi2FlashStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'nu_flash_chi2', 'channel', True)
 
 makeDataMCHistogram(incPrimMuonChi2FlashStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['nu_flash_chi2'].to_numpy(), (0, 50), 50, "PrimMuonFlashChi2", ["Flash Chi2", "Chi2", "Number of Events"])
 
 makeDataMCHistogram(incPrimMuonChi2FlashStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['nu_flash_chi2'].to_numpy(), (0, 15), 60, "PrimMuonFlashChi2Zoom", ["Flash Chi2", "Chi2", "Number of Events"])
 
 
-exec( "incPrimMuonDaughtersStack   = "  + re.sub(r'VAR', 'daughters_start_contained', overlayPrimMuonStack) )
+# exec( "incPrimMuonDaughtersStack   = "  + re.sub(r'VAR', 'daughters_start_contained', overlayPrimMuonStack) )
+incPrimMuonDaughtersStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'daughters_start_contained', 'channel', True)
 
 makeDataMCHistogram(incPrimMuonDaughtersStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['daughters_start_contained'].to_numpy(), isSelectedRange, 2, "PrimMuonDaugthersContained", ["Is Daughter Contained", "Daugthers Contained", "Number of Events"])
 
-exec( "incPrimMuonDaughtersStack   = "  + re.sub(r'VAR', 'daughters_start_contained', overlayPrimMuonStack) )
+# exec( "incPrimMuonDaughtersStack   = "  + re.sub(r'VAR', 'daughters_start_contained', overlayPrimMuonStack) )
+incPrimMuonDaughtersStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'daughters_start_contained', 'channel', True)
 
 makeDataMCHistogram(incPrimMuonDaughtersStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['daughters_start_contained'].to_numpy(), isSelectedRange, 2, "PrimMuonDaugthersContained", ["Is Daughter Contained", "Daugthers Contained", "Number of Events"])
 
-exec( "incPrimMuonPDGStack   = "  + re.sub(r'VAR', 'nu_pdg', overlayPrimMuonStack) )
+# exec( "incPrimMuonPDGStack   = "  + re.sub(r'VAR', 'nu_pdg', overlayPrimMuonStack) )
+incPrimMuonPDGStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'nu_pdg', 'channel', True)
 
 makeDataMCHistogram(incPrimMuonPDGStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['nu_pdg'].to_numpy(), pdgRange, 30, "PrimMuonPDG", ["Event PDG", "Pandora PDG", "Number of Events"])
 
-exec( "incPrimMuonIsFiducialStack   = "  + re.sub(r'VAR', 'isFiducial', overlayPrimMuonStack) )
+# exec( "incPrimMuonIsFiducialStack   = "  + re.sub(r'VAR', 'isFiducial', overlayPrimMuonStack) )
+incPrimMuonIsFiducialStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'isFiducial', 'channel', True)
 
 makeDataMCHistogram(incPrimMuonIsFiducialStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['isFiducial'].to_numpy(), isSelectedRange, 2, "PrimMuonDaugthersIsFiducial", ["Is Fiducial", "Vertices in Fiducial Volume", "Number of Events"])
-exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
 
-exec( "incPrimMuonFlashChi2Ratio   = "  + re.sub(r'VAR', 'flash_chi2_ratio', overlayPrimMuonStack) )
+# exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
+incPrimMuonIsSelectedStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'nu_mu_cc_selected', 'channel', True)
+
+# exec( "incPrimMuonFlashChi2Ratio   = "  + re.sub(r'VAR', 'flash_chi2_ratio', overlayPrimMuonStack) )
+incPrimMuonFlashChi2Ratio = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'flash_chi2_ratio', 'channel', True)
 
 makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (5,16), 11, "PrimMuonFlashChi2Ratio", ["Flash Chi2", "Chi2 Ratio", "Number of Events"])
 # #exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
@@ -879,16 +891,21 @@ makeMCHistogram(overlayInclusiveEvents.query('nu_mu_cc_selected == False')['nu_v
 overlayInclusiveStack = '''[overlayInclusiveEvents.query('mc_channel == "QE"')['VAR'].to_numpy(), overlayInclusiveEvents.query('mc_channel == "RES"')['VAR'].to_numpy(), overlayInclusiveEvents.query('mc_channel == "DIS"')['VAR'].to_numpy(), overlayInclusiveEvents.query('mc_channel == "2p2h"')['VAR'].to_numpy(), overlayInclusiveEvents.query('mc_channel == "NC / Other"')['VAR'].to_numpy(), dirtInclusiveEvents['VAR'].to_numpy(), extInclusiveEvents['VAR'].to_numpy()]'''
 
 
-exec( "overlayIsSelectedInclusiveStack     = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayInclusiveStack) )
-exec( "overlayIsSelectedInclusiveWeights   = "  + re.sub(r'VAR', 'wgt', overlayInclusiveStack) )
+# exec( "overlayIsSelectedInclusiveStack     = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayInclusiveStack) )
+overlayIsSelectedInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'nu_mu_cc_selected','channel')
+
+# exec( "overlayIsSelectedInclusiveWeights   = "  + re.sub(r'VAR', 'wgt', overlayInclusiveStack) )
+overlayIsSelectedInclusiveWeights = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'wgt','channel')
 
 makeDataMCHistogram(overlayIsSelectedInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['nu_mu_cc_selected'].to_numpy(), isSelectedRange, 2, "InclusiveEventsIsSelected", ["Passes Selection", "Is Selected", "Number of Events"])
 
-exec( "overlayPrimMuonChi2FlashInclusiveStack     = "  + re.sub(r'VAR', 'nu_flash_chi2', overlayInclusiveStack) )
+# exec( "overlayPrimMuonChi2FlashInclusiveStack     = "  + re.sub(r'VAR', 'nu_flash_chi2', overlayInclusiveStack) )
+overlayPrimMuonChi2FlashInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'nu_flash_chi2','channel')
 
 makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['nu_flash_chi2'].to_numpy(), (4, 20), 32, "InclusiveEventsPrimMuonFlashChi2", ["Flash Chi2", "Chi2", "Number of Events"])
 
-exec( "overlayPrimMuonPhiInclusiveStack     = "  + re.sub(r'VAR', 'phi', overlayInclusiveStack) )
+# exec( "overlayPrimMuonPhiInclusiveStack     = "  + re.sub(r'VAR', 'phi', overlayInclusiveStack) )
+overlayPrimMuonPhiInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'phi','channel')
 
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['phi'].to_numpy(), phiRange, 30, "InclusiveEventsPrimMuonPhi", ["Muon Phi Angle", "Angle / pi (radians)", "Number of Primary Muons"])
 
