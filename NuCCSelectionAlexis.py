@@ -78,9 +78,14 @@ def AggregateFrame(inputFrame, var, stat):
     inputFrame.eval('isMax_%s = (%s == %s_max)' % (var, var, var), inplace=True)
 
 
-def makeMCHistogram(mc, channel, binRange, nBins, filename, Titles):
-  dir_name = "PlotDir"
-  colors = {"QE":'b', "RES":'g', "DIS":'y', "2p2h":'r', "NC / Other":'grey', "Ext":'magenta'}
+def makeMCHistogram(mc, channel, binRange, nBins, filename, Titles, tpe='channel'):
+  if tpe == 'channel':
+    dir_name = "PlotDir"
+    colors = {"QE":'b', "RES":'g', "DIS":'y', "2p2h":'r', "NC / Other":'grey', "Ext":'magenta'}
+  elif tpe == 'particle':
+    dir_name = 'ParticlePlotDir'
+    colors = {"muon":'b', "proton":'g', "pion":'y', "electron":'r', "muon+":'grey', "other":'magenta'}
+    #plt.legend(['muon', 'proton','pion','electron','muon+','other'])
 
   plt.hist(mc, bins=nBins, stacked=False, range=binRange, color = colors[channel])
   plt.legend([channel])
@@ -99,7 +104,7 @@ def makeMCHistogram(mc, channel, binRange, nBins, filename, Titles):
 
 def make2DMCHistogram(mc, channel, binRange, nBins, filename, Titles):
   dir_name = "PlotDir"
-  colors = {"QE":'b', "RES":'g', "DIS":'y', "2p2h":'r', "NC / Other":'grey', "Ext":'magenta'}
+  #colors = {"QE":'b', "RES":'g', "DIS":'y', "2p2h":'r', "NC / Other":'grey', "Ext":'magenta'}
   zMin = 0.01
 
   try:
@@ -132,7 +137,7 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
     plt.legend(['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext'])
   elif tpe == 'particle':
     dir_name = 'ParticlePlotDir'
-    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, weights = mcWeights )
+    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'magenta'], weights = mcWeights )
     plt.legend(['muon', 'proton','pion','electron','muon+','other'])
   #plotTitle, xAxisTitle, yAxisTitle =  Titles
   try:
@@ -153,8 +158,11 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
 
   makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles)
 
-def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles):
-  dir_name  = "PlotDir"
+def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles, tpe='channel'):
+  if tpe == 'channel':
+    dir_name = "PlotDir"
+  elif tpe == 'particle':
+    dir_name = 'ParticlePlotDir'
   mcSum = np.full(nBins, 0.0 )
   for mc, weight in zip(mcList, mcWeights):
      mc_hist   = np.histogram(mc, bins=nBins, range=binRange, weights = weight )
