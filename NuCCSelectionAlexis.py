@@ -851,9 +851,7 @@ makeDataMCHistogram(incPrimMuonPDGStack, incPrimMuonStackWeights, dataMuonCandid
 incPrimMuonIsFiducialStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'isFiducial', 'particle', True)
 
 makeDataMCHistogram(incPrimMuonIsFiducialStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['isFiducial'].to_numpy(), isSelectedRange, 2, "PrimMuonDaugthersIsFiducial", ["Is Fiducial", "Vertices in Fiducial Volume", "Number of Events"],'particle')
-
-# exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
-incPrimMuonIsSelectedStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'nu_mu_cc_selected', 'particle', True)
+# #exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
 
 # exec( "incPrimMuonFlashChi2Ratio   = "  + re.sub(r'VAR', 'flash_chi2_ratio', overlayPrimMuonStack) )
 incPrimMuonFlashChi2Ratio = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'flash_chi2_ratio', 'particle', True)
