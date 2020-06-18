@@ -133,7 +133,7 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
   elif tpe == 'particle':
     dir_name = 'ParticlePlotDir'
     plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'magenta'], weights = mcWeights )
-    plt.legend(['muon', 'proton','pion','electron','muon+','other'])
+    plt.legend(['muon', 'proton','pion','electron','other'])
   #plotTitle, xAxisTitle, yAxisTitle =  Titles
   try:
     plotTitle, xAxisTitle, yAxisTitle = Titles
@@ -248,8 +248,6 @@ def getParticle(pdg):
       return "pion"
     elif(pdg == 11):
       return "electron"
-    elif (pdg == -13):
-      return "muon+"
     else:
       return "other"      
 
