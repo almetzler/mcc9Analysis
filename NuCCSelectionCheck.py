@@ -737,11 +737,9 @@ overlayPrimMuonStack = '''[overlayMuonCandidates.query('mc_channel == "QE" & isL
 
 exec( "incPrimMuonStack   = "  + re.sub(r'VAR', 'track_length', overlayPrimMuonStack) )
 exec( "incPrimMuonStackWeights     = "  + re.sub(r'VAR', 'wgt', overlayPrimMuonStack) )
-print [len(x) for x in incPrimMuonStackWeights]
 makeDataMCHistogram(incPrimMuonStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_length'].to_numpy(), lengthRange, 20, "PrimMuonL", ["Track Length", "Track Length (cm)", "Number of Events"])
 
 exec( "incPrimMuonChi2Mu  = "  + re.sub(r'VAR', 'track_chi2_muon', overlayPrimMuonStack) )
-print [len(x) for x in incPrimMuonChi2Mu]
 makeDataMCHistogram(incPrimMuonChi2Mu, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_chi2_muon'].to_numpy(), chi2Range, 50, "PrimMuonChi2Muon", ["Chi2 Muon", "Chi2", "Number of Events"])
 
 exec( "incPrimMuonChi2Proton  = "  + re.sub(r'VAR', 'track_chi2_proton', overlayPrimMuonStack) )
