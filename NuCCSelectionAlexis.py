@@ -129,9 +129,10 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
   if tpe == 'channel':
     dir_name = "PlotDir"
     plt.legend(['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext'])
+    # value_list = ['QE','RES','DIS','2p2h','NC / Other']
   else:
     dir_name = 'ParticlePlotDir'
-    plt.legend(['muon', 'proton','pion','electron','muon+','other','filler'])
+    plt.legend(['muon', 'proton','pion','electron','muon+','other','ext'])
   plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta'], weights = mcWeights )
   #plotTitle, xAxisTitle, yAxisTitle =  Titles
   try:
@@ -674,8 +675,10 @@ trackDirt.eval('wgt = pot_wgt*wgt_tune*wgt_spline', inplace=True)
 # overlaySliceScoreStack = '''[trackOverlay.query('mc_channel == "QE"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "RES"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "DIS"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "2p2h"')['VAR'].to_numpy(), trackOverlay.query('mc_channel == "NC / Other"')['VAR'].to_numpy(), trackDirt['VAR'].to_numpy(), trackExt['VAR'].to_numpy()]'''
 #exec( "incSliceScoreStack   = "  + re.sub(r'VAR', 'nu_score', overlaySliceScoreStack) ) #alexis converted this to a stack() call
 incSliceScoreStack = Stack(trackOverlay, trackDirt, trackExt,'nu_score', 'particle')
+print len(incSliceScoreStack)
 # exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceScoreStack) ) # alexis converted this to a stack() call
 incSliceScorekWeights = Stack(trackOverlay, trackDirt, trackExt,'wgt', 'particle')
+print len(incSliceScorekWeights)
 
 makeDataMCHistogram(incSliceScoreStack, incSliceScorekWeights, trackData['nu_score'].to_numpy(), trkScoreRange, 25, "IncSliceScore", ["Slice Score", "Score", "Number of Daughters"],'particle')
 
