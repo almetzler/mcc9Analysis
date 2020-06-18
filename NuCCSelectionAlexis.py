@@ -802,7 +802,7 @@ incPrimMuonStackWeights = Stack(overlayMuonCandidates, dirtMuonCandidates, extMu
 
 ######### Havn't switched any of the exec commands beyond this point to be Stack() calls ##############
 print len(incPrimMuonStack)
-print len(incPrimMuonStackWeights)
+print [len(x) for x in incPrimMuonStack]
 
 makeDataMCHistogram(incPrimMuonStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_length'].to_numpy(), lengthRange, 20, "PrimMuonL", ["Track Length", "Track Length (cm)", "Number of Events"])
 
