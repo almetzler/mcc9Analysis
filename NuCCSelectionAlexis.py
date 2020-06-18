@@ -79,13 +79,8 @@ def AggregateFrame(inputFrame, var, stat):
 
 
 def makeMCHistogram(mc, channel, binRange, nBins, filename, Titles, tpe='channel'):
-  if tpe == 'channel':
-    dir_name = "PlotDir"
-    colors = {"QE":'b', "RES":'g', "DIS":'y', "2p2h":'r', "NC / Other":'grey', "Ext":'magenta'}
-  elif tpe == 'particle':
-    dir_name = 'ParticlePlotDir'
-    colors = {"muon":'b', "proton":'g', "pion":'y', "electron":'r', "muon+":'grey', "other":'magenta'}
-    #plt.legend(['muon', 'proton','pion','electron','muon+','other'])
+  dir_name = "PlotDir"
+  colors = {"QE":'b', "RES":'g', "DIS":'y', "2p2h":'r', "NC / Other":'grey', "Ext":'magenta'}
 
   plt.hist(mc, bins=nBins, stacked=False, range=binRange, color = colors[channel])
   plt.legend([channel])
@@ -137,7 +132,7 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
     plt.legend(['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext'])
   elif tpe == 'particle':
     dir_name = 'ParticlePlotDir'
-    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'magenta'], weights = mcWeights )
+    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'magenta'], weights = mcWeights )
     plt.legend(['muon', 'proton','pion','electron','muon+','other'])
   #plotTitle, xAxisTitle, yAxisTitle =  Titles
   try:
