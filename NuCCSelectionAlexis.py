@@ -130,7 +130,7 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
     dir_name = "PlotDir"
     plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta'], weights = mcWeights )
     plt.legend(['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext'])
-  elif: tpe == 'particle':
+  elif tpe == 'particle':
     dir_name = 'ParticlePlotDir'
     plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta'], weights = mcWeights )
     plt.legend(['muon', 'proton','pion','electron','muon+','other'])
