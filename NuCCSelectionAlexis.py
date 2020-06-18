@@ -80,7 +80,7 @@ def AggregateFrame(inputFrame, var, stat):
 
 def makeMCHistogram(mc, channel, binRange, nBins, filename, Titles, tpe='channel'):
   dir_name = "PlotDir"
-  #colors = {"QE":'b', "RES":'g', "DIS":'y', "2p2h":'r', "NC / Other":'grey', "Ext":'magenta'}
+  colors = {"QE":'b', "RES":'g', "DIS":'y', "2p2h":'r', "NC / Other":'grey', "Ext":'magenta'}
 
   plt.hist(mc, bins=nBins, stacked=False, range=binRange, color = colors[channel])
   plt.legend([channel])
@@ -99,7 +99,7 @@ def makeMCHistogram(mc, channel, binRange, nBins, filename, Titles, tpe='channel
 
 def make2DMCHistogram(mc, channel, binRange, nBins, filename, Titles):
   dir_name = "PlotDir"
-  #colors = {"QE":'b', "RES":'g', "DIS":'y', "2p2h":'r', "NC / Other":'grey', "Ext":'magenta'}
+  colors = {"QE":'b', "RES":'g', "DIS":'y', "2p2h":'r', "NC / Other":'grey', "Ext":'magenta'}
   zMin = 0.01
 
   try:
