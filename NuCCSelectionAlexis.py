@@ -132,7 +132,7 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
     plt.legend(['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext'])
   elif tpe == 'particle':
     dir_name = 'ParticlePlotDir'
-    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta'], weights = mcWeights )
+    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'gold', 'magenta'], weights = mcWeights )
     plt.legend(['muon', 'proton','pion','electron','muon+','other'])
   #plotTitle, xAxisTitle, yAxisTitle =  Titles
   try:
