@@ -128,15 +128,16 @@ def make2DMCHistogram(mc, channel, binRange, nBins, filename, Titles):
 def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles, tpe='particle'):
   if tpe == 'channel':
     dir_name = "PlotDir"
-    plt.legend(['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext'])
+    leg = ['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext']
     colors=['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta']
     # value_list = ['QE','RES','DIS','2p2h','NC / Other']
   else:
     dir_name = 'ParticlePlotDir'
-    plt.legend(['muon','proton','pion','electron','muon+','other','dirt','ext'])
+    leg = ['muon','proton','pion','electron','muon+','other','dirt','ext']
     # value_list = ['muon', 'proton','pion','electron','muon+','other']
     colors=['b', 'g', 'y', 'r', 'c', 'grey', 'gold', 'magenta']
   plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = colors, weights = mcWeights )
+  plt.legend(leg)
   #plotTitle, xAxisTitle, yAxisTitle =  Titles
   try:
     plotTitle, xAxisTitle, yAxisTitle = Titles
