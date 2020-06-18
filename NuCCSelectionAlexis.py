@@ -125,10 +125,15 @@ def make2DMCHistogram(mc, channel, binRange, nBins, filename, Titles):
   plt.savefig("%s/%s%s.png" % ( dir_name, filename, channel.replace(" / Other", "")) )
   plt.close()
 
-def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles):
-  dir_name = "PlotDir"
-  plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta'], weights = mcWeights )
-  plt.legend(['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext'])
+def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles, tpe='channel'):
+  if tpe == 'channel':
+    dir_name = "PlotDir"
+    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta'], weights = mcWeights )
+    plt.legend(['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext'])
+  elif: tpe == 'particle':
+    dir_name = 'ParticlePlotDir'
+    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta'], weights = mcWeights )
+    plt.legend(['muon', 'proton','pion','electron','muon+','other'])
   #plotTitle, xAxisTitle, yAxisTitle =  Titles
   try:
     plotTitle, xAxisTitle, yAxisTitle = Titles
@@ -240,6 +245,8 @@ def getParticle(pdg):
       return "pion"
     elif(pdg == 11):
       return "electron"
+    elif (pdg == -13):
+      return "muon+"
     else:
       return "other"      
 
@@ -345,7 +352,7 @@ def Stack(dataframe, dirtDF, extDF, variable, qry, longest = False):
     value_list = ['QE','RES','DIS','2p2h','NC / Other']
   elif qry == 'particle':
     q_attribute = 'mc_pdg'
-    value_list = ['muon', 'proton','pion','electron','other']
+    value_list = ['muon', 'proton','pion','electron','muon+','other']
   else:
     print('please enter either channel or particle')
 
@@ -668,14 +675,14 @@ incSliceScoreStack = Stack(trackOverlay, trackDirt, trackExt,'nu_score', 'partic
 # exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceScoreStack) ) # alexis converted this to a stack() call
 incSliceScorekWeights = Stack(trackOverlay, trackDirt, trackExt,'wgt', 'particle')
 
-makeDataMCHistogram(incSliceScoreStack, incSliceScorekWeights, trackData['nu_score'].to_numpy(), trkScoreRange, 25, "IncSliceScore", ["Slice Score", "Score", "Number of Daughters"])
+makeDataMCHistogram(incSliceScoreStack, incSliceScorekWeights, trackData['nu_score'].to_numpy(), trkScoreRange, 25, "IncSliceScore", ["Slice Score", "Score", "Number of Daughters"],'particle')
 
 # exec( "incIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlaySliceScoreStack) ) # alexis converted to Stack() call
 incIsSelectedStack = Stack(trackOverlay, trackDirt, trackExt,'nu_mu_cc_selected', 'particle')
 # #exec( "incSliceScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlaySliceScoreStack) )
 
 
-makeDataMCHistogram(incIsSelectedStack, incSliceScorekWeights, trackData['nu_mu_cc_selected'].to_numpy(), isSelectedRange, 2, "IncIsSelected", ["Selected", "Selected", "Number of Daughters"])
+makeDataMCHistogram(incIsSelectedStack, incSliceScorekWeights, trackData['nu_mu_cc_selected'].to_numpy(), isSelectedRange, 2, "IncIsSelected", ["Selected", "Selected", "Number of Daughters"],'particle')
 
 
 #extNuScore     = trackExt.query('DuplicatedEvent == False & nu_score > @minNeutrinoScore  & nu_pdg == @numupdg')
@@ -691,7 +698,7 @@ incTrkScoreStack = Stack(overlayNuScore, dirtNuScore, extNuScore, 'track_score',
 # exec( "incTrkScorekWeights     = "  + re.sub(r'VAR', 'wgt',    overlayTrackScoreStack) )
 incTrkScorekWeights = Stack(overlayNuScore, dirtNuScore, extNuScore, 'wgt','particle')
 
-makeDataMCHistogram(incTrkScoreStack, incTrkScorekWeights, dataNuScore['track_score'].to_numpy(), trkScoreRange, 25, "IncTrkScore", ["Track Score", "Score", "Number of Tracks"])
+makeDataMCHistogram(incTrkScoreStack, incTrkScorekWeights, dataNuScore['track_score'].to_numpy(), trkScoreRange, 25, "IncTrkScore", ["Track Score", "Score", "Number of Tracks"],'particle')
 
 
 extTrackScore     = trackExt.query('DuplicatedEvent == False & track_score > @minTrackScore')
@@ -706,12 +713,12 @@ incVtxStack = Stack(overlayTrackScore, dirtTrackScore, extTrackScore, 'vtx_dista
 # exec( "incChiSqrStackWeights     = "  + re.sub(r'VAR', 'wgt',    overlayTrackScoreStack) )
 incChiSqrStackWeights = Stack(overlayTrackScore, dirtTrackScore, extTrackScore, 'wgt', 'particle')
 
-makeDataMCHistogram(incVtxStack, incChiSqrStackWeights, dataTrackScore['vtx_distance'].to_numpy(), vtxRange, 30, "VtxDistance", ["Vertex Distance", "Distance to Vertex (cm)", "Number of Tracks"])
+makeDataMCHistogram(incVtxStack, incChiSqrStackWeights, dataTrackScore['vtx_distance'].to_numpy(), vtxRange, 30, "VtxDistance", ["Vertex Distance", "Distance to Vertex (cm)", "Number of Tracks"],'particle')
 
 # exec( "incTrkLStack   = "  + re.sub(r'VAR', 'track_length', overlayTrackScoreStack) )
 incTrkLStack = Stack(overlayTrackScore, dirtTrackScore, extTrackScore, 'track_length', 'particle')
 
-makeDataMCHistogram(incTrkLStack, incChiSqrStackWeights, dataTrackScore['track_length'].to_numpy(), lengthRange, 20, "TrkL", ["Track Length", "Track Length (cm)", "Number of Tracks"])
+makeDataMCHistogram(incTrkLStack, incChiSqrStackWeights, dataTrackScore['track_length'].to_numpy(), lengthRange, 20, "TrkL", ["Track Length", "Track Length (cm)", "Number of Tracks"],'particle')
 
 extPIDScore     = trackExt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen')
 dirtPIDScore    = trackDirt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore  & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen')
@@ -726,20 +733,20 @@ incChiSqrStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_m
 # exec( "incChiSqrStackWeights     = "  + re.sub(r'VAR', 'wgt',    overlayPIDStack) )
 incChiSqrStackWeights = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_muon','particle')
 
-makeDataMCHistogram(incChiSqrStack, incChiSqrStackWeights, dataPIDScore['track_chi2_muon'].to_numpy(), chi2Range, 50, "IncChi2Muon", ["Chi2 Muon", "Chi2", "Number of Tracks"])
+makeDataMCHistogram(incChiSqrStack, incChiSqrStackWeights, dataPIDScore['track_chi2_muon'].to_numpy(), chi2Range, 50, "IncChi2Muon", ["Chi2 Muon", "Chi2", "Number of Tracks"],'particle')
 
 # exec( "incChiSqrPStack   = "  + re.sub(r'VAR', 'track_chi2_proton', overlayPIDStack) )
 incChiSqrPStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_proton','particle')
 # exec( "incChiSqrPStackWeights     = "  + re.sub(r'VAR', 'wgt',      overlayPIDStack) )
 incChiSqrPStackWeights = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'wgt','particle')
 
-makeDataMCHistogram(incChiSqrPStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_proton'].to_numpy(), chi2PRange, 35, "IncChi2Proton", ["Chi2 Proton", "Chi2", "Number of Tracks"])
+makeDataMCHistogram(incChiSqrPStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_proton'].to_numpy(), chi2PRange, 35, "IncChi2Proton", ["Chi2 Proton", "Chi2", "Number of Tracks"],'particle')
 
 # exec( "incChiSqrPMuStack   = "  + re.sub(r'VAR', 'track_chi2_ratio', overlayPIDStack) )
 incChiSqrPMuStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_ratio','particle')
 # #exec( "incChiSqrPStackWeights     = "  + re.sub(r'VAR', 'wgt',      overlayPIDStack) )
 
-makeDataMCHistogram(incChiSqrPMuStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_ratio'].to_numpy(), chi2Range, 50, "IncChi2Ratio", ["Chi2 Proton", "Chi2", "Number of Tracks"])
+makeDataMCHistogram(incChiSqrPMuStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_ratio'].to_numpy(), chi2Range, 50, "IncChi2Ratio", ["Chi2 Proton", "Chi2", "Number of Tracks"],'particle')
 
 extMuonCandidates      = trackExt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore  & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2')
 dirtMuonCandidates     = trackDirt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2')
