@@ -129,12 +129,13 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
   if tpe == 'channel':
     dir_name = "PlotDir"
     plt.legend(['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext'])
-    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta'], weights = mcWeights )
+    colors=['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta']
     # value_list = ['QE','RES','DIS','2p2h','NC / Other']
   else:
     dir_name = 'ParticlePlotDir'
     plt.legend(['muon', 'proton','pion','electron','muon+','other','ext'])
-    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'c', 'grey', 'gold', 'magenta'], weights = mcWeights )
+    colors=['b', 'g', 'y', 'r', 'c', 'grey', 'gold', 'magenta']
+  plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = colors, weights = mcWeights )
   #plotTitle, xAxisTitle, yAxisTitle =  Titles
   try:
     plotTitle, xAxisTitle, yAxisTitle = Titles
@@ -798,7 +799,8 @@ incPrimMuonStack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandi
 incPrimMuonStackWeights = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'wgt', 'channel', True)
 
 ######### Havn't switched any of the exec commands beyond this point to be Stack() calls ##############
-
+print len(incPrimMuonStack)
+print len(incPrimMuonStackWeights)
 
 makeDataMCHistogram(incPrimMuonStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_length'].to_numpy(), lengthRange, 20, "PrimMuonL", ["Track Length", "Track Length (cm)", "Number of Events"])
 
