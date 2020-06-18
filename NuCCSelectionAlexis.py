@@ -125,7 +125,7 @@ def make2DMCHistogram(mc, channel, binRange, nBins, filename, Titles):
   plt.savefig("%s/%s%s.png" % ( dir_name, filename, channel.replace(" / Other", "")) )
   plt.close()
 
-def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles, tpe='particle'):
+def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles, tpe='channel'):
   if tpe == 'channel':
     dir_name = "PlotDir"
     leg = ['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext']
