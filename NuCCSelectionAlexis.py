@@ -618,6 +618,7 @@ ymax = ax.get_ylim()[1]
 xmax = ax.get_xlim()[1]
 plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
 plt.savefig("PlotDir/DirtWeightsPreAverage.png")
+plt.savefig("ParticlePlotDir/DirtWeightsPreAverage.png")
 plt.close()  
 
 dirtCVWeightMeans     = dirtCVWeights.groupby(level=["run", "subrun", "event"]).agg({"wgt_tune" : ["mean"]})
@@ -636,6 +637,7 @@ ymax = ax.get_ylim()[1]
 xmax = ax.get_xlim()[1]
 plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
 plt.savefig("PlotDir/DirtWeightsPostAverage.png")
+plt.savefig("ParticlePlotDir/DirtWeightsPostAverage.png")
 plt.close()  
 
 dirtSplineWeightMeans.columns = ["_".join(x) for x in dirtSplineWeightMeans.columns.ravel()]
