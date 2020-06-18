@@ -734,7 +734,7 @@ incChiSqrStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_m
 # exec( "incChiSqrStackWeights     = "  + re.sub(r'VAR', 'wgt',    overlayPIDStack) )
 incChiSqrStackWeights = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_muon','particle')
 
-makeDataMCHistogram(incChiSqrStack, incChiSqrStackWeights, dataPIDScore['track_chi2_muon'].to_numpy(), chi2Range, 50, "IncChi2Muon", ["Chi2 Muon", "Chi2", "Number of Tracks"],'particle')
+makeDataMCHistogram(incChiSqrStack, incChiSqrStackWeights, dataPIDScore['track_chi2_muon'].to_numpy(), chi2Range, 50, "IncChi2Muon", ["Chi2 Muon", "Chi2", "Number of Tracks"],'channel')
 
 # exec( "incChiSqrPStack   = "  + re.sub(r'VAR', 'track_chi2_proton', overlayPIDStack) )
 incChiSqrPStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_proton','particle')
