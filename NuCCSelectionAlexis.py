@@ -125,16 +125,14 @@ def make2DMCHistogram(mc, channel, binRange, nBins, filename, Titles):
   plt.savefig("%s/%s%s.png" % ( dir_name, filename, channel.replace(" / Other", "")) )
   plt.close()
 
-def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles, tpe='channel'):
+def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles, tpe='particle'):
   if tpe == 'channel':
     dir_name = "PlotDir"
-    # plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta'], weights = mcWeights )
-    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, weights = mcWeights )
     plt.legend(['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext'])
-  elif tpe == 'particle':
+  else:
     dir_name = 'ParticlePlotDir'
-    plt.hist(mcList, bins=nBins, stacked=True, range=binRange, weights = mcWeights )
-    plt.legend(['muon', 'proton','pion','electron','other'])
+    plt.legend(['muon', 'proton','pion','electron','muon+','other','filler'])
+  plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = ['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta'], weights = mcWeights )
   #plotTitle, xAxisTitle, yAxisTitle =  Titles
   try:
     plotTitle, xAxisTitle, yAxisTitle = Titles
@@ -249,6 +247,8 @@ def getParticle(pdg):
       return "pion"
     elif(pdg == 11):
       return "electron"
+    elif(pdg == -13):
+      return "muon+"
     else:
       return "other"      
 
