@@ -151,7 +151,7 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
   plt.savefig("%s/%s.png" % ( dir_name, filename) )
   plt.close()
 
-  makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles)
+  makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles, tpe)
 
 def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, Titles, tpe='channel'):
   if tpe == 'channel':
