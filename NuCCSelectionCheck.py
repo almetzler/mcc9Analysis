@@ -13,7 +13,7 @@ from ROOT import TH1, TAxis, gROOT, TCanvas
 from scipy import stats
 
 ####################################################################################################
-channel_or_particle = 'channel'
+channel_or_particle = 'particle'
 
 def chanToHistogram(channel):
     if channel == "QE":
@@ -152,8 +152,6 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
   plt.ylabel(yAxisTitle)
   
   data_hist = dataify(dataList, nBins, binRange)
-  if filename == 'IncChi2Muon':
-    print [x[:5] for x in data_hist]
   plt.errorbar(data_hist[0], data_hist[1], yerr=data_hist[2], fmt='o', color='black')
   plt.savefig("%s/%s.png" % ( dir_name, filename) )
   plt.close()
@@ -743,8 +741,6 @@ dataPIDScore    = trackData.query('DuplicatedEvent == False & track_score > @min
 incChiSqrStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_muon')
 # exec( "incChiSqrStackWeights     = "  + re.sub(r'VAR', 'wgt',    overlayPIDStack) )
 incChiSqrStackWeights = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'wgt')
-print [len(x) for x in incIsSelectedStack]
-print [len(x) for x in incSliceScorekWeights]
 makeDataMCHistogram(incChiSqrStack, incChiSqrStackWeights, dataPIDScore['track_chi2_muon'].to_numpy(), chi2Range, 50, "IncChi2Muon", ["Chi2 Muon", "Chi2", "Number of Tracks"])
 
 # exec( "incChiSqrPStack   = "  + re.sub(r'VAR', 'track_chi2_proton', overlayPIDStack) )
