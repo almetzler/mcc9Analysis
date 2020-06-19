@@ -360,7 +360,7 @@ def Stack(dataframe, dirtDF, extDF, variable, longest = False):
     q_attribute = 'mc_channel'
     value_list = ['QE','RES','DIS','2p2h','NC / Other']
   elif qry == 'particle':
-    q_attribute = 'mc_pdg'
+    q_attribute = 'particle'
     value_list = ['muon', 'proton','pion','electron','muon+','other']
   else:
     print('please enter either channel or particle')
