@@ -13,7 +13,7 @@ from ROOT import TH1, TAxis, gROOT, TCanvas
 from scipy import stats
 
 ####################################################################################################
-channel_or_particle = 'channel'
+channel_or_particle = 'particle'
 
 def chanToHistogram(channel):
     if channel == "QE":
@@ -152,6 +152,8 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
   plt.ylabel(yAxisTitle)
   
   data_hist = dataify(dataList, nBins, binRange)
+  if filename == 'IncChi2Muon':
+    print [x[:5] for x in data_hist]
   plt.errorbar(data_hist[0], data_hist[1], yerr=data_hist[2], fmt='o', color='black')
   plt.savefig("%s/%s.png" % ( dir_name, filename) )
   plt.close()
