@@ -741,7 +741,8 @@ dataPIDScore    = trackData.query('DuplicatedEvent == False & track_score > @min
 incChiSqrStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_muon')
 # exec( "incChiSqrStackWeights     = "  + re.sub(r'VAR', 'wgt',    overlayPIDStack) )
 incChiSqrStackWeights = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_muon')
-
+print [len(x) for x in incIsSelectedStack]
+print [len(x) for x in incSliceScorekWeights]
 makeDataMCHistogram(incChiSqrStack, incChiSqrStackWeights, dataPIDScore['track_chi2_muon'].to_numpy(), chi2Range, 50, "IncChi2Muon", ["Chi2 Muon", "Chi2", "Number of Tracks"])
 
 # exec( "incChiSqrPStack   = "  + re.sub(r'VAR', 'track_chi2_proton', overlayPIDStack) )
