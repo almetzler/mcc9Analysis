@@ -13,7 +13,7 @@ from ROOT import TH1, TAxis, gROOT, TCanvas
 from scipy import stats
 
 ####################################################################################################
-channel_or_particle = 'particle'
+channel_or_particle = 'channel'
 
 def chanToHistogram(channel):
     if channel == "QE":
