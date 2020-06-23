@@ -31,6 +31,12 @@ def chanToHistogram(channel):
     else:
        return -1
 
+def isTrueCC(pdg, isNC):
+  if(pdg == 14 and not isNC):
+    return True
+  else:
+    return False
+
 def splitAndSort(inputArray, nDivisions):
   preSplit = np.sort(inputArray)
   dropEntries = preSplit.size % nDivisions
@@ -52,6 +58,7 @@ def loadMCEventInfo(inputFrame):
   inputFrame.insert(inputFrame.shape[1], "mc_expY", [getInel(x, y) for x, y in zip(inputFrame['mc_Ehad'], inputFrame['mc_nu_energy'] ) ] )
   #inputFrame.insert(inputFrame.shape[1], "template_wgt", [getChanWeight(x, y) for x, y in zip(inputFrame['mc_nu_interaction_type'], inputFrame['mc_nu_ccnc'])] ) #Classify neutrino events based on CC / NC and event Type
   inputFrame.insert(inputFrame.shape[1], "pot", mcPOT)
+  inputFrame.insert(inputFrame.shape[1], "isTrueCC", [isTrueCC(x, y) for x, y in zip(inputFrame['mc_pdg'], inputFrame['mc_nu_ccnc'])])   
 
 def loadMCTrackInfo(inputFrame):
   inputFrame.insert(inputFrame.shape[1], 'particle', [getParticle(x) for x in inputFrame['mc_pdg'] ])
