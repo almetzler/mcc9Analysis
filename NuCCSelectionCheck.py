@@ -70,7 +70,7 @@ def loadTrackInfo(inputFrame, isMC=False):
   inputFrame.insert(inputFrame.shape[1], 'track_mom_best', [getBestP(x, y, z) for x, y, z in zip(inputFrame['isContained'], inputFrame['track_range_mom_mu'], inputFrame['track_mcs_mom'])])
   if(isMC):
     inputFrame.insert(inputFrame.shape[1], 'particle', [getParticle(x) for x in inputFrame['mc_pdg'] ])
-    inputFrame.insert(inputFrame.shape[1], "isTrueCC", [isTrueCC(x, y) for x, y in zip(inputFrame['mc_pdg'], inputFrame['mc_nu_ccnc'])])
+    # inputFrame.insert(inputFrame.shape[1], "isTrueCC", [isTrueCC(x, y) for x, y in zip(inputFrame['mc_pdg'], inputFrame['mc_nu_ccnc'])])
 
 def AggregateFrame(inputFrame, var, stat):
   if stat not in ["count", "max", "mean"]:
@@ -598,13 +598,15 @@ numberFiltered = 0
 #by doing this, we have the complete event information for each track.
 #Really what we want is to look at the particles' properties as a funciton of the underlying event information
 #This is extendible to any event varaible we want to associate to a particle
-interactionInfo = ("mc_channel", "nu_mu_cc_selected","nu_score", "nu_pdg", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "daughters_start_contained", "isFiducial", "mc_Ehad", "mc_expQ2", "mc_expXbj", "mc_expY", "mc_expW") 
+interactionInfo = ("mc_channel", "nu_mu_cc_selected","nu_score", "nu_pdg", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "mc_nu_ccnc", "daughters_start_contained", "isFiducial", "mc_Ehad", "mc_expQ2", "mc_expXbj", "mc_expY", "mc_expW") 
 
 for field in interactionInfo:
   trackOverlay   = trackOverlay.join(filteredEvents['%s' % field], on=["run", "subrun", "event"])
 
 trackOverlay = trackOverlay.join(overlayCVWeights['wgt_tune'], on=["run", "subrun", "event"])
 trackOverlay = trackOverlay.join(overlaySplineWeights['wgt_spline'], on=["run", "subrun", "event"])
+
+trackOverlay.insert(trackOverlay.shape[1], "isTrueCC", [isTrueCC(x, y) for x, y in zip(trackOverlay['mc_pdg'], trackOverlay['mc_nu_ccnc'])])
 
 extInfo = { "nu_mu_cc_selected", "nu_score", "nu_pdg", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "daughters_start_contained", "isFiducial", "wgt" }
 
