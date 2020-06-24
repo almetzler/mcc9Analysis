@@ -58,7 +58,6 @@ def loadMCEventInfo(inputFrame):
   inputFrame.insert(inputFrame.shape[1], "mc_expY", [getInel(x, y) for x, y in zip(inputFrame['mc_Ehad'], inputFrame['mc_nu_energy'] ) ] )
   #inputFrame.insert(inputFrame.shape[1], "template_wgt", [getChanWeight(x, y) for x, y in zip(inputFrame['mc_nu_interaction_type'], inputFrame['mc_nu_ccnc'])] ) #Classify neutrino events based on CC / NC and event Type
   inputFrame.insert(inputFrame.shape[1], "pot", mcPOT)
-  inputFrame.insert(inputFrame.shape[1], "isTrueCC", [isTrueCC(x, y) for x, y in zip(inputFrame['mc_pdg'], inputFrame['mc_nu_ccnc'])])
 
 def loadMCTrackInfo(inputFrame):
   inputFrame.insert(inputFrame.shape[1], 'particle', [getParticle(x) for x in inputFrame['mc_pdg'] ])
@@ -71,6 +70,7 @@ def loadTrackInfo(inputFrame, isMC=False):
   inputFrame.insert(inputFrame.shape[1], 'track_mom_best', [getBestP(x, y, z) for x, y, z in zip(inputFrame['isContained'], inputFrame['track_range_mom_mu'], inputFrame['track_mcs_mom'])])
   if(isMC):
     inputFrame.insert(inputFrame.shape[1], 'particle', [getParticle(x) for x in inputFrame['mc_pdg'] ])
+    inputFrame.insert(inputFrame.shape[1], "isTrueCC", [isTrueCC(x, y) for x, y in zip(inputFrame['mc_pdg'], inputFrame['mc_nu_ccnc'])])
 
 def AggregateFrame(inputFrame, var, stat):
   if stat not in ["count", "max", "mean"]:
