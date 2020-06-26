@@ -388,6 +388,13 @@ def Stack(dataframe, dirtDF, extDF, variable, longest = False):
   retlist.append(ext)
   return retlist
 
+def getPurity(dataframe):
+  numEvents = dataframe.shape[0]
+  trueEvents = dataframe.query('isTrueCC == True')
+  numTrue = trueEvents.shape[0]
+  purity = numTrue/numEvents
+  return purity
+
 InputFiles = ["/uboone/data/users/joelam/stv-ntuples-new/numu_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/bnb_5e19_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/extC1_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/dirt_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/extC2_run1.root"]
 
 #InputFiles = ["/uboone/data/users/joelam/stv-ntuples-new/numu_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/nucc_run1_bnb.root", "/uboone/data/users/joelam/stv-ntuples-new/extC1_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/dirt_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/extC2_run1.root"]
@@ -862,6 +869,7 @@ incPrimMuonFlashChi2Ratio = Stack(overlayMuonCandidates, dirtMuonCandidates, ext
 makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (5,16), 11, "PrimMuonFlashChi2Ratio", ["Flash Chi2", "Chi2 Ratio", "Number of Events"])
 # #exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
 
+print "MuonFlashChi2Ratio Purity: {}".format(getPurity(overlayMuonCandidates))
 
 maxFlashChi2 = 10
 minNeutrinoScoreFlashFails = 0.25
