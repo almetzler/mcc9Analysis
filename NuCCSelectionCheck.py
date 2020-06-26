@@ -392,7 +392,7 @@ def getPurity(dataframe):
   numEvents = dataframe.shape[0]
   trueEvents = dataframe.query('isTrueCC == True')
   numTrue = trueEvents.shape[0]
-  purity = numTrue/numEvents
+  purity = float(numTrue)/float(numEvents)
   return purity
 
 InputFiles = ["/uboone/data/users/joelam/stv-ntuples-new/numu_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/bnb_5e19_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/extC1_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/dirt_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/extC2_run1.root"]
