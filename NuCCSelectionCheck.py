@@ -940,6 +940,6 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusive
 
 # print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
 # print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
-print trackOverlay.index.names
+print type(trackOverlay.get_level_values(0))
 
 sys.exit()
