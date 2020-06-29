@@ -925,7 +925,7 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusive
 # #print dataInclusiveEvents.query('nu_mu_cc_selected == False')
 
 # print "Track Purity: {}".format(getPurity(trackOverlay))
-
+'''
 # print "NuScore Purity: {}".format(getPurity(overlayNuScore))
 print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
 
@@ -940,5 +940,5 @@ print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates)
 
 # print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
 print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
-
+'''
 sys.exit()
