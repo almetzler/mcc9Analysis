@@ -396,8 +396,8 @@ def getPurity(dataframe):
   return purity
 
 def getEfficiency(dataframe):
-  numEvents = dataframe.query('isTrueCC == True').shape[0]
-  totalEvents = trackOverlay.query('isTrueCC == True & isFiducial == True').shape[0]
+  numEvents = dataframe.query('isTrueCC == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
+  totalEvents = trackOverlay.query('isTrueCC == True & isFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
   efficiency = float(numEvents)/float(totalEvents)
   return efficiency
 
@@ -927,19 +927,18 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusive
 # print "Track Purity: {}".format(getPurity(trackOverlay))
 
 # print "NuScore Purity: {}".format(getPurity(overlayNuScore))
-# print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
+print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
 
 # print "TrackScore Purity: {}".format(getPurity(overlayTrackScore))
-# print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
+print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
 
 # print "PIDScore Purity: {}".format(getPurity(overlayPIDScore))
-# print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
+print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
 # print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates))
-# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
 
 # print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
-# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
-print type(trackOverlay.index.get_level_values(0))
+print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 sys.exit()
