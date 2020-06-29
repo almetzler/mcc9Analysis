@@ -397,9 +397,8 @@ def getPurity(dataframe):
 
 def getEfficiency(dataframe):
   numEvents = dataframe.query('isTrueCC == True').shape[0]
-  check1 = dataframe.query('isFiducial == True')
+  print list(dataframe.columns)
   totalEvents = trackOverlay.query('isTrueCC == True').shape[0]
-  check2 = trackOverlay.query('isFiducial == True')
   print '\nnumEvents = {}, totalEvents = {}'.format(numEvents, totalEvents)
   efficiency = float(numEvents)/float(totalEvents)
   return efficiency
@@ -944,6 +943,7 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusive
 
 
 # #print dataInclusiveEvents.query('nu_mu_cc_selected == False')
+print list(trackOverlay.columns)
 
 print_efficiency_and_purity()
 
