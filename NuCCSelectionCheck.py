@@ -398,27 +398,8 @@ def getPurity(dataframe):
 def getEfficiency(dataframe):
   numEvents = dataframe.query('isTrueCC == True').shape[0]
   totalEvents = trackOverlay.query('isTrueCC == True & isFiducial == True').shape[0]
-  print '\nnumEvents = {}, totalEvents = {}'.format(numEvents, totalEvents)
   efficiency = float(numEvents)/float(totalEvents)
   return efficiency
-
-def print_efficiency_and_purity():
-  # print "Track Purity: {}".format(getPurity(trackOverlay))
-
-  # print "NuScore Purity: {}".format(getPurity(overlayNuScore))
-  print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
-  
-  # print "TrackScore Purity: {}".format(getPurity(overlayTrackScore))
-  print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
-
-  # print "PIDScore Purity: {}".format(getPurity(overlayPIDScore))
-  print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
-
-  # print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates))
-  print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
-  
-  # print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
-  print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 InputFiles = ["/uboone/data/users/joelam/stv-ntuples-new/numu_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/bnb_5e19_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/extC1_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/dirt_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/extC2_run1.root"]
 
@@ -943,6 +924,21 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusive
 
 # #print dataInclusiveEvents.query('nu_mu_cc_selected == False')
 
-print_efficiency_and_purity()
+# print "Track Purity: {}".format(getPurity(trackOverlay))
+
+# print "NuScore Purity: {}".format(getPurity(overlayNuScore))
+print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
+
+# print "TrackScore Purity: {}".format(getPurity(overlayTrackScore))
+print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
+
+# print "PIDScore Purity: {}".format(getPurity(overlayPIDScore))
+print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
+
+# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates))
+print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+
+# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
+print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 sys.exit()
