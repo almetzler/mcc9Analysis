@@ -395,14 +395,14 @@ def getPurity(dataframe):
   purity = float(numTrue)/float(numEvents)
   return purity
 
-totalEvents = trackOverlay.query('isTrueCC == True').shape[0]
-
 def getEfficiency(dataframe):
   numEvents = dataframe.query('isTrueCC == True').shape[0]
   efficiency = float(numEvents)/float(totalEvents)
   return efficiency
 
 def print_efficiency_and_purity():
+  totalEvents = trackOverlay.query('isTrueCC == True').shape[0]
+  
   # print "Track Purity: {}".format(getPurity(trackOverlay))
 
   # print "NuScore Purity: {}".format(getPurity(overlayNuScore))
