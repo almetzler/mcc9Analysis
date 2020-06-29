@@ -928,7 +928,7 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusive
 
 # print "NuScore Purity: {}".format(getPurity(overlayNuScore))
 print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
-'''
+
 # print "TrackScore Purity: {}".format(getPurity(overlayTrackScore))
 print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
 
