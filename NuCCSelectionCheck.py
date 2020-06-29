@@ -940,5 +940,5 @@ print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates)
 
 # print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
 print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
-'''
+
 sys.exit()
