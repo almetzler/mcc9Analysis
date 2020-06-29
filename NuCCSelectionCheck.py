@@ -397,7 +397,7 @@ def getPurity(dataframe):
 
 def getEfficiency(dataframe):
   numEvents = dataframe.query('isTrueCC == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
-  totalEvents = trackOverlay.query('isTrueCC == True & isFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
+  totalEvents = trackOverlay.query('isTrueCC == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
   efficiency = float(numEvents)/float(totalEvents)
   return efficiency
 
