@@ -401,8 +401,6 @@ def getEfficiency(dataframe):
   return efficiency
 
 def print_efficiency_and_purity():
-  totalEvents = trackOverlay.query('isTrueCC == True').shape[0]
-  
   # print "Track Purity: {}".format(getPurity(trackOverlay))
 
   # print "NuScore Purity: {}".format(getPurity(overlayNuScore))
@@ -799,6 +797,8 @@ extMuonCandidates      = trackExt.query('DuplicatedEvent == False & track_score 
 dirtMuonCandidates     = trackDirt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2')
 overlayMuonCandidates  = trackOverlay.query('DuplicatedEvent == False & track_score > @minMuonTrackScore & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2')
 dataMuonCandidates    = trackData.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2')
+
+totalEvents = trackOverlay.query('isTrueCC == True').shape[0]
 
 # #Select only the primary muon track based on the longest track
 '''
