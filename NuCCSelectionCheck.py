@@ -927,18 +927,19 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusive
 # print "Track Purity: {}".format(getPurity(trackOverlay))
 
 # print "NuScore Purity: {}".format(getPurity(overlayNuScore))
-print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
+# print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
 
 # print "TrackScore Purity: {}".format(getPurity(overlayTrackScore))
-print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
+# print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
 
 # print "PIDScore Purity: {}".format(getPurity(overlayPIDScore))
-print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
+# print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
 # print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates))
-print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
 
 # print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
-print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+print list(trackOverlay.columns)
 
 sys.exit()
