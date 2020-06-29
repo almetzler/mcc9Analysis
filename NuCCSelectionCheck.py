@@ -398,6 +398,7 @@ def getPurity(dataframe):
 def getEfficiency(dataframe):
   numEvents = dataframe.query('isTrueCC == True').shape[0]
   totalEvents = trackOverlay.query('isTrueCC == True').shape[0]
+  print '{}: numEvents = {}, totalEvents = {}'.format(dataframe, numEvents, totalEvents)
   efficiency = float(numEvents)/float(totalEvents)
   return efficiency
 
