@@ -926,12 +926,14 @@ tag_list = ['Track','NuScore','TrackScore','PIDScore','MuonCandidate','Inclusive
 purity = [getPurity(x[0],x[1],x[2]) for x in df_list]
 efficiency = [getEfficiency(x[0]) for x in df_list]
 # #print dataInclusiveEvents.query('nu_mu_cc_selected == False')
+
+fig, host = plt.subplots()
 plt2 = plt.twinx()
-plt.plot(tag_list,purity,'bo',label='Purity')
+host.plot(tag_list,purity,'bo',label='Purity')
 plt2.plot(tag_list,efficiency,'ro',label='Efficiency')
-plt.title('Purity-Efficiency')
-plt.xlabel('Cut')
-plt.ylabel('Purity')
+host.set_title('Purity-Efficiency')
+host.set_xlabel('Cut')
+host.set_ylabel('Purity')
 plt2.set_ylabel('Efficiency')
 plt.savefig('PlotDir/PurityEfficiency.png')
 plt.savefig('ParticlePlotDir/PurityEfficiency.png')
