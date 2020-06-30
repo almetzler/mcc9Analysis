@@ -921,15 +921,15 @@ overlayPrimMuonPhiInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEv
 
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['phi'].to_numpy(), phiRange, 30, "InclusiveEventsPrimMuonPhi", ["Muon Phi Angle", "Angle / pi (radians)", "Number of Primary Muons"])
 
-df_list = [trackOverlay,overlayNuScore,overlayTrackScore,overlayPIDScore,overlayMuonCandidates,overlayInclusiveEvents]
-tag_list = ['Track','NuScore','TrackScore','PIDScore','MuonCandidate','InclusiveEvents']
+df_list = [overlayNuScore,overlayTrackScore,overlayPIDScore,overlayMuonCandidates,overlayInclusiveEvents]
+tag_list = ['NuScore','TrackScore','PIDScore','MuonCandidate','InclusiveEvents']
 tup_list = [(getPurity(x),getEfficiency(x),name) for x,name in zip(df_list,tag_list)]
 # #print dataInclusiveEvents.query('nu_mu_cc_selected == False')
 
 for purity, efficiency, name in tup_list:
   print "{} Purity: {}".format(name,purity)
   print "{} Efficiency: {}".format(name,efficiency)
-  plt.text(purity,efficiency,name,horizontalalignment='right')
+  plt.annotate(name,(purity,efficiency),textcoords='offsetpoints',xytext=(0,-10),ha='center')
 
 plt.title('Purity-Efficiency')
 plt.xlabel('Purity')
