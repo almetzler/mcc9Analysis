@@ -388,8 +388,8 @@ def Stack(dataframe, dirtDF, extDF, variable, longest = False):
   retlist.append(ext)
   return retlist
 
-def getPurity(dataframe):
-  numEvents = dataframe.query('isTrueFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
+def getPurity(dataframe,dirt,ext):
+  numEvents = dataframe.query('isTrueFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]+dirt.shape[0]+ext.shape[0]
   numTrue = dataframe.query('isTrueCC == True & isTrueFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
   purity = float(numTrue)/float(numEvents)
   return purity
@@ -921,40 +921,40 @@ overlayPrimMuonPhiInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEv
 
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['phi'].to_numpy(), phiRange, 30, "InclusiveEventsPrimMuonPhi", ["Muon Phi Angle", "Angle / pi (radians)", "Number of Primary Muons"])
 
-df_list = [overlayNuScore,overlayTrackScore,overlayPIDScore,overlayMuonCandidates,overlayInclusiveEvents]
+df_list = [(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents)]
 tag_list = ['NuScore','TrackScore','PIDScore','MuonCandidate','InclusiveEvents']
-tup_list = [(getPurity(x),getEfficiency(x),name) for x,name in zip(df_list,tag_list)]
+purity = [getPurity(x) for x in df_list]
+efficiency = [getEfficiency(x[0]) for x in df_list]
 # #print dataInclusiveEvents.query('nu_mu_cc_selected == False')
 
-for purity, efficiency, name in tup_list:
-  print "{} Purity: {}".format(name,purity)
-  print "{} Efficiency: {}".format(name,efficiency)
-  plt.plot(purity,efficiency,'o')
-  plt.annotate(name,(purity,efficiency),textcoords='offset points',xytext=(0,-10),ha='center')
-
+plt2 = plt.twinx()
+plt.plot(tag_list,purity,'bo',label='Purity')
+plt2.plot(name,efficiency,'ro',label='Efficiency')
 plt.title('Purity-Efficiency')
-plt.xlabel('Purity')
-plt.ylabel('Efficiency')
+plt.xlabel('Cut')
+plt.ylabel('Purity')
+plt2.ylabel('Efficiency')
 plt.savefig('PlotDir/PurityEfficiency.png')
 plt.savefig('ParticlePlotDir/PurityEfficiency.png')
 plt.close()
-# print "Track Purity: {}".format(getPurity(trackOverlay))
-# print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
 
-# print "NuScore Purity: {}".format(getPurity(overlayNuScore))
-# print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
+print "Track Purity: {}".format(getPurity(trackOverlay))
+print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
 
-# print "TrackScore Purity: {}".format(getPurity(overlayTrackScore))
-# print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
+print "NuScore Purity: {}".format(getPurity(overlayNuScore))
+print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
 
-# print "PIDScore Purity: {}".format(getPurity(overlayPIDScore))
-# print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
+print "TrackScore Purity: {}".format(getPurity(overlayTrackScore))
+print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
 
-# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates))
-# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+print "PIDScore Purity: {}".format(getPurity(overlayPIDScore))
+print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
-# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
-# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates))
+print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+
+print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
+print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 
 
