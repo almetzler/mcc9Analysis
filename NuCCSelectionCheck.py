@@ -935,6 +935,7 @@ for purity, efficiency, name in tup_list:
 plt.title('Purity-Efficiency')
 plt.xlabel('Purity')
 plt.ylabel('Efficiency')
+plt.savefig('PlotDir/PurityEfficiency.png')
 plt.savefig('ParticlePlotDir/PurityEfficiency.png')
 plt.close()
 # print "Track Purity: {}".format(getPurity(trackOverlay))
