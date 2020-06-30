@@ -921,24 +921,39 @@ overlayPrimMuonPhiInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEv
 
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['phi'].to_numpy(), phiRange, 30, "InclusiveEventsPrimMuonPhi", ["Muon Phi Angle", "Angle / pi (radians)", "Number of Primary Muons"])
 
-
+df_list = [trackOverlay,overlayNuScore,overlayTrackScore,overlayPIDScore,overlayMuonCandidates,overlayInclusiveEvents]
+tag_list = ['Track','NuScore','TrackScore','PIDScore','MuonCandidate','InclusiveEvents']
+tup_list = [(getPurity(x),getEfficiency(x),name) for x,name in zip(df_list,tag_list)]
 # #print dataInclusiveEvents.query('nu_mu_cc_selected == False')
 
-print "Track Purity: {}".format(getPurity(trackOverlay))
+for purity, efficiency, name in tup_list:
+  print "{} Purity: {}".format(name,purity)
+  print "{} Efficiency: {}".format(name,efficiency)
+  plt.text(purity,efficiency,name,horizontalalignment='right')
 
-print "NuScore Purity: {}".format(getPurity(overlayNuScore))
-print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
+plt.title('Purity-Efficiency')
+plt.xlabel('Purity')
+plt.ylabel('Efficiency')
+plt.savefig('ParticlePlotDir/PurityEfficiency.png')
+plt.close()
+# print "Track Purity: {}".format(getPurity(trackOverlay))
+# print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
 
-print "TrackScore Purity: {}".format(getPurity(overlayTrackScore))
-print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
+# print "NuScore Purity: {}".format(getPurity(overlayNuScore))
+# print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
 
-print "PIDScore Purity: {}".format(getPurity(overlayPIDScore))
-print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
+# print "TrackScore Purity: {}".format(getPurity(overlayTrackScore))
+# print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
 
-print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates))
-print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+# print "PIDScore Purity: {}".format(getPurity(overlayPIDScore))
+# print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
-print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
-print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates))
+# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+
+# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents))
+# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+
+
 
 sys.exit()
