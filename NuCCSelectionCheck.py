@@ -929,6 +929,7 @@ tup_list = [(getPurity(x),getEfficiency(x),name) for x,name in zip(df_list,tag_l
 for purity, efficiency, name in tup_list:
   print "{} Purity: {}".format(name,purity)
   print "{} Efficiency: {}".format(name,efficiency)
+  plt.plot(purity,efficiency,'o')
   plt.annotate(name,(purity,efficiency),textcoords='offset points',xytext=(0,-10),ha='center')
 
 plt.title('Purity-Efficiency')
