@@ -612,7 +612,7 @@ numberFiltered = 0
 #by doing this, we have the complete event information for each track.
 #Really what we want is to look at the particles' properties as a funciton of the underlying event information
 #This is extendible to any event varaible we want to associate to a particle
-interactionInfo = ("mc_channel", "nu_mu_cc_selected","nu_score", "nu_pdg", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "daughters_start_contained", "isFiducial", "mc_Ehad", "mc_expQ2", "mc_expXbj", "mc_expY", "mc_expW","isTrueCC") 
+interactionInfo = ("mc_channel", "nu_mu_cc_selected","nu_score", "nu_pdg", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "mc_nu_vx", "mc_nu_vy", "mc_nu_vz", "daughters_start_contained", "isFiducial", "isTrueFiducial", "mc_Ehad", "mc_expQ2", "mc_expXbj", "mc_expY", "mc_expW","isTrueCC") 
 
 for field in interactionInfo:
   trackOverlay   = trackOverlay.join(filteredEvents['%s' % field], on=["run", "subrun", "event"])
