@@ -390,8 +390,7 @@ def Stack(dataframe, dirtDF, extDF, variable, longest = False):
 
 def getPurity(dataframe):
   numEvents = dataframe.query('isTrueFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
-  trueEvents = dataframe.query('isTrueCC == True & isTrueFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
-  numTrue = trueEvents.shape[0]
+  numTrue = dataframe.query('isTrueCC == True & isTrueFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
   purity = float(numTrue)/float(numEvents)
   return purity
 
