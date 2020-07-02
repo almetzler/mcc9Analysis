@@ -390,13 +390,13 @@ def Stack(dataframe, dirtDF, extDF, variable, longest = False):
 
 def getPurity(dataframe,dirt,ext):
   numEvents = dataframe.groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]+dirt.shape[0]+ext.shape[0]
-  numTrue = dataframe.query('isTrueCC == True & isTrueFiducial == True & particle == muon').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
+  numTrue = dataframe.query('isTrueCC == True & isTrueFiducial == True & particle == "muon"').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
   purity = float(numTrue)/float(numEvents)
   return purity
 
 def getEfficiency(dataframe):
-  numEvents = dataframe.query('isTrueCC == True & isTrueFiducial == True & particle == muon').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
-  totalEvents = trackOverlay.query('isTrueCC == True & isTrueFiducial == True & particle == muon').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
+  numEvents = dataframe.query('isTrueCC == True & isTrueFiducial == True & particle == "muon"').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
+  totalEvents = trackOverlay.query('isTrueCC == True & isTrueFiducial == True & particle == "muon"').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
   efficiency = float(numEvents)/float(totalEvents)
   return efficiency
 
@@ -929,14 +929,20 @@ efficiency = [getEfficiency(x[0]) for x in df_list]
 
 fig, host = plt.subplots()
 plt2 = plt.twinx()
-host.plot(tag_list,purity,'bo',label='Purity')
-plt2.plot(tag_list,efficiency,'ro',label='Efficiency')
+
+p1, = host.plot(tag_list,purity,'bo',label='Purity')
+p2, = plt2.plot(tag_list,efficiency,'ro',label='Efficiency')
+
 host.set_title('Purity-Efficiency')
 host.set_xlabel('Cut')
 host.set_ylabel('Purity')
 plt2.set_ylabel('Efficiency')
+
 host.yaxis.label.set_color('blue')
 plt2.yaxis.label.set_color('red')
+
+host.legend([p1,p2],['blue','red'])
+
 plt.savefig('PlotDir/PurityEfficiency.png')
 plt.savefig('ParticlePlotDir/PurityEfficiency.png')
 plt.close()
