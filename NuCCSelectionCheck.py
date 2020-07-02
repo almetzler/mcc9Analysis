@@ -934,14 +934,13 @@ p1, = host.plot(tag_list,purity,'bo',label='Purity')
 p2, = plt2.plot(tag_list,efficiency,'ro',label='Efficiency')
 
 host.set_title('Purity-Efficiency')
-host.set_xlabel('Cut')
 host.set_ylabel('Purity')
 plt2.set_ylabel('Efficiency')
 
 host.yaxis.label.set_color('blue')
 plt2.yaxis.label.set_color('red')
 
-host.legend([p1,p2],['Purity','Efficiency'])
+host.legend([p1,p2],['Purity','Efficiency'],loc = 'center left')
 
 plt.savefig('PlotDir/PurityEfficiency.png')
 plt.savefig('ParticlePlotDir/PurityEfficiency.png')
