@@ -389,14 +389,14 @@ def Stack(dataframe, dirtDF, extDF, variable, longest = False):
   return retlist
 
 def getPurity(dataframe,dirt,ext):
-  numEvents = dataframe.query('isTrueFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]+dirt.shape[0]+ext.shape[0]
-  numTrue = dataframe.query('isTrueCC == True & isTrueFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
+  numEvents = dataframe.groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]+dirt.shape[0]+ext.shape[0]
+  numTrue = dataframe.query('isTrueCC == True & isTrueFiducial == True & particle == muon').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
   purity = float(numTrue)/float(numEvents)
   return purity
 
 def getEfficiency(dataframe):
-  numEvents = dataframe.query('isTrueCC == True & isTrueFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
-  totalEvents = trackOverlay.query('isTrueCC == True & isTrueFiducial == True').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
+  numEvents = dataframe.query('isTrueCC == True & isTrueFiducial == True & particle == muon').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
+  totalEvents = trackOverlay.query('isTrueCC == True & isTrueFiducial == True & particle == muon').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
   efficiency = float(numEvents)/float(totalEvents)
   return efficiency
 
