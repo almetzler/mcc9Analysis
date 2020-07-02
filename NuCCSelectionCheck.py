@@ -922,7 +922,7 @@ overlayPrimMuonPhiInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEv
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['phi'].to_numpy(), phiRange, 30, "InclusiveEventsPrimMuonPhi", ["Muon Phi Angle", "Angle / pi (radians)", "Number of Primary Muons"])
 
 df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents)]
-tag_list = ['Track','Nu\nScore','Track\nScore','PID\nScore','Muon\nCandidate','Inclusive\nEvents']
+tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inclusive\nEvents']
 purity = [getPurity(x[0],x[1],x[2]) for x in df_list]
 efficiency = [getEfficiency(x[0]) for x in df_list]
 # #print dataInclusiveEvents.query('nu_mu_cc_selected == False')
