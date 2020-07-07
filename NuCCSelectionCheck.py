@@ -204,7 +204,7 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   xmax = ax.get_xlim()[1]
   #print "Min %.2f Max %.2f" % (ax.get_xlim()[0], ax.get_xlim()[1])
   # plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
-  props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+  props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
 
   axi.text(0.75, 1.1, text, transform=axi.transAxes, fontsize=14,
         verticalalignment='top', bbox=props)
