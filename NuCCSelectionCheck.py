@@ -192,15 +192,20 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
     plotTitle  = ""
     xAxisTitle = ""
     yAxisTitle = "" 
-  plt.title(plotTitle)
-  plt.xlabel(xAxisTitle)
-  plt.ylabel("Data / MC")
+  
+  fig, axi = plt.subplots() #create subplots so I can put a textbox in
+  
+  axi.title(plotTitle)
+  axi.xlabel(xAxisTitle)
+  axi.ylabel("Data / MC")
   text = r'$\int \frac{data}{MC} = %.3f$' % sumRatio
   ax = plt.gca()
   ymax = ax.get_ylim()[1] 
   xmax = ax.get_xlim()[1]
   #print "Min %.2f Max %.2f" % (ax.get_xlim()[0], ax.get_xlim()[1])
-  plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
+  # plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
+  axi.text(0.75, 1.1, text, transform=axi.transAxes, fontsize=14,
+        verticalalignment='top', bbox=props)
   plt.savefig("%s/%sRatio.png" % ( dir_name, filename) )
   plt.close()
   
@@ -928,7 +933,7 @@ overlayPrimMuonPhiInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEv
 
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['phi'].to_numpy(), phiRange, 30, "InclusiveEventsPrimMuonPhi", ["Muon Phi Angle", "Angle / pi (radians)", "Number of Primary Muons"])
 
-#########################################################################
+############################# plots w/o chi2 part of final or cut ############################################
 overlayIsSelectedInclusiveWeights_noChi2 = Stack(overlayInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), dirtInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), extInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), 'wgt')
 
 overlayPrimMuonChi2FlashInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), dirtInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), extInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), 'nu_flash_chi2')
