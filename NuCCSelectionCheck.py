@@ -946,7 +946,7 @@ makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack_noChi2, overlayIsSele
 
 overlayPrimMuonPhiInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), dirtInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), extInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), 'phi')
 
-makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails')['phi'].to_numpy(), phiRange, 30, "InclusiveEventsPrimMuonPhi_nochi2", ["Muon Phi Angle w/o cut", "Angle / pi (radians)", "Number of Primary Muons"])
+makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails')['phi'].to_numpy(), phiRange, 64, "InclusiveEventsPrimMuonPhi_nochi2", ["Muon Phi Angle w/o cut", "Angle / pi (radians)", "Number of Primary Muons"])
 
 ############################################################################
 
