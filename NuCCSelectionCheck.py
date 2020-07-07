@@ -179,8 +179,6 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   MCScalarSum   = np.sum(mcSum)
   DataScalarSum = np.sum(data_hist[1])
   sumRatio = DataScalarSum / MCScalarSum
-  if (filename == 'InclusiveEventsPrimMuonPhi_nochi2' or filename == 'InclusiveEventsPrimMuonFlashChi2_nochi2'):
-    print "{} DataSum: {}\nMCSun: {}\nData points: {}\nMC points: {}".format(filename, DataScalarSum, MCScalarSum, len(data_hist[1]), len(mcSum))
   ratio = np.divide(data_hist[1], mcSum)
   err   = np.multiply(ratio, np.divide(1.0, data_hist[2]))
   np.nan_to_num(ratio, copy=False)
@@ -939,13 +937,13 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack, overlayIsSelectedInclusive
 
 ############################# plots w/o chi2 part of final or cut ############################################
 overlayIsSelectedInclusiveWeights_noChi2 = Stack(overlayInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), dirtInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), extInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), 'wgt')
-print len(overlayIsSelectedInclusiveWeights_noChi2)
+print [len(x) for x in overlayIsSelectedInclusiveWeights_noChi2]
 overlayPrimMuonChi2FlashInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), dirtInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), extInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), 'nu_flash_chi2')
-print len(overlayPrimMuonChi2FlashInclusiveStack_noChi2)
+print [len(x) for x in overlayPrimMuonChi2FlashInclusiveStack_noChi2]
 makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails')['nu_flash_chi2'].to_numpy(), (4, 200), 64, "InclusiveEventsPrimMuonFlashChi2_nochi2", ["Flash Chi2 w/o cut", "Chi2", "Number of Events"])
 
 overlayPrimMuonPhiInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), dirtInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), extInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), 'phi')
-print len(overlayPrimMuonPhiInclusiveStack_noChi2)
+print [len(x) for x in overlayPrimMuonPhiInclusiveStack_noChi2]
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails')['phi'].to_numpy(), phiRange, 64, "InclusiveEventsPrimMuonPhi_nochi2", ["Muon Phi Angle w/o cut", "Angle / pi (radians)", "Number of Primary Muons"])
 
 ############################################################################
