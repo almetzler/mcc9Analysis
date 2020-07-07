@@ -944,7 +944,7 @@ overlayIsSelectedInclusiveWeights_noChi2 = Stack(overlayInclusiveEvents_noChi2.q
 
 overlayPrimMuonChi2FlashInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), dirtInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), extInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), 'nu_flash_chi2')
 
-makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails')['nu_flash_chi2'].to_numpy(), (4, 200), 10, "InclusiveEventsPrimMuonFlashChi2_nochi2", ["Flash Chi2 w/o cut", "Chi2", "Number of Events"])
+makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails')['nu_flash_chi2'].to_numpy(), (0, 400), 10, "InclusiveEventsPrimMuonFlashChi2_nochi2", ["Flash Chi2 w/o cut", "Chi2", "Number of Events"])
 
 overlayPrimMuonPhiInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), dirtInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), extInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), 'phi')
 
