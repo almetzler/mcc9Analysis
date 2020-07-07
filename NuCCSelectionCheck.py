@@ -186,7 +186,7 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
 
   if (filename == 'InclusiveEventsPrimMuonPhi_nochi2' or filename == 'InclusiveEventsPrimMuonFlashChi2_nochi2'):
     print 'mcSum: {}\ndata_hist: {}'.format(mcSum,data_hist[1])
-    print 'MCScalarSum: {}\nDataScalarSum: {}'.format(MCScalarSum,DataScalarSum)
+    print 'MCScalarSum: {}\nDataScalarSum: {}\nsumRatio'.format(MCScalarSum,DataScalarSum,sumRatio)
 
   fig, axi = plt.subplots() #create subplots so I can put a textbox in
 
