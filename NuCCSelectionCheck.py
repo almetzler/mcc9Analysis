@@ -184,10 +184,6 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   np.nan_to_num(ratio, copy=False)
   np.nan_to_num(err, copy=False)
 
-  if (filename == 'InclusiveEventsPrimMuonPhi_nochi2' or filename == 'InclusiveEventsPrimMuonFlashChi2_nochi2'):
-    print 'mcSum: {}\ndata_hist: {}'.format(mcSum,data_hist[1])
-    print 'MCScalarSum: {}\nDataScalarSum: {}\nsumRatio: {}'.format(MCScalarSum,DataScalarSum,sumRatio)
-
   fig, axi = plt.subplots() #create subplots so I can put a textbox in
 
   axi.errorbar(data_hist[0], ratio, yerr=err, fmt='o', color='black') #This ignores MC stats.
