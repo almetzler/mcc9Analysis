@@ -178,7 +178,9 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   data_hist = dataify(dataList, nBins, binRange)
   MCScalarSum   = np.sum(mcSum)
   DataScalarSum = np.sum(data_hist[1])
-  sumRatio = DataScalarSum / MCScalarSum 
+  sumRatio = DataScalarSum / MCScalarSum
+  if (filename == 'InclusiveEventsPrimMuonPhi_nochi2' or filename == 'InclusiveEventsPrimMuonFlashChi2_nochi2'):
+    print "{} DataSum: {}\nMCSun: {}\nData points: {}\n MC points: {}".format(filename, DataScalarSum, MCScalarSum, len(data_hist[1]), len(mcSum))
   ratio = np.divide(data_hist[1], mcSum)
   err   = np.multiply(ratio, np.divide(1.0, data_hist[2]))
   np.nan_to_num(ratio, copy=False)
