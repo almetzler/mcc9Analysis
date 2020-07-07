@@ -195,9 +195,9 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   
   fig, axi = plt.subplots() #create subplots so I can put a textbox in
   
-  axi.title(plotTitle)
-  axi.xlabel(xAxisTitle)
-  axi.ylabel("Data / MC")
+  axi.set_title(plotTitle)
+  axi.set_xlabel(xAxisTitle)
+  axi.set_ylabel("Data / MC")
   text = r'$\int \frac{data}{MC} = %.3f$' % sumRatio
   ax = plt.gca()
   ymax = ax.get_ylim()[1] 
