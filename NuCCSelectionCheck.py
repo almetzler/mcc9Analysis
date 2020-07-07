@@ -184,8 +184,8 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   np.nan_to_num(ratio, copy=False)
   np.nan_to_num(err, copy=False)
 
-  if (filename == 'InclusiveEventsPrimMuonPhi_nochi2'):
-    print 'mcSum: {}\ndata_hist: {}\nratio: {}'.format(mcSum,data_hist[1],ratio)
+  if (filename == 'InclusiveEventsPrimMuonPhi_nochi2' or filename == 'InclusiveEventsPrimMuonFlashChi2_nochi2'):
+    print 'mcSum: {}\ndata_hist: {}'.format(mcSum,data_hist[1])
     print 'MCScalarSum: {}\nDataScalarSum: {}'.format(MCScalarSum,DataScalarSum)
 
   fig, axi = plt.subplots() #create subplots so I can put a textbox in
@@ -944,7 +944,7 @@ overlayIsSelectedInclusiveWeights_noChi2 = Stack(overlayInclusiveEvents_noChi2.q
 
 overlayPrimMuonChi2FlashInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), dirtInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), extInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), 'nu_flash_chi2')
 
-makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails')['nu_flash_chi2'].to_numpy(), (4, 200), 64, "InclusiveEventsPrimMuonFlashChi2_nochi2", ["Flash Chi2 w/o cut", "Chi2", "Number of Events"])
+makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails')['nu_flash_chi2'].to_numpy(), (4, 200), 10, "InclusiveEventsPrimMuonFlashChi2_nochi2", ["Flash Chi2 w/o cut", "Chi2", "Number of Events"])
 
 overlayPrimMuonPhiInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), dirtInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), extInclusiveEvents_noChi2.query('nu_score > @minNeutrinoScoreFlashFails'), 'phi')
 
@@ -977,26 +977,26 @@ plt.savefig('PlotDir/PurityEfficiency.png')
 plt.savefig('ParticlePlotDir/PurityEfficiency.png')
 plt.close()
 
-print "Track Purity: {}".format(getPurity(trackOverlay, trackDirt, trackExt))
-print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
+# print "Track Purity: {}".format(getPurity(trackOverlay, trackDirt, trackExt))
+# print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
 
-print "NuScore Purity: {}".format(getPurity(overlayNuScore, dirtNuScore, extNuScore))
-print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
+# print "NuScore Purity: {}".format(getPurity(overlayNuScore, dirtNuScore, extNuScore))
+# print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
 
-print "TrackScore Purity: {}".format(getPurity(overlayTrackScore, dirtTrackScore, extTrackScore))
-print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
+# print "TrackScore Purity: {}".format(getPurity(overlayTrackScore, dirtTrackScore, extTrackScore))
+# print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
 
-print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
-print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
+# print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
+# print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
-print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
-print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
+# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
 
-print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
-print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
+# print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
+# print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
 
-print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
-print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
+# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 
 sys.exit()
