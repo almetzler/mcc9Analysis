@@ -948,7 +948,7 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 
 ############################################################################
 
-df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates)]
+df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2)]
 tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inclusive\nEvents','Inc. Events\nNoChi2']
 purity = [getPurity(x[0],x[1],x[2]) for x in df_list]
 efficiency = [getEfficiency(x[0]) for x in df_list]
