@@ -781,7 +781,7 @@ makeDataMCHistogram(incChiSqrPStack, incChiSqrPStackWeights, dataPIDScore['track
 incChiSqrPMuStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi2_ratio')
 # #exec( "incChiSqrPStackWeights     = "  + re.sub(r'VAR', 'wgt',      overlayPIDStack) )
 
-makeDataMCHistogram(incChiSqrPMuStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_ratio'].to_numpy(), chi2Range, 50, "IncChi2Ratio", ["Chi2 Proton", "Chi2", "Number of Tracks"])
+makeDataMCHistogram(incChiSqrPMuStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_ratio'].to_numpy(), chi2Range, 50, "IncChi2Ratio", ["Chi2 Ratio", "Chi2", "Number of Tracks"])
 
 extMuonCandidates      = trackExt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore  & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2')
 dirtMuonCandidates     = trackDirt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2')
@@ -948,8 +948,8 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 
 ############################################################################
 
-df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents)]
-tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inc. Events\nNoChi2','Inclusive\nEvents']
+df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates)]
+tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inclusive\nEvents','Inc. Events\nNoChi2']
 purity = [getPurity(x[0],x[1],x[2]) for x in df_list]
 efficiency = [getEfficiency(x[0]) for x in df_list]
 # #print dataInclusiveEvents.query('nu_mu_cc_selected == False')
