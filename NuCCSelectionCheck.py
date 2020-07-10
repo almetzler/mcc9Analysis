@@ -736,6 +736,9 @@ incTrkScorekWeights = Stack(overlayNuScore, dirtNuScore, extNuScore, 'wgt')
 
 makeDataMCHistogram(incTrkScoreStack, incTrkScorekWeights, dataNuScore['track_score'].to_numpy(), trkScoreRange, 25, "IncTrkScore", ["Track Score", "Score", "Number of Tracks"])
 
+nuSliceScoreStack = Stack(overlayNuScore, dirtNuScore, extNuScore, 'nu_score')
+
+makeDataMCHistogram(nuSliceScoreStack, incTrkScorekWeights, dataNuScore['nu_score'].to_numpy(),trkScoreRange, 25, "NuSliceScore", ["Slice Score", "Score", "Number of Daughters"]))
 
 extTrackScore     = trackExt.query('DuplicatedEvent == False & track_score > @minTrackScore')
 dirtTrackScore    = trackDirt.query('DuplicatedEvent == False & track_score > @minTrackScore')
