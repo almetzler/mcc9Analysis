@@ -969,7 +969,7 @@ nochi2_wgt = overlayIsSelectedInclusiveWeights_noChi2
 
 for var,rge,bins,x,y in var_list:
   uncut_stack = Stack(trackOverlay, trackDirt, trackExt,var)
-  long_stack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates,var)
+  long_stack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates,var,True)
   chi2_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, var)
   nochi2_stack = Stack(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2, var)
 
