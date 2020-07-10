@@ -976,9 +976,9 @@ for var,rge,bins,titles in var_list:
   nochi2_stack = Stack(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2, var)
 
   makeDataMCHistogram(uncut_stack, uncut_wgt, trackData[var].to_numpy(), rge, bins, '{} plot, no cuts'.format(var), titles)
-  makeDataMCHistogram(long_stack, long_wgt, trackData.query('isLongestTrack == True')[var].to_numpy(), rge, bins, '{} plot, longest tracks'.format(var), titles))
-  makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{} plot, all cuts & flash'.format(var), titles)))
-  makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{} plot, all cuts & no flash'.format(var), titles)))
+  makeDataMCHistogram(long_stack, long_wgt, trackData.query('isLongestTrack == True')[var].to_numpy(), rge, bins, '{} plot, longest tracks'.format(var), titles)
+  makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{} plot, all cuts & flash'.format(var), titles)
+  makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{} plot, all cuts & no flash'.format(var), titles)
 
 '''
 df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2)]
