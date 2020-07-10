@@ -720,26 +720,6 @@ incIsSelectedStack = Stack(trackOverlay, trackDirt, trackExt,'nu_mu_cc_selected'
 
 makeDataMCHistogram(incIsSelectedStack, incSliceScorekWeights, trackData['nu_mu_cc_selected'].to_numpy(), isSelectedRange, 2, "IncIsSelected", ["Selected", "Selected", "Number of Daughters"])
 
-statFrame = trackExt.groupby(level=["run", "subrun", "event"]).agg({"track_length": ["max"]})
-statFrame.columns = ["_".join(x) for x in statFrame.columns.ravel()]
-trackExt = trackExt.join(statFrame['track_length_max'], on=["run", "subrun", "event"])  
-trackExt.eval('isLongestTrack = (track_length == track_length_max)', inplace=True)
-
-statFrame = trackDirt.groupby(level=["run", "subrun", "event"]).agg({"track_length": ["max"]})
-statFrame.columns = ["_".join(x) for x in statFrame.columns.ravel()]
-trackDirt = trackDirt.join(statFrame['track_length_max'], on=["run", "subrun", "event"]) 
-trackDirt.eval('isLongestTrack = (track_length == track_length_max)', inplace=True)
-
-statFrame = trackOverlay.groupby(level=["run", "subrun", "event"]).agg({"track_length": ["max"]})
-statFrame.columns = ["_".join(x) for x in statFrame.columns.ravel()]
-trackOverlay = trackOverlay.join(statFrame['track_length_max'], on=["run", "subrun", "event"]) 
-trackOverlay.eval('isLongestTrack = (track_length == track_length_max)', inplace=True)
-
-statFrame = trackData.groupby(level=["run", "subrun", "event"]).agg({"track_length": ["max"]})
-statFrame.columns = ["_".join(x) for x in statFrame.columns.ravel()]
-trackData = trackData.join(statFrame['track_length_max'], on=["run", "subrun", "event"]) 
-trackData.eval('isLongestTrack = (track_length == track_length_max)', inplace=True)
-
 #extNuScore     = trackExt.query('DuplicatedEvent == False & nu_score > @minNeutrinoScore  & nu_pdg == @numupdg')
 extNuScore     = trackExt.query('DuplicatedEvent == False')
 dirtNuScore    = trackDirt.query('DuplicatedEvent == False')
@@ -817,6 +797,25 @@ AggregateFrame(dirtMuonCandidates, "track_length", "max")
 AggregateFrame(overlayMuonCandidates, "track_length", "max")
 AggregateFrame(datatMuonCandidates, "track_length", "max")
 '''
+statFrame = extMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"track_length": ["max"]})
+statFrame.columns = ["_".join(x) for x in statFrame.columns.ravel()]
+extMuonCandidates = extMuonCandidates.join(statFrame['track_length_max'], on=["run", "subrun", "event"])  
+extMuonCandidates.eval('isLongestTrack = (track_length == track_length_max)', inplace=True)
+
+statFrame = dirtMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"track_length": ["max"]})
+statFrame.columns = ["_".join(x) for x in statFrame.columns.ravel()]
+dirtMuonCandidates = dirtMuonCandidates.join(statFrame['track_length_max'], on=["run", "subrun", "event"]) 
+dirtMuonCandidates.eval('isLongestTrack = (track_length == track_length_max)', inplace=True)
+
+statFrame = overlayMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"track_length": ["max"]})
+statFrame.columns = ["_".join(x) for x in statFrame.columns.ravel()]
+overlayMuonCandidates = overlayMuonCandidates.join(statFrame['track_length_max'], on=["run", "subrun", "event"]) 
+overlayMuonCandidates.eval('isLongestTrack = (track_length == track_length_max)', inplace=True)
+
+statFrame = dataMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"track_length": ["max"]})
+statFrame.columns = ["_".join(x) for x in statFrame.columns.ravel()]
+dataMuonCandidates = dataMuonCandidates.join(statFrame['track_length_max'], on=["run", "subrun", "event"]) 
+dataMuonCandidates.eval('isLongestTrack = (track_length == track_length_max)', inplace=True)
 
 # #leadingDataMuons   = dataMuons.groupby(level=["run", "subrun", "event"]).agg({"track_mcs_mom" : ["max", "count"]})
 
@@ -963,19 +962,19 @@ var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Ev
 ('phi',phiRange, 64,   "Angle / pi (radians)", "Number of Primary Muons")]
 
 uncut_wgt = incSliceScorekWeights
-long_wgt = Stack(trackOverlay, trackDirt, trackExt,'wgt', True)
+long_wgt = incPrimMuonStackWeights
 chi2_wgt = overlayIsSelectedInclusiveWeights
 nochi2_wgt = overlayIsSelectedInclusiveWeights_noChi2
 
 
 for var,rge,bins,x,y in var_list:
   uncut_stack = Stack(trackOverlay, trackDirt, trackExt,var)
-  long_stack = Stack(trackOverlay.query('isLongestTrack == True'), trackDirt.query('isLongestTrack == True'), trackExt.query('isLongestTrack == True'),var)
+  long_stack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates,var)
   chi2_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, var)
   nochi2_stack = Stack(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2, var)
 
   makeDataMCHistogram(uncut_stack, uncut_wgt, trackData[var].to_numpy(), rge, bins, '{}_no cuts'.format(var),  ['{} all tracks'.format(var),x,y])
-  makeDataMCHistogram(long_stack, long_wgt, trackData.query('isLongestTrack == True')[var].to_numpy(), rge, bins, '{}_longest'.format(var), ['{} longest tracks'.format(var),x,y])
+  makeDataMCHistogram(long_stack, long_wgt, dataMuonCandidates[var].to_numpy(), rge, bins, '{}_longest'.format(var), ['{} longest tracks'.format(var),x,y])
   makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{}_flash'.format(var),  ['{} all cuts and flash'.format(var),x,y])
   makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), ['{} all cuts no flash'.format(var),x,y])
 
