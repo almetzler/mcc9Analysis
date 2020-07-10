@@ -141,7 +141,7 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
     leg = ['QE', 'RES', 'DIS', '2p2h', 'NC / Other', 'Dirt', 'Ext']
     colors=['b', 'g', 'y', 'r', 'grey', 'gold', 'magenta']
   else:
-    dir_name = 'NuScorePlotDir'
+    dir_name = 'ParticlePlotDir'
     leg = ['muon','proton','pion','electron','muon+','other','dirt','ext']
     colors=['b', 'g', 'y', 'r', 'c', 'grey', 'gold', 'magenta']
   plt.hist(mcList, bins=nBins, stacked=True, range=binRange, color = colors, weights = mcWeights )
@@ -170,7 +170,7 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   if tpe == 'channel':
     dir_name = "PlotDir"
   elif tpe == 'particle':
-    dir_name = 'NuScorePlotDir'
+    dir_name = 'ParticlePlotDir'
   mcSum = np.full(nBins, 0.0 )
   for mc, weight in zip(mcList, mcWeights):
      mc_hist   = np.histogram(mc, bins=nBins, range=binRange, weights = weight )
