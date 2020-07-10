@@ -974,7 +974,7 @@ for var,rge,bins,x,y in var_list:
   nochi2_stack = Stack(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2, var)
 
   makeDataMCHistogram(uncut_stack, uncut_wgt, trackData[var].to_numpy(), rge, bins, '{}_no cuts'.format(var),  ['{} all tracks'.format(var),x,y])
-  makeDataMCHistogram(long_stack, long_wgt, dataMuonCandidates[var].to_numpy(), rge, bins, '{}_longest'.format(var), ['{} longest tracks'.format(var),x,y])
+  makeDataMCHistogram(long_stack, long_wgt, dataMuonCandidates.query('isLongestTrack == True')[var].to_numpy(), rge, bins, '{}_longest'.format(var), ['{} longest tracks'.format(var),x,y])
   makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{}_flash'.format(var),  ['{} all cuts and flash'.format(var),x,y])
   makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), ['{} all cuts no flash'.format(var),x,y])
 
