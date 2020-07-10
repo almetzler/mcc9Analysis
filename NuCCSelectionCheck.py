@@ -951,16 +951,16 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 ############################################################################
 
 
-var_list = [('track_length',lengthRange, 20, ["Track Length", "Track Length (cm)", "Number of Events"]),
-('track_chi2_muon',chi2Range, 50, ["Chi2 Muon", "Chi2", "Number of Events"]),
-('track_chi2_proton',chi2PRange, 35, ["Chi2 Proton", "Chi2", "Number of Events"]),
-('track_chi2_ratio',chi2Range, 50, ["Chi2 Ratio", "Chi2", "Number of Events"]),
-('nu_score',trkScoreRange, 50, ["Topological Score", "Neutrino ID", "Number of Events"]),
-('nu_flash_chi2',(0, 200), 64, ["Flash Chi2 w/o cut", "Chi2", "Number of Events"]),
-('daughters_start_contained',isSelectedRange, 2, ["Is Daughter Contained", "Daugthers Contained", "Number of Events"]),
-('nu_pdg',pdgRange, 30, ["Event PDG", "Pandora PDG", "Number of Events"]),
-('isFiducial',isSelectedRange, 2, ["Is Fiducial", "Vertices in Fiducial Volume", "Number of Events"]),
-('phi',phiRange, 64,  ["Muon Phi Angle w/o cut", "Angle / pi (radians)", "Number of Primary Muons"])]
+var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Events"),
+('track_chi2_muon',chi2Range, 50,  "Chi2", "Number of Events"),
+('track_chi2_proton',chi2PRange, 35,  "Chi2", "Number of Events"),
+('track_chi2_ratio',chi2Range, 50,  "Chi2", "Number of Events"),
+('nu_score',trkScoreRange, 50,  "Neutrino ID", "Number of Events"),
+('nu_flash_chi2',(0, 200), 64, "Chi2", "Number of Events"),
+('daughters_start_contained',isSelectedRange, 2,  "Daugthers Contained", "Number of Events"),
+('nu_pdg',pdgRange, 30,  "Pandora PDG", "Number of Events"),
+('isFiducial',isSelectedRange, 2,  "Vertices in Fiducial Volume", "Number of Events"),
+('phi',phiRange, 64,   "Angle / pi (radians)", "Number of Primary Muons")]
 
 uncut_wgt = incSliceScorekWeights
 long_wgt = Stack(trackOverlay, trackDirt, trackExt,'wgt', True)
@@ -968,16 +968,16 @@ chi2_wgt = overlayIsSelectedInclusiveWeights
 nochi2_wgt = overlayIsSelectedInclusiveWeights_noChi2
 
 
-for var,rge,bins,titles in var_list:
+for var,rge,bins,titles,x,y in var_list:
   uncut_stack = Stack(trackOverlay, trackDirt, trackExt,var)
   long_stack = Stack(trackOverlay.query('isLongestTrack == True'), trackDirt.query('isLongestTrack == True'), trackExt.query('isLongestTrack == True'),var)
   chi2_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, var)
   nochi2_stack = Stack(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2, var)
 
-  makeDataMCHistogram(uncut_stack, uncut_wgt, trackData[var].to_numpy(), rge, bins, '{}_no cuts'.format(var), titles)
-  makeDataMCHistogram(long_stack, long_wgt, trackData.query('isLongestTrack == True')[var].to_numpy(), rge, bins, '{}_longest'.format(var), titles)
-  makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{}_flash'.format(var), titles)
-  makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), titles)
+  makeDataMCHistogram(uncut_stack, uncut_wgt, trackData[var].to_numpy(), rge, bins, '{}_no cuts'.format(var),  ['{} all tracks'.format(var),x,y])
+  makeDataMCHistogram(long_stack, long_wgt, trackData.query('isLongestTrack == True')[var].to_numpy(), rge, bins, '{}_longest'.format(var), ['{} longest tracks'.format(var),x,y])
+  makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{}_flash'.format(var),  ['{} all cuts and flash'.format(var),x,y])
+  makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), ['{} all cuts no flash'.format(var),x,y])
 
 '''
 df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2)]
