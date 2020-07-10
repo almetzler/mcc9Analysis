@@ -968,7 +968,7 @@ chi2_wgt = overlayIsSelectedInclusiveWeights
 nochi2_wgt = overlayIsSelectedInclusiveWeights_noChi2
 
 
-for var,rge,bins,titles,x,y in var_list:
+for var,rge,bins,x,y in var_list:
   uncut_stack = Stack(trackOverlay, trackDirt, trackExt,var)
   long_stack = Stack(trackOverlay.query('isLongestTrack == True'), trackDirt.query('isLongestTrack == True'), trackExt.query('isLongestTrack == True'),var)
   chi2_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, var)
