@@ -958,7 +958,7 @@ var_list = [('track_length',lengthRange, 20, ["Track Length", "Track Length (cm)
 ('track_chi2_ratio',chi2Range, 50, ["Chi2 Ratio", "Chi2", "Number of Events"]),
 ('nu_score',trkScoreRange, 50, ["Topological Score", "Neutrino ID", "Number of Events"]),
 ('nu_flash_chi2',(0, 200), 64, ["Flash Chi2 w/o cut", "Chi2", "Number of Events"]),
-('daughters_start_contained'isSelectedRange, 2, ["Is Daughter Contained", "Daugthers Contained", "Number of Events"]),
+('daughters_start_contained',isSelectedRange, 2, ["Is Daughter Contained", "Daugthers Contained", "Number of Events"]),
 ('nu_pdg',pdgRange, 30, ["Event PDG", "Pandora PDG", "Number of Events"]),
 ('isFiducial',isSelectedRange, 2, ["Is Fiducial", "Vertices in Fiducial Volume", "Number of Events"]),
 ('phi',phiRange, 64,  ["Muon Phi Angle w/o cut", "Angle / pi (radians)", "Number of Primary Muons"])]
