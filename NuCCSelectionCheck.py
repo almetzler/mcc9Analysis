@@ -958,7 +958,7 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 
 ############################################################################
 
-
+'''
 var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Events"),
 ('track_chi2_muon',chi2Range, 50,  "Chi2", "Number of Events"),
 ('track_chi2_proton',chi2PRange, 35,  "Chi2", "Number of Events"),
@@ -989,13 +989,16 @@ for var,rge,bins,x,y in var_list:
   makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{}_flash'.format(var),  ['{} all cuts and flash'.format(var),x,y])
   makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), ['{} all cuts no flash'.format(var),x,y])
 
-long_ratio = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'flash_chi2_ratio', True)
-makeDataMCHistogram(long_ratio, long_wgt, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (0,5), 32, "flash_chi2_ratio_longest", ["flash_chi2_ratio longest tracks", "Chi2 Ratio", "Number of Events"])
+'''
 
-chi2_ratio = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2Ratio, extInclusiveEvents_noChi2Ratio, 'flash_chi2_ratio', True)
+chi2_phi = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2Ratio, extInclusiveEvents_noChi2Ratio, 'phi', True)
+chi2_nu = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2Ratio, extInclusiveEvents_noChi2Ratio, 'nu_score', True)
 chi2_wgt = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2Ratio, extInclusiveEvents_noChi2Ratio, 'wgt', True)
-makeDataMCHistogram(chi2_ratio, chi2_wgt, dataInclusiveEvents_noChi2Ratio['flash_chi2_ratio'].to_numpy(), (0,5), 32, "flash_chi2_ratio_noflash", ["flash_chi2_ratio all cuts no flash", "Chi2 Ratio", "Number of Events"])
 
+makeDataMCHistogram(chi2_phi, chi2_wgt, dataInclusiveEvents_noChi2Ratio['phi'].to_numpy(), phiRange, 64, "phi_5/5", ["phi 5/5 cuts", "Angle / pi (radians)", "Number of Primary Muons"])
+makeDataMCHistogram(chi2_nu, chi2_wgt, dataInclusiveEvents_noChi2Ratio['nu_score'].to_numpy(), trkScoreRange, 50, "nu_score_5/5", ["nu_score 5/5 cuts", "Neutrino ID", "Number of Events"])
+
+'''
 df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2)]
 tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inclusive\nEvents','Inc. Events\nNoChi2']
 purity = [getPurity(x[0],x[1],x[2]) for x in df_list]
@@ -1040,6 +1043,6 @@ print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEven
 
 print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
-
+'''
 
 sys.exit()
