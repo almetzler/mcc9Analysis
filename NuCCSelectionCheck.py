@@ -896,13 +896,13 @@ overlayInclusiveEvents = overlayMuonCandidates.query('isLongestTrack == True & i
 dataInclusiveEvents = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
 
-extInclusiveEvents_noChi2 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
+extInclusiveEvents_noChi2 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore')
 
-dirtInclusiveEvents_noChi2 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
+dirtInclusiveEvents_noChi2 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore')
 
-overlayInclusiveEvents_noChi2 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
+overlayInclusiveEvents_noChi2 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore')
 
-dataInclusiveEvents_noChi2 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
+dataInclusiveEvents_noChi2 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore')
 
 
 extInclusiveEvents_noChi2Ratio = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & nu_score > @minNeutrinoScore')
@@ -995,8 +995,8 @@ chi2_phi = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2R
 chi2_nu = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2Ratio, extInclusiveEvents_noChi2Ratio, 'nu_score', True)
 chi2_wgt = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2Ratio, extInclusiveEvents_noChi2Ratio, 'wgt', True)
 
-makeDataMCHistogram(chi2_phi, chi2_wgt, dataInclusiveEvents_noChi2Ratio['phi'].to_numpy(), phiRange, 64, "phi_1-4", ["phi cuts 1-4", "Angle / pi (radians)", "Number of Primary Muons"])
-makeDataMCHistogram(chi2_nu, chi2_wgt, dataInclusiveEvents_noChi2Ratio['nu_score'].to_numpy(), trkScoreRange, 50, "nu_score_1-4", ["nu_score cuts 1-4", "Neutrino ID", "Number of Events"])
+makeDataMCHistogram(chi2_phi, chi2_wgt, dataInclusiveEvents_noChi2Ratio['phi'].to_numpy(), phiRange, 64, "phi_1-3", ["phi cuts 1-3", "Angle / pi (radians)", "Number of Primary Muons"])
+makeDataMCHistogram(chi2_nu, chi2_wgt, dataInclusiveEvents_noChi2Ratio['nu_score'].to_numpy(), trkScoreRange, 50, "nu_score_1-3", ["nu_score cuts 1-3", "Neutrino ID", "Number of Events"])
 
 '''
 df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2)]
