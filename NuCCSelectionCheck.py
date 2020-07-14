@@ -960,7 +960,7 @@ var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Ev
 ('nu_pdg',pdgRange, 30,  "Pandora PDG", "Number of Events"),
 ('isFiducial',isSelectedRange, 2,  "Vertices in Fiducial Volume", "Number of Events"),
 ('phi',phiRange, 64,   "Angle / pi (radians)", "Number of Primary Muons"),
-('flash_chi2_ratio', (0,8), 32,  "Chi2 Ratio", "Number of Events")]
+('flash_chi2_ratio', (0,5), 32,  "Chi2 Ratio", "Number of Events")]
 
 # makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (5,16), 11, "PrimMuonFlashChi2Ratio", ["Flash Chi2", "Chi2 Ratio", "Number of Events"])
 
