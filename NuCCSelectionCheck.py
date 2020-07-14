@@ -905,13 +905,13 @@ overlayInclusiveEvents_noChi2 = overlayMuonCandidates.query('isLongestTrack == T
 dataInclusiveEvents_noChi2 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore')
 
 
-extInclusiveEvents_noChi2Ratio = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore')
+extInclusiveEvents_noChi2Ratio = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
 
-dirtInclusiveEvents_noChi2Ratio = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore')
+dirtInclusiveEvents_noChi2Ratio = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
 
-overlayInclusiveEvents_noChi2Ratio = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore')
+overlayInclusiveEvents_noChi2Ratio = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
 
-dataInclusiveEvents_noChi2Ratio = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore')
+dataInclusiveEvents_noChi2Ratio = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
 # #SAVE THIS
 # #print dataInclusiveEvnets.loc[(5774, 15,762 ),('track_chi2_muon', 'track_chi2_proton', 'track_chi2_ratio', 'isFiducial', 'nu_score', 'nu_flash_chi2', 'nu_mu_cc_selected')]
 
