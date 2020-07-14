@@ -905,13 +905,13 @@ overlayInclusiveEvents_noChi2 = overlayMuonCandidates.query('isLongestTrack == T
 dataInclusiveEvents_noChi2 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore')
 
 
-extInclusiveEvents_noChi2Ratio = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & nu_score > @minNeutrinoScore')
+extInclusiveEvents_noChi2Ratio = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True')
 
-dirtInclusiveEvents_noChi2Ratio = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & nu_score > @minNeutrinoScore')
+dirtInclusiveEvents_noChi2Ratio = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True')
 
-overlayInclusiveEvents_noChi2Ratio = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & nu_score > @minNeutrinoScore')
+overlayInclusiveEvents_noChi2Ratio = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True')
 
-dataInclusiveEvents_noChi2Ratio = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & nu_score > @minNeutrinoScore')
+dataInclusiveEvents_noChi2Ratio = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True ')
 # #SAVE THIS
 # #print dataInclusiveEvnets.loc[(5774, 15,762 ),('track_chi2_muon', 'track_chi2_proton', 'track_chi2_ratio', 'isFiducial', 'nu_score', 'nu_flash_chi2', 'nu_mu_cc_selected')]
 
@@ -995,8 +995,8 @@ chi2_phi = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2R
 chi2_nu = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2Ratio, extInclusiveEvents_noChi2Ratio, 'nu_score', True)
 chi2_wgt = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2Ratio, extInclusiveEvents_noChi2Ratio, 'wgt', True)
 
-makeDataMCHistogram(chi2_phi, chi2_wgt, dataInclusiveEvents_noChi2Ratio['phi'].to_numpy(), phiRange, 64, "phi_1-3", ["phi cuts 1-3", "Angle / pi (radians)", "Number of Primary Muons"])
-makeDataMCHistogram(chi2_nu, chi2_wgt, dataInclusiveEvents_noChi2Ratio['nu_score'].to_numpy(), trkScoreRange, 50, "nu_score_1-3", ["nu_score cuts 1-3", "Neutrino ID", "Number of Events"])
+makeDataMCHistogram(chi2_phi, chi2_wgt, dataInclusiveEvents_noChi2Ratio['phi'].to_numpy(), phiRange, 64, "phi_1-2", ["phi cuts 1-2", "Angle / pi (radians)", "Number of Primary Muons"])
+makeDataMCHistogram(chi2_nu, chi2_wgt, dataInclusiveEvents_noChi2Ratio['nu_score'].to_numpy(), trkScoreRange, 50, "nu_score_1-2", ["nu_score cuts 1-2", "Neutrino ID", "Number of Events"])
 
 '''
 df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2)]
