@@ -959,7 +959,8 @@ var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Ev
 ('daughters_start_contained',isSelectedRange, 2,  "Daugthers Contained", "Number of Events"),
 ('nu_pdg',pdgRange, 30,  "Pandora PDG", "Number of Events"),
 ('isFiducial',isSelectedRange, 2,  "Vertices in Fiducial Volume", "Number of Events"),
-('phi',phiRange, 64,   "Angle / pi (radians)", "Number of Primary Muons")]
+('phi',phiRange, 64,   "Angle / pi (radians)", "Number of Primary Muons"),
+('flash_chi2_ratio', (0,16), 11,  "Chi2 Ratio", "Number of Events")]
 
 # makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (5,16), 11, "PrimMuonFlashChi2Ratio", ["Flash Chi2", "Chi2 Ratio", "Number of Events"])
 
@@ -980,12 +981,6 @@ for var,rge,bins,x,y in var_list:
   makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{}_flash'.format(var),  ['{} all cuts and flash'.format(var),x,y])
   makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), ['{} all cuts no flash'.format(var),x,y])
 
-# long_muon = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'flash_chi2_ratio', True)
-# makeDataMCHistogram(long_muon, long_wgt, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (5,16), 11, "flash_chi2_ratio_longest", ["flash_chi2_ratio longest tracks", "Chi2 Ratio", "Number of Events"])
-
-# incPrimMuonFlashChi2Ratio = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'flash_chi2_ratio', True)
-
-makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (5,16), 11, "flash_chi2_ratio_longest", ["flash_chi2_ratio longest tracks", "Chi2 Ratio", "Number of Events"])
 '''
 df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2)]
 tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inclusive\nEvents','Inc. Events\nNoChi2']
