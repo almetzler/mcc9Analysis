@@ -959,7 +959,8 @@ var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Ev
 ('daughters_start_contained',isSelectedRange, 2,  "Daugthers Contained", "Number of Events"),
 ('nu_pdg',pdgRange, 30,  "Pandora PDG", "Number of Events"),
 ('isFiducial',isSelectedRange, 2,  "Vertices in Fiducial Volume", "Number of Events"),
-('phi',phiRange, 64,   "Angle / pi (radians)", "Number of Primary Muons")]
+('phi',phiRange, 64,   "Angle / pi (radians)", "Number of Primary Muons"),
+('flash_chi2_ratio', (5,16), 11, "Chi2 Ratio", "Number of Events")]
 
 uncut_wgt = incSliceScorekWeights
 long_wgt = incPrimMuonStackWeights
