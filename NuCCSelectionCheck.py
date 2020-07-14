@@ -962,6 +962,8 @@ var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Ev
 ('phi',phiRange, 64,   "Angle / pi (radians)", "Number of Primary Muons"),
 ('flash_chi2_ratio', (5,16), 11, "Chi2 Ratio", "Number of Events")]
 
+# makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (5,16), 11, "PrimMuonFlashChi2Ratio", ["Flash Chi2", "Chi2 Ratio", "Number of Events"])
+
 uncut_wgt = incSliceScorekWeights
 long_wgt = incPrimMuonStackWeights
 chi2_wgt = overlayIsSelectedInclusiveWeights
