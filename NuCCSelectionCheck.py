@@ -995,8 +995,8 @@ chi2_phi = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2R
 chi2_nu = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2Ratio, extInclusiveEvents_noChi2Ratio, 'nu_score', True)
 chi2_wgt = Stack(overlayInclusiveEvents_noChi2Ratio, dirtInclusiveEvents_noChi2Ratio, extInclusiveEvents_noChi2Ratio, 'wgt', True)
 
-makeDataMCHistogram(chi2_phi, chi2_wgt, dataInclusiveEvents_noChi2Ratio['phi'].to_numpy(), phiRange, 64, "phi_5/5", ["phi 5/5 cuts", "Angle / pi (radians)", "Number of Primary Muons"])
-makeDataMCHistogram(chi2_nu, chi2_wgt, dataInclusiveEvents_noChi2Ratio['nu_score'].to_numpy(), trkScoreRange, 50, "nu_score_5/5", ["nu_score 5/5 cuts", "Neutrino ID", "Number of Events"])
+makeDataMCHistogram(chi2_phi, chi2_wgt, dataInclusiveEvents_noChi2Ratio['phi'].to_numpy(), phiRange, 64, "phi_1-5", ["phi cuts 1-5", "Angle / pi (radians)", "Number of Primary Muons"])
+makeDataMCHistogram(chi2_nu, chi2_wgt, dataInclusiveEvents_noChi2Ratio['nu_score'].to_numpy(), trkScoreRange, 50, "nu_score_1-5", ["nu_score cuts 1-5", "Neutrino ID", "Number of Events"])
 
 '''
 df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2)]
