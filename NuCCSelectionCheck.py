@@ -1005,7 +1005,7 @@ host.legend([p1,p2],['Purity','Efficiency'],loc = 'center left')
 plt.savefig('PlotDir/PurityEfficiency.png')
 plt.savefig('ParticlePlotDir/PurityEfficiency.png')
 plt.close()
-
+'''
 print "Track Purity: {}".format(getPurity(trackOverlay, trackDirt, trackExt))
 print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
 
@@ -1026,6 +1026,6 @@ print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEven
 
 print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
-
+'''
 
 sys.exit()
