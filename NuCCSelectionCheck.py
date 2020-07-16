@@ -980,7 +980,7 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 
 ############################################################################
 
-'''
+
 var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Events"),
 ('track_chi2_muon',chi2Range, 50,  "Chi2", "Number of Events"),
 ('track_chi2_proton',chi2PRange, 35,  "Chi2", "Number of Events"),
@@ -1011,7 +1011,7 @@ for var,rge,bins,x,y in var_list:
   makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{}_flash'.format(var),  ['{} all cuts and flash'.format(var),x,y])
   makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), ['{} all cuts no flash'.format(var),x,y])
 
-'''
+
 plot_list = [(overlayInclusiveEvents_noChi2Ratio0, dirtInclusiveEvents_noChi2Ratio0, extInclusiveEvents_noChi2Ratio0,dataInclusiveEvents_noChi2Ratio0,'1-0'),
 (overlayInclusiveEvents_noChi2Ratio1, dirtInclusiveEvents_noChi2Ratio1, extInclusiveEvents_noChi2Ratio1,dataInclusiveEvents_noChi2Ratio1,'1-1'),
 (overlayInclusiveEvents_noChi2Ratio2, dirtInclusiveEvents_noChi2Ratio2, extInclusiveEvents_noChi2Ratio2,dataInclusiveEvents_noChi2Ratio2,'1-2'),
@@ -1026,7 +1026,7 @@ for overlay,dirt,ext,data,rge in plot_list:
   makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0.8,1), 50, "nu_score_{}".format(rge), ["nu_score cuts {}".format(rge), "Neutrino ID", "Number of Events"])
   makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi cuts {}".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
 
-'''
+
 df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2)]
 tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inclusive\nEvents','Inc. Events\nNoChi2']
 purity = [getPurity(x[0],x[1],x[2]) for x in df_list]
@@ -1071,6 +1071,6 @@ print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEven
 
 print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
-'''
+
 
 sys.exit()
