@@ -199,9 +199,13 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   axi.set_xlabel(xAxisTitle)
   axi.set_ylabel("Data / MC")
   text = r'$\int \frac{data}{MC} = %.3f$' % sumRatio
-  ax = plt.gca()
-  ymax = ax.get_ylim()[1] 
-  xmax = ax.get_xlim()[1]
+
+  if '1-' in filename:
+    axi.set_ylim(0.5,2)
+
+  # ax = plt.gca()
+  # ymax = ax.get_ylim()[1] 
+  # xmax = ax.get_xlim()[1]
   #print "Min %.2f Max %.2f" % (ax.get_xlim()[0], ax.get_xlim()[1])
   # plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
   props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
@@ -1023,7 +1027,7 @@ for overlay,dirt,ext,data,rge in plot_list:
   chi2_phi = Stack(overlay, dirt, ext, 'phi', True)
   chi2_nu = Stack(overlay, dirt, ext, 'nu_score', True)
   chi2_wgt = Stack(overlay, dirt, ext, 'wgt', True)
-  makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0.8,1), 50, "nu_score_{}".format(rge), ["nu_score cuts {}".format(rge), "Neutrino ID", "Number of Events"])
+  makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0.8,1), 33, "nu_score_{}".format(rge), ["nu_score cuts {}".format(rge), "Neutrino ID", "Number of Events"])
   makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi cuts {}".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
 
 
