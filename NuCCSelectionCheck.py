@@ -320,11 +320,11 @@ def isContained(xStart, yStart, zStart, xEnd, yEnd, zEnd):
     return (checkContained(xStart, yStart, zStart) and checkContained(xEnd, yEnd, zEnd))
 
 def isFiducial(x, y, z):
-  if(x > 245.0 or x < 10.0):
+  if(x > 244.8 or x < 8.45):
       return False
-  elif(y > 100.0 or y < -100.0):  
+  elif(y > 107.47 or y < -105.53):  
       return False
-  elif(z > 970.0 or z <10.0):
+  elif(z > 986.9 or z <9.9):
       return False
   else:  
       return True
