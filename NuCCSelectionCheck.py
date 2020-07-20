@@ -324,7 +324,7 @@ def isFiducial(x, y, z):
       return False
   elif(y > 110.0 or y < -110.0):  
       return False
-  elif(z > 990.0 or z <9.0):
+  elif(z > 1000.0 or z <9.0):
       return False
   else:  
       return True
