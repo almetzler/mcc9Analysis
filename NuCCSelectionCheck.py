@@ -322,7 +322,7 @@ def isContained(xStart, yStart, zStart, xEnd, yEnd, zEnd):
 def isFiducial(x, y, z):
   if(x > 250.0 or x < 8.25):
       return False
-  elif(y > 109.0 or y < -109.0):  
+  elif(y > 100.0 or y < -100.0):  
       return False
   elif(z > 990.0 or z <9.0):
       return False
@@ -984,7 +984,6 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 
 ############################################################################
 
-
 var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Events"),
 ('track_chi2_muon',chi2Range, 50,  "Chi2", "Number of Events"),
 ('track_chi2_proton',chi2PRange, 35,  "Chi2", "Number of Events"),
@@ -1075,6 +1074,5 @@ print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEven
 
 print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
-
 
 sys.exit()
