@@ -986,7 +986,7 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 
 print [type(x) for x in incPrimMuonNuScoreStack]
 fig, axi = plt.subplots()
-flat_nu = [x for y in incPrimMuonNuScoreStack for x in for y.tolist()]
+flat_nu = [x for y in incPrimMuonNuScoreStack for x in y.tolist()]
 print [type(x) for x in flat_nu[:10]]
 flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
 axi.scatter(flat_nu,flat_chi)
