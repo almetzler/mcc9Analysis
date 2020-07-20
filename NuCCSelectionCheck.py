@@ -989,20 +989,22 @@ nu_overlay = overlayMuonCandidates.query('isLongestTrack == True' ).groupby(leve
 nu_dirt = dirtMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})['nu_score'].to_numpy()
 nu_ext = extMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})['nu_score'].to_numpy()
 nu_stack = [nu_overlay, nu_dirt, nu_ext]
+print [len(x) for x in nu_stack]
 
 chi_overlay = overlayMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})['nu_flash_chi2'].to_numpy()
 chi_dirt = dirtMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})['nu_flash_chi2'].to_numpy()
 chi_ext = extMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})['nu_flash_chi2'].to_numpy()
 chi_stack = [chi_overlay, chi_dirt, chi_ext]
+print [len(x) for x in chi_stack]
 
-fig, axi = plt.subplots()
-flat_nu = [x for y in nu_stack for x in y.tolist()]
-flat_chi = [x for y in chi_stack for x in y.tolist()]
-axi.scatter(flat_nu,flat_chi)
-axi.set_xlabel('nu_score')
-axi.set_ylabel('nu_flash_chi2')
-axi.set_ylim(0,1000)
-corr = np.corrcoef(flat_nu,flat_chi)
+# fig, axi = plt.subplots()
+# flat_nu = [x for y in nu_stack for x in y.tolist()]
+# flat_chi = [x for y in chi_stack for x in y.tolist()]
+# axi.scatter(flat_nu,flat_chi)
+# axi.set_xlabel('nu_score')
+# axi.set_ylabel('nu_flash_chi2')
+# axi.set_ylim(0,1000)
+# corr = np.corrcoef(flat_nu,flat_chi)
 
 props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
 axi.text(0.65, 1.1, 'corr. coeff = {}'.format(corr[0][1]), transform=axi.transAxes, fontsize=10,
