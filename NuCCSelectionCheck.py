@@ -995,7 +995,7 @@ axi.set_ylabel('nu_flash_chi2')
 corr = np.corrcoef(flat_nu,flat_chi)
 
 props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
-axi.text(0.75, 1.1, 'corr. coeff = {}'.format(corr), transform=axi.transAxes, fontsize=14,
+axi.text(0.75, 1.1, 'corr. coeff = {}'.format(corr[0][1]), transform=axi.transAxes, fontsize=10,
       verticalalignment='top', bbox=props)
 
 plt.savefig("ParticlePlotDir/correlation.png")
