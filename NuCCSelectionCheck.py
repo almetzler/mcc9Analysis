@@ -991,7 +991,7 @@ axi.scatter(*zip(*flat_zip))
 axi.set_xlabel('nu_score')
 axi.set_ylabel('nu_flash_chi2')
 # axi.set_ylim(0,1000)
-corr = np.corrcoef(flat_nu,flat_chi)
+corr = np.corrcoef([x[0] for x in flat_zip], [x[1]for x in flat_zip])
 
 props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
 axi.text(0.65, 1.1, 'corr. coeff = {}'.format(corr[0][1]), transform=axi.transAxes, fontsize=10,
