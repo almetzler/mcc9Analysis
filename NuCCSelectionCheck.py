@@ -989,7 +989,7 @@ flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
 axi.scatter(flat_nu,flat_chi)
 axi.set_xlabel('nu_score')
 axi.set_ylabel('nu_flash_chi2')
-axi.set_ylim(9500,10000)
+axi.set_ylim(9900,10100)
 corr = np.corrcoef(flat_nu,flat_chi)
 
 props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
