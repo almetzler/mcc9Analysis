@@ -983,9 +983,21 @@ overlayPrimMuonPhiInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2, d
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2['phi'].to_numpy(), phiRange, 64, "InclusiveEventsPrimMuonPhi_nochi2", ["Muon Phi Angle w/o cut", "Angle / pi (radians)", "Number of Primary Muons"])
 
 ############################################################################
+# numTrue = dataframe.query('isTrueCC == True & isTrueFiducial == True & particle == "muon"').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
+# Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates,
+nu_overlay = overlayMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})
+nu_dirt = dirtMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})
+nu_ext = extMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})
+nu_stack = Stack(nu_overlay, nu_dirt, nu_ext,'nu_score',True)
+
+chi_overlay = overlayMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})
+chi_dirt = dirtMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})
+chi_ext = extMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})
+chi_stack = Stack(chi_overlay, chi_dirt, chi_ext, 'nu_flash_chi2', True)
+
 fig, axi = plt.subplots()
-flat_nu = [x for y in incPrimMuonNuScoreStack for x in y.tolist()]
-flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
+flat_nu = [x for y in nu_stack for x in y.tolist()]
+flat_chi = [x for y in chi_stack for x in y.tolist()]
 axi.scatter(flat_nu,flat_chi)
 axi.set_xlabel('nu_score')
 axi.set_ylabel('nu_flash_chi2')
