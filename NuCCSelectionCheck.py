@@ -989,11 +989,11 @@ flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
 axi.scatter(flat_nu,flat_chi)
 axi.set_xlabel('nu_score')
 axi.set_ylabel('nu_flash_chi2')
-axi.set_ylim(0,2000)
+axi.set_ylim(0,1000)
 corr = np.corrcoef(flat_nu,flat_chi)
 
 props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
-axi.text(0.75, 1.1, 'corr. coeff = {}'.format(corr[0][1]), transform=axi.transAxes, fontsize=10,
+axi.text(0.65, 1.1, 'corr. coeff = {}'.format(corr[0][1]), transform=axi.transAxes, fontsize=10,
       verticalalignment='top', bbox=props)
 
 plt.savefig("ParticlePlotDir/correlation.png")
