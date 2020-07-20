@@ -983,18 +983,19 @@ overlayPrimMuonPhiInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2, d
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2['phi'].to_numpy(), phiRange, 64, "InclusiveEventsPrimMuonPhi_nochi2", ["Muon Phi Angle w/o cut", "Angle / pi (radians)", "Number of Primary Muons"])
 
 ############################################################################
-fig, axi = plt.subplots()
-axi.scatter(list(incPrimMuonNuScoreStack),list(incPrimMuonChi2FlashStack))
-axi.set_xlabel('nu_score')
-axi.set_ylabel('nu_flash_chi2')
-corr = np.corrcoef(incPrimMuonNuScoreStack,incPrimMuonChi2FlashStack)
+print(type(x) for x in incPrimMuonNuScoreStack[:5])
+# fig, axi = plt.subplots()
+# axi.scatter(list(incPrimMuonNuScoreStack),list(incPrimMuonChi2FlashStack))
+# axi.set_xlabel('nu_score')
+# axi.set_ylabel('nu_flash_chi2')
+# corr = np.corrcoef(incPrimMuonNuScoreStack,incPrimMuonChi2FlashStack)
 
-props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
-axi.text(0.75, 1.1, 'corr. coeff = {}'.format(corr), transform=axi.transAxes, fontsize=14,
-      verticalalignment='top', bbox=props)
+# props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
+# axi.text(0.75, 1.1, 'corr. coeff = {}'.format(corr), transform=axi.transAxes, fontsize=14,
+#       verticalalignment='top', bbox=props)
 
-plt.savefig("ParticlePlotDir/correlation.png")
-plt.close()
+# plt.savefig("ParticlePlotDir/correlation.png")
+# plt.close()
 
 '''
 var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Events"),
