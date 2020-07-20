@@ -989,7 +989,7 @@ flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
 flat_zip = zip(flat_nu,flat_chi)
 flat_zip = [x for x in flat_zip if x[1]<4000]
 flat_nu = [x[0] for x in flat_zip]
-flat_chi = [x[1] for z in flat_zip]
+flat_chi = [x[1] for x in flat_zip]
 axi.scatter(flat_nu,flat_chi)
 axi.set_xlabel('nu_score')
 axi.set_ylabel('nu_flash_chi2')
