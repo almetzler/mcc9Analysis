@@ -985,15 +985,15 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 ############################################################################
 # numTrue = dataframe.query('isTrueCC == True & isTrueFiducial == True & particle == "muon"').groupby(level=["run", "subrun", "event"]).agg({"isTrueCC" : ["mean"]}).shape[0]
 # Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates,
-nu_overlay = overlayMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})
-nu_dirt = dirtMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})
-nu_ext = extMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})
-nu_stack = Stack(nu_overlay, nu_dirt, nu_ext,'nu_score',True)
+nu_overlay = overlayMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})
+nu_dirt = dirtMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})
+nu_ext = extMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_score" : ["mean"]})
+nu_stack = Stack(nu_overlay, nu_dirt, nu_ext,'nu_score')
 
-chi_overlay = overlayMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})
-chi_dirt = dirtMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})
-chi_ext = extMuonCandidates.groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})
-chi_stack = Stack(chi_overlay, chi_dirt, chi_ext, 'nu_flash_chi2', True)
+chi_overlay = overlayMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})
+chi_dirt = dirtMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})
+chi_ext = extMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run", "subrun", "event"]).agg({"nu_flash_chi2" : ["mean"]})
+chi_stack = Stack(chi_overlay, chi_dirt, chi_ext, 'nu_flash_chi2')
 
 fig, axi = plt.subplots()
 flat_nu = [x for y in nu_stack for x in y.tolist()]
@@ -1001,7 +1001,7 @@ flat_chi = [x for y in chi_stack for x in y.tolist()]
 axi.scatter(flat_nu,flat_chi)
 axi.set_xlabel('nu_score')
 axi.set_ylabel('nu_flash_chi2')
-axi.set_ylim(0,50)
+axi.set_ylim(0,1000)
 corr = np.corrcoef(flat_nu,flat_chi)
 
 props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
