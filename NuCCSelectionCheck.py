@@ -987,17 +987,25 @@ fig, axi = plt.subplots()
 flat_nu = [x for y in incPrimMuonNuScoreStack for x in y.tolist()]
 flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
 flat_zip = [x for x in zip(flat_nu,flat_chi) if x[1]<4000]
-axi.scatter(*zip(*flat_zip))
-axi.set_xlabel('nu_score')
-axi.set_ylabel('nu_flash_chi2')
+nu = [x[0] for x in flat_zip]
+chi = [x[1] for x in flat_zip]
+bin_means, bin_edges, binnumber = stats.binned_statistic(nu,
+                chi, statistic='mean', bins=100)
+plt.hlines(bin_means, bin_edges[:-1], bin_edges[1:], colors='g',
+           label='binned statistic of data')
+plt.savefig("ParticlePlotDir/binnedmeans.png")
+
+# axi.scatter(*zip(*flat_zip))
+# axi.set_xlabel('nu_score')
+# axi.set_ylabel('nu_flash_chi2')
 # axi.set_ylim(0,1000)
-corr = np.corrcoef([x[0] for x in flat_zip], [x[1]for x in flat_zip])
+# corr = np.corrcoef([x[0] for x in flat_zip], [x[1]for x in flat_zip])
 
-props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
-axi.text(0.65, 1.1, 'corr. coeff = {}'.format(corr[0][1]), transform=axi.transAxes, fontsize=10,
-      verticalalignment='top', bbox=props)
+# props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
+# axi.text(0.65, 1.1, 'corr. coeff = {}'.format(corr[0][1]), transform=axi.transAxes, fontsize=10,
+#       verticalalignment='top', bbox=props)
 
-plt.savefig("ParticlePlotDir/correlation.png")
+# plt.savefig("ParticlePlotDir/correlation.png")
 plt.close()
 
 '''
