@@ -993,6 +993,9 @@ bin_means, bin_edges, binnumber = stats.binned_statistic(nu,
                 chi, statistic='mean', bins=100)
 plt.hlines(bin_means, bin_edges[:-1], bin_edges[1:], colors='g',
            label='binned statistic of data')
+plt.xlabel('nu_score')
+plt.ylabel('nu_flash_chi2')
+plt.title('binned means (100 bins)')
 plt.savefig("ParticlePlotDir/binnedmeans.png")
 
 # axi.scatter(*zip(*flat_zip))
