@@ -997,18 +997,18 @@ chi_ext = extMuonCandidates.query('isLongestTrack == True' ).groupby(level=["run
 chi_stack = [chi_overlay, chi_dirt, chi_ext]
 print [len(x) for x in chi_stack]
 
-# fig, axi = plt.subplots()
-# flat_nu = [x for y in nu_stack for x in y.tolist()]
-# flat_chi = [x for y in chi_stack for x in y.tolist()]
-# axi.scatter(flat_nu,flat_chi)
-# axi.set_xlabel('nu_score')
-# axi.set_ylabel('nu_flash_chi2')
-# axi.set_ylim(0,1000)
+fig, axi = plt.subplots()
+flat_nu = [x for y in nu_stack for x in y.tolist()]
+flat_chi = [x for y in chi_stack for x in y.tolist()]
+axi.scatter(flat_nu,flat_chi)
+axi.set_xlabel('nu_score')
+axi.set_ylabel('nu_flash_chi2')
+axi.set_ylim(0,1000)
 # corr = np.corrcoef(flat_nu,flat_chi)
 
-props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
-axi.text(0.65, 1.1, 'corr. coeff = {}'.format(corr[0][1]), transform=axi.transAxes, fontsize=10,
-      verticalalignment='top', bbox=props)
+# props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
+# axi.text(0.65, 1.1, 'corr. coeff = {}'.format(corr[0][1]), transform=axi.transAxes, fontsize=10,
+#       verticalalignment='top', bbox=props)
 
 plt.savefig("ParticlePlotDir/correlation.png")
 plt.close()
