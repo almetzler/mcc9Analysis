@@ -984,20 +984,21 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 
 ############################################################################
 
-fig, axi = plt.subplots()
-flat_nu = [x for x in list(y) for y in incPrimMuonNuScoreStack]
-flat_chi = [x for x in list(y) for y in incPrimMuonChi2FlashStack]
-axi.scatter(lflat_nu,flat_chi)
-axi.set_xlabel('nu_score')
-axi.set_ylabel('nu_flash_chi2')
-corr = np.corrcoef(flat_nu,flat_chi)
+print [type(x) for x in incPrimMuonNuScoreStack[0]]
+# fig, axi = plt.subplots()
+# flat_nu = [x for x in list(y) for y in incPrimMuonNuScoreStack]
+# flat_chi = [x for x in list(y) for y in incPrimMuonChi2FlashStack]
+# axi.scatter(lflat_nu,flat_chi)
+# axi.set_xlabel('nu_score')
+# axi.set_ylabel('nu_flash_chi2')
+# corr = np.corrcoef(flat_nu,flat_chi)
 
-props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
-axi.text(0.75, 1.1, 'corr. coeff = {}'.format(corr), transform=axi.transAxes, fontsize=14,
-      verticalalignment='top', bbox=props)
+# props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
+# axi.text(0.75, 1.1, 'corr. coeff = {}'.format(corr), transform=axi.transAxes, fontsize=14,
+#       verticalalignment='top', bbox=props)
 
-plt.savefig("ParticlePlotDir/correlation.png")
-plt.close()
+# plt.savefig("ParticlePlotDir/correlation.png")
+# plt.close()
 
 '''
 var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Events"),
