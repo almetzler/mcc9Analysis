@@ -983,8 +983,8 @@ overlayPrimMuonPhiInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2, d
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2['phi'].to_numpy(), phiRange, 64, "InclusiveEventsPrimMuonPhi_nochi2", ["Muon Phi Angle w/o cut", "Angle / pi (radians)", "Number of Primary Muons"])
 
 ############################################################################
-
-print [len(x) for x in incPrimMuonNuScoreStack[:10]]
+print len(incPrimMuonNuScoreStack)
+# print [len(x) for x in incPrimMuonNuScoreStack[:10]]
 # fig, axi = plt.subplots()
 # flat_nu = [x for x in list(y) for y in incPrimMuonNuScoreStack]
 # flat_chi = [x for x in list(y) for y in incPrimMuonChi2FlashStack]
