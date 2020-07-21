@@ -989,14 +989,31 @@ flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
 flat_zip = [x for x in zip(flat_nu,flat_chi) if x[1]<4000]
 nu = [x[0] for x in flat_zip]
 chi = [x[1] for x in flat_zip]
+
+x = np.arange(0,1,1./50.)
+
 bin_means, bin_edges, binnumber = stats.binned_statistic(nu,
-                chi, statistic='mean', bins=100)
-plt.hlines(bin_means, bin_edges[:-1], bin_edges[1:], colors='g',
-           label='binned statistic of data')
+                chi, statistic='mean', bins=10)
+f2 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,2))
+f1 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,1))
+
+plt.plot(np.arange(0,1,1./10), bin_means,'o', label='binned means')
+plt.plot(x, [f1(z) for z in x], '-b', label = 'degree 1 approx.')
+plt.plot(x, [f2(z) for z in x], '-g', label = 'degree 2 approx.')
+
+plt.legend()
 plt.xlabel('nu_score')
 plt.ylabel('nu_flash_chi2')
 plt.title('binned means (100 bins)')
 plt.savefig("ParticlePlotDir/binnedmeans.png")
+
+# x = np.arange(0,10,10./30.)
+# f2 = np.poly1d(np.polyfit(np.arange(0,10,10./6.), bin_means,2))
+# f1 = np.poly1d(np.polyfit(np.arange(0,10,10./6.), bin_means,1))
+# plt.plot(x, [f1(z) for z in x], '-b')
+# plt.plot(x, [f2(z) for z in x], '-g')
+# plt.plot(np.arange(0,10,10./6.), bin_means, 'o')
+# plt.show()
 
 # axi.scatter(*zip(*flat_zip))
 # axi.set_xlabel('nu_score')
