@@ -1003,19 +1003,22 @@ x = np.arange(0,1,1./50.)
 
 bin_means, bin_edges, binnumber = stats.binned_statistic(nu,
                 chi, statistic='mean', bins=10)
-f3 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,3))
-f2 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,2))
-f1 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,1))
+bin_medians, bin_edges, binnumber = stats.binned_statistic(nu,
+                chi, statistic='median', bins=10)
+# f3 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,3))
+# f2 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,2))
+# f1 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,1))
 
 plt.plot(np.arange(0,1,1./10), bin_means,'_k', label='binned means')
-plt.plot(x, [f1(z) for z in x], '-b', label = 'degree 1 approx.')
-plt.plot(x, [f2(z) for z in x], '-g', label = 'degree 2 approx.')
-plt.plot(x, [f3(z) for z in x], '-r', label = 'degree 3 approx.')
+plt.plot(np.arange(0,1,1./10), bin_medians,'_r', label='binned medians')
+# plt.plot(x, [f1(z) for z in x], '-b', label = 'degree 1 approx.')
+# plt.plot(x, [f2(z) for z in x], '-g', label = 'degree 2 approx.')
+# plt.plot(x, [f3(z) for z in x], '-r', label = 'degree 3 approx.')
 
 plt.legend()
 plt.xlabel('nu_score')
 plt.ylabel('nu_flash_chi2')
-plt.title('binned means (100 bins)')
+plt.title('binned stats (10 bins)')
 plt.savefig("ParticlePlotDir/binnedmeans.png")
 
 # axi.scatter(*zip(*flat_zip))
@@ -1031,15 +1034,15 @@ plt.savefig("ParticlePlotDir/binnedmeans.png")
 # plt.savefig("ParticlePlotDir/correlation.png")
 plt.close()
 
-fit1 = [f1(x) for x in nu]
-fit2 = [f2(x) for x in nu]
-fit3 = [f3(x) for x in nu]
+# fit1 = [f1(x) for x in nu]
+# fit2 = [f2(x) for x in nu]
+# fit3 = [f3(x) for x in nu]
 
-mean = sum(chi)/len(chi)
+# mean = sum(chi)/len(chi)
 
-print "R squared for degree 1: {}".format(R2(chi,fit1,mean))
-print "R squared for degree 2: {}".format(R2(chi,fit2,mean))
-print "R squared for degree 3: {}".format(R2(chi,fit3,mean))
+# print "R squared for degree 1: {}".format(R2(chi,fit1,mean))
+# print "R squared for degree 2: {}".format(R2(chi,fit2,mean))
+# print "R squared for degree 3: {}".format(R2(chi,fit3,mean))
 '''
 var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Events"),
 ('track_chi2_muon',chi2Range, 50,  "Chi2", "Number of Events"),
