@@ -411,6 +411,11 @@ def getEfficiency(dataframe):
   efficiency = float(numEvents)/float(totalEvents)
   return efficiency
 
+def R2(raw_data, fit_data, mean):
+  residual = [(raw-fit)**2 for raw,fit in zip(raw_data,fit_data)]
+  summ = [(raw-mean)**2 for raw in raw_data]
+  return (1-((np.sum(residual))/np.sum(summ)))
+
 InputFiles = ["/uboone/data/users/joelam/stv-ntuples-new/numu_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/bnb_5e19_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/extC1_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/dirt_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/extC2_run1.root"]
 
 #InputFiles = ["/uboone/data/users/joelam/stv-ntuples-new/numu_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/nucc_run1_bnb.root", "/uboone/data/users/joelam/stv-ntuples-new/extC1_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/dirt_run1.root", "/uboone/data/users/joelam/stv-ntuples-new/extC2_run1.root"]
@@ -983,10 +988,14 @@ overlayPrimMuonPhiInclusiveStack_noChi2 = Stack(overlayInclusiveEvents_noChi2, d
 makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedInclusiveWeights_noChi2, dataInclusiveEvents_noChi2['phi'].to_numpy(), phiRange, 64, "InclusiveEventsPrimMuonPhi_nochi2", ["Muon Phi Angle w/o cut", "Angle / pi (radians)", "Number of Primary Muons"])
 
 ############################################################################
+## nu_score is the indepdendent 
+## flash_chi2 is the dependent
+
 fig, axi = plt.subplots()
 flat_nu = [x for y in incPrimMuonNuScoreStack for x in y.tolist()]
 flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
 flat_zip = [x for x in zip(flat_nu,flat_chi) if x[1]<4000]
+
 nu = [x[0] for x in flat_zip]
 chi = [x[1] for x in flat_zip]
 
@@ -1009,14 +1018,6 @@ plt.ylabel('nu_flash_chi2')
 plt.title('binned means (100 bins)')
 plt.savefig("ParticlePlotDir/binnedmeans.png")
 
-# x = np.arange(0,10,10./30.)
-# f2 = np.poly1d(np.polyfit(np.arange(0,10,10./6.), bin_means,2))
-# f1 = np.poly1d(np.polyfit(np.arange(0,10,10./6.), bin_means,1))
-# plt.plot(x, [f1(z) for z in x], '-b')
-# plt.plot(x, [f2(z) for z in x], '-g')
-# plt.plot(np.arange(0,10,10./6.), bin_means, 'o')
-# plt.show()
-
 # axi.scatter(*zip(*flat_zip))
 # axi.set_xlabel('nu_score')
 # axi.set_ylabel('nu_flash_chi2')
@@ -1030,6 +1031,15 @@ plt.savefig("ParticlePlotDir/binnedmeans.png")
 # plt.savefig("ParticlePlotDir/correlation.png")
 plt.close()
 
+fit1 = [f1(x) for x in nu]
+fit2 = [f2(x) for x in nu]
+fit3 = [f3(x) for x in nu]
+
+mean = sum(chi)/len(chi)
+
+print "R squared for degree 1: {}".format(R2(chi,fit1,mean))
+print "R squared for degree 2: {}".format(R2(chi,fit2,mean))
+print "R squared for degree 3: {}".format(R2(chi,fit3,mean))
 '''
 var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Events"),
 ('track_chi2_muon',chi2Range, 50,  "Chi2", "Number of Events"),
