@@ -998,7 +998,7 @@ f3 = np.poly1d(np.polyfit(np.arange(0,1,1./100.), bin_means,3))
 f2 = np.poly1d(np.polyfit(np.arange(0,1,1./100.), bin_means,2))
 f1 = np.poly1d(np.polyfit(np.arange(0,1,1./100.), bin_means,1))
 
-plt.plot(np.arange(0,1,1./10), bin_means,'ok', label='binned means')
+plt.plot(np.arange(0,1,1./100), bin_means,'ok', label='binned means')
 plt.plot(x, [f1(z) for z in x], '-b', label = 'degree 1 approx.')
 plt.plot(x, [f2(z) for z in x], '-g', label = 'degree 2 approx.')
 plt.plot(x, [f3(z) for z in x], '-r', label = 'degree 3 approx.')
