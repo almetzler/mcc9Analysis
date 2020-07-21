@@ -1010,7 +1010,6 @@ bin_medians, bin_edges, binnumber = stats.binned_statistic(nu,
 # f1 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,1))
 
 plt.plot(np.arange(0,1,1./10), bin_means,'_k', label='binned means')
-plt.plot(np.arange(0,1,1./10), bin_medians,'_r', label='binned medians')
 # plt.plot(x, [f1(z) for z in x], '-b', label = 'degree 1 approx.')
 # plt.plot(x, [f2(z) for z in x], '-g', label = 'degree 2 approx.')
 # plt.plot(x, [f3(z) for z in x], '-r', label = 'degree 3 approx.')
@@ -1018,9 +1017,17 @@ plt.plot(np.arange(0,1,1./10), bin_medians,'_r', label='binned medians')
 plt.legend()
 plt.xlabel('nu_score')
 plt.ylabel('nu_flash_chi2')
-plt.title('binned stats (10 bins)')
+plt.title('binned means (10 bins)')
 plt.savefig("ParticlePlotDir/binnedmeans.png")
+plt.close()
 
+plt.plot(np.arange(0,1,1./10), bin_medians,'_r', label='binned medians')
+plt.legend()
+plt.xlabel('nu_score')
+plt.ylabel('nu_flash_chi2')
+plt.title('binned medians (10 bins)')
+plt.savefig("ParticlePlotDir/binnedmedians.png")
+plt.close()
 # axi.scatter(*zip(*flat_zip))
 # axi.set_xlabel('nu_score')
 # axi.set_ylabel('nu_flash_chi2')
@@ -1032,7 +1039,7 @@ plt.savefig("ParticlePlotDir/binnedmeans.png")
 #       verticalalignment='top', bbox=props)
 
 # plt.savefig("ParticlePlotDir/correlation.png")
-plt.close()
+# plt.close()
 
 # fit1 = [f1(x) for x in nu]
 # fit2 = [f2(x) for x in nu]
