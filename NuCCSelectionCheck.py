@@ -893,7 +893,7 @@ makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuon
 # #exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
 
 maxFlashChi2 = 10
-minNeutrinoScoreFlashFails = 0.5    #0.25
+minNeutrinoScoreFlashFails = 0.4    #0.25
 maxFlashChi2Ratio  = 5
 
 extInclusiveEvents = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
@@ -1098,29 +1098,29 @@ for var,rge,bins,x,y in var_list:
 #   makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi cuts {}".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
 
 
-# df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents)]
-# tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inclusive\nEvents'
-# purity = [getPurity(x[0],x[1],x[2]) for x in df_list]
-# efficiency = [getEfficiency(x[0]) for x in df_list]
+df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents)]
+tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inclusive\nEvents'
+purity = [getPurity(x[0],x[1],x[2]) for x in df_list]
+efficiency = [getEfficiency(x[0]) for x in df_list]
 
-# fig, host = plt.subplots()
-# plt2 = plt.twinx()
+fig, host = plt.subplots()
+plt2 = plt.twinx()
 
-# p1, = host.plot(tag_list,purity,'bo',label='Purity')
-# p2, = plt2.plot(tag_list,efficiency,'ro',label='Efficiency')
+p1, = host.plot(tag_list,purity,'bo',label='Purity')
+p2, = plt2.plot(tag_list,efficiency,'ro',label='Efficiency')
 
-# host.set_title('Purity-Efficiency')
-# host.set_ylabel('Purity')
-# plt2.set_ylabel('Efficiency')
+host.set_title('Purity-Efficiency')
+host.set_ylabel('Purity')
+plt2.set_ylabel('Efficiency')
 
-# host.yaxis.label.set_color('blue')
-# plt2.yaxis.label.set_color('red')
+host.yaxis.label.set_color('blue')
+plt2.yaxis.label.set_color('red')
 
-# host.legend([p1,p2],['Purity','Efficiency'],loc = 'center left')
+host.legend([p1,p2],['Purity','Efficiency'],loc = 'center left')
 
-# plt.savefig('PlotDir/PurityEfficiency.png')
-# plt.savefig('ParticlePlotDir/PurityEfficiency.png')
-# plt.close()
+plt.savefig('PlotDir/PurityEfficiency.png')
+plt.savefig('ParticlePlotDir/PurityEfficiency.png')
+plt.close()
 
 # print "Track Purity: {}".format(getPurity(trackOverlay, trackDirt, trackExt))
 # print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
