@@ -431,7 +431,7 @@ minProtonChi2 = 60.0
 maxMuonChi2   = 30.0
 minRatioChi2  = 7.0
 minTrackScore = 0.5
-minNeutrinoScore = 0.4    #0.1
+minNeutrinoScore = 0.1    #0.1
 minMuonTrackScore = 0.85
 minTrackL = 20
 maxVtxDist = 4
@@ -893,7 +893,7 @@ makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuon
 # #exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
 
 maxFlashChi2 = 10
-minNeutrinoScoreFlashFails = 0.4    #0.25
+minNeutrinoScoreFlashFails = 0.25    #0.25
 maxFlashChi2Ratio  = 5
 
 extInclusiveEvents = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
@@ -990,7 +990,7 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 ############################################################################
 ## nu_score is the indepdendent 
 ## flash_chi2 is the dependent
-'''
+
 fig, axi = plt.subplots()
 flat_nu = [x for y in incPrimMuonNuScoreStack for x in y.tolist()]
 flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
@@ -1009,7 +1009,7 @@ bin_medians, bin_edges, binnumber = stats.binned_statistic(nu,
 # f2 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,2))
 # f1 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,1))
 
-plt.plot(np.arange(0,1,1./10), bin_means,'_k', label='binned means')
+plt.plot(np.arange(0,1,1./10), bin_means,'ok', label='binned means')
 # plt.plot(x, [f1(z) for z in x], '-b', label = 'degree 1 approx.')
 # plt.plot(x, [f2(z) for z in x], '-g', label = 'degree 2 approx.')
 # plt.plot(x, [f3(z) for z in x], '-r', label = 'degree 3 approx.')
@@ -1021,13 +1021,14 @@ plt.title('binned means (10 bins)')
 plt.savefig("ParticlePlotDir/binnedmeans.png")
 plt.close()
 
-plt.plot(np.arange(0,1,1./10), bin_medians,'_r', label='binned medians')
+plt.plot(np.arange(0,1,1./10), bin_medians,'or', label='binned medians')
 plt.legend()
 plt.xlabel('nu_score')
 plt.ylabel('nu_flash_chi2')
 plt.title('binned medians (10 bins)')
 plt.savefig("ParticlePlotDir/binnedmedians.png")
 plt.close()
+'''
 # axi.scatter(*zip(*flat_zip))
 # axi.set_xlabel('nu_score')
 # axi.set_ylabel('nu_flash_chi2')
@@ -1133,11 +1134,11 @@ for var,rge,bins,x,y in var_list:
 # print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
 # print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
-print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
-print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
+# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
 
-print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
-print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
+# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 # print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 # print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
