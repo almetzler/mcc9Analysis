@@ -431,7 +431,7 @@ minProtonChi2 = 60.0
 maxMuonChi2   = 30.0
 minRatioChi2  = 7.0
 minTrackScore = 0.5
-minNeutrinoScore = 0.5
+minNeutrinoScore = 0.1    #0.1
 minMuonTrackScore = 0.85
 minTrackL = 20
 maxVtxDist = 4
@@ -893,7 +893,7 @@ makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuon
 # #exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
 
 maxFlashChi2 = 10
-minNeutrinoScoreFlashFails = 0.5
+minNeutrinoScoreFlashFails = 0.25    #0.25
 maxFlashChi2Ratio  = 5
 
 extInclusiveEvents = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
@@ -1097,49 +1097,49 @@ for overlay,dirt,ext,data,rge in plot_list:
   makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi cuts {}".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
 
 
-df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents),(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2)]
-tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inclusive\nEvents','Inc. Events\nNoChi2']
-purity = [getPurity(x[0],x[1],x[2]) for x in df_list]
-efficiency = [getEfficiency(x[0]) for x in df_list]
+# df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents)]
+# tag_list = ['Track','NuScore','TrackScore','PIDScore','Muon\nCandidate','Inclusive\nEvents'
+# purity = [getPurity(x[0],x[1],x[2]) for x in df_list]
+# efficiency = [getEfficiency(x[0]) for x in df_list]
 
-fig, host = plt.subplots()
-plt2 = plt.twinx()
+# fig, host = plt.subplots()
+# plt2 = plt.twinx()
 
-p1, = host.plot(tag_list,purity,'bo',label='Purity')
-p2, = plt2.plot(tag_list,efficiency,'ro',label='Efficiency')
+# p1, = host.plot(tag_list,purity,'bo',label='Purity')
+# p2, = plt2.plot(tag_list,efficiency,'ro',label='Efficiency')
 
-host.set_title('Purity-Efficiency')
-host.set_ylabel('Purity')
-plt2.set_ylabel('Efficiency')
+# host.set_title('Purity-Efficiency')
+# host.set_ylabel('Purity')
+# plt2.set_ylabel('Efficiency')
 
-host.yaxis.label.set_color('blue')
-plt2.yaxis.label.set_color('red')
+# host.yaxis.label.set_color('blue')
+# plt2.yaxis.label.set_color('red')
 
-host.legend([p1,p2],['Purity','Efficiency'],loc = 'center left')
+# host.legend([p1,p2],['Purity','Efficiency'],loc = 'center left')
 
-plt.savefig('PlotDir/PurityEfficiency.png')
-plt.savefig('ParticlePlotDir/PurityEfficiency.png')
-plt.close()
+# plt.savefig('PlotDir/PurityEfficiency.png')
+# plt.savefig('ParticlePlotDir/PurityEfficiency.png')
+# plt.close()
 
-print "Track Purity: {}".format(getPurity(trackOverlay, trackDirt, trackExt))
-print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
+# print "Track Purity: {}".format(getPurity(trackOverlay, trackDirt, trackExt))
+# print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
 
-print "NuScore Purity: {}".format(getPurity(overlayNuScore, dirtNuScore, extNuScore))
-print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
+# print "NuScore Purity: {}".format(getPurity(overlayNuScore, dirtNuScore, extNuScore))
+# print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
 
-print "TrackScore Purity: {}".format(getPurity(overlayTrackScore, dirtTrackScore, extTrackScore))
-print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
+# print "TrackScore Purity: {}".format(getPurity(overlayTrackScore, dirtTrackScore, extTrackScore))
+# print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
 
-print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
-print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
+# print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
+# print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
-print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
-print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
+# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
 
-print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
-print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
+# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
-print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
-print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
+# print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
+# print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
 
 sys.exit()
