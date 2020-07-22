@@ -1082,19 +1082,19 @@ for var,rge,bins,x,y in var_list:
   makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), ['{} all cuts no flash'.format(var),x,y])
 '''
 
-plot_list = [(overlayInclusiveEvents_noChi2Ratio0, dirtInclusiveEvents_noChi2Ratio0, extInclusiveEvents_noChi2Ratio0,dataInclusiveEvents_noChi2Ratio0,'1-0'),
-(overlayInclusiveEvents_noChi2Ratio1, dirtInclusiveEvents_noChi2Ratio1, extInclusiveEvents_noChi2Ratio1,dataInclusiveEvents_noChi2Ratio1,'1-1'),
-(overlayInclusiveEvents_noChi2Ratio2, dirtInclusiveEvents_noChi2Ratio2, extInclusiveEvents_noChi2Ratio2,dataInclusiveEvents_noChi2Ratio2,'1-2'),
-(overlayInclusiveEvents_noChi2Ratio3, dirtInclusiveEvents_noChi2Ratio3, extInclusiveEvents_noChi2Ratio3,dataInclusiveEvents_noChi2Ratio3,'1-3'),
-(overlayInclusiveEvents_noChi2Ratio4, dirtInclusiveEvents_noChi2Ratio4, extInclusiveEvents_noChi2Ratio4,dataInclusiveEvents_noChi2Ratio4,'1-4'),
-(overlayInclusiveEvents_noChi2Ratio5, dirtInclusiveEvents_noChi2Ratio5, extInclusiveEvents_noChi2Ratio5,dataInclusiveEvents_noChi2Ratio5,'1-5')]
+# plot_list = [(overlayInclusiveEvents_noChi2Ratio0, dirtInclusiveEvents_noChi2Ratio0, extInclusiveEvents_noChi2Ratio0,dataInclusiveEvents_noChi2Ratio0,'1-0'),
+# (overlayInclusiveEvents_noChi2Ratio1, dirtInclusiveEvents_noChi2Ratio1, extInclusiveEvents_noChi2Ratio1,dataInclusiveEvents_noChi2Ratio1,'1-1'),
+# (overlayInclusiveEvents_noChi2Ratio2, dirtInclusiveEvents_noChi2Ratio2, extInclusiveEvents_noChi2Ratio2,dataInclusiveEvents_noChi2Ratio2,'1-2'),
+# (overlayInclusiveEvents_noChi2Ratio3, dirtInclusiveEvents_noChi2Ratio3, extInclusiveEvents_noChi2Ratio3,dataInclusiveEvents_noChi2Ratio3,'1-3'),
+# (overlayInclusiveEvents_noChi2Ratio4, dirtInclusiveEvents_noChi2Ratio4, extInclusiveEvents_noChi2Ratio4,dataInclusiveEvents_noChi2Ratio4,'1-4'),
+# (overlayInclusiveEvents_noChi2Ratio5, dirtInclusiveEvents_noChi2Ratio5, extInclusiveEvents_noChi2Ratio5,dataInclusiveEvents_noChi2Ratio5,'1-5')]
 
-for overlay,dirt,ext,data,rge in plot_list:
-  chi2_phi = Stack(overlay, dirt, ext, 'phi', True)
-  chi2_nu = Stack(overlay, dirt, ext, 'nu_score', True)
-  chi2_wgt = Stack(overlay, dirt, ext, 'wgt', True)
-  makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0,1), 33, "nu_score_{}".format(rge), ["nu_score cuts {}".format(rge), "Neutrino ID", "Number of Events"])
-  makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi cuts {}".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
+# for overlay,dirt,ext,data,rge in plot_list:
+#   chi2_phi = Stack(overlay, dirt, ext, 'phi', True)
+#   chi2_nu = Stack(overlay, dirt, ext, 'nu_score', True)
+#   chi2_wgt = Stack(overlay, dirt, ext, 'wgt', True)
+#   makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0,1), 33, "nu_score_{}".format(rge), ["nu_score cuts {}".format(rge), "Neutrino ID", "Number of Events"])
+#   makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi cuts {}".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
 
 
 # df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents)]
@@ -1133,11 +1133,11 @@ for overlay,dirt,ext,data,rge in plot_list:
 # print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
 # print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
-# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
-# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
+print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
 
-# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
-# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
+print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 # print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 # print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
