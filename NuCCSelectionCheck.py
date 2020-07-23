@@ -330,11 +330,11 @@ def isFiducial(x, y, z):
       return True
 
 def checkContained(x, y, z):
-    if(x > 245.0 or x < 10.0):
+    if(x > 270.0 or x < 7.5):
       return False
-    elif(y > 100.0 or y < -100.0):  
+    elif(y > 110.0 or y < -110.0):  
       return False
-    elif(z > 1030.0 or z <10.0):
+    elif(z > 990.0 or z <9.0):
       return False
     else:  
       return True
