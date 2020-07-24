@@ -896,13 +896,13 @@ maxFlashChi2 = 10
 minNeutrinoScoreFlashFails = 0.4    #0.25
 maxFlashChi2Ratio  = 5
 
-extInclusiveEvents = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+extInclusiveEvents = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-dirtInclusiveEvents = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+dirtInclusiveEvents = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-overlayInclusiveEvents = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+overlayInclusiveEvents = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-dataInclusiveEvents = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+dataInclusiveEvents = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
 
 extInclusiveEvents_noChi2 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
@@ -991,44 +991,44 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 ## nu_score is the indepdendent 
 ## flash_chi2 is the dependent
 
-fig, axi = plt.subplots()
-flat_nu = [x for y in incPrimMuonNuScoreStack for x in y.tolist()]
-flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
-flat_zip = [x for x in zip(flat_nu,flat_chi) if x[1]<4000]
+# fig, axi = plt.subplots()
+# flat_nu = [x for y in incPrimMuonNuScoreStack for x in y.tolist()]
+# flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
+# flat_zip = [x for x in zip(flat_nu,flat_chi) if x[1]<4000]
 
-nu = [x[0] for x in flat_zip]
-chi = [x[1] for x in flat_zip]
+# nu = [x[0] for x in flat_zip]
+# chi = [x[1] for x in flat_zip]
 
-x = np.arange(0,1,1./50.)
+# x = np.arange(0,1,1./50.)
 
-bin_means, bin_edges, binnumber = stats.binned_statistic(nu,
-                chi, statistic='mean', bins=10)
-bin_medians, bin_edges, binnumber = stats.binned_statistic(nu,
-                chi, statistic='median', bins=10)
+# bin_means, bin_edges, binnumber = stats.binned_statistic(nu,
+#                 chi, statistic='mean', bins=10)
+# bin_medians, bin_edges, binnumber = stats.binned_statistic(nu,
+#                 chi, statistic='median', bins=10)
 # f3 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,3))
 # f2 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,2))
 # f1 = np.poly1d(np.polyfit(np.arange(0,1,1./10.), bin_means,1))
 
-plt.plot(np.arange(0,1,1./10), bin_means,'ok', label='binned means')
+# plt.plot(np.arange(0,1,1./10), bin_means,'ok', label='binned means')
 # plt.plot(x, [f1(z) for z in x], '-b', label = 'degree 1 approx.')
 # plt.plot(x, [f2(z) for z in x], '-g', label = 'degree 2 approx.')
 # plt.plot(x, [f3(z) for z in x], '-r', label = 'degree 3 approx.')
 
-plt.legend()
-plt.xlabel('nu_score')
-plt.ylabel('nu_flash_chi2')
-plt.title('binned means (10 bins)')
-plt.savefig("ParticlePlotDir/binnedmeans.png")
-plt.close()
+# plt.legend()
+# plt.xlabel('nu_score')
+# plt.ylabel('nu_flash_chi2')
+# plt.title('binned means (10 bins)')
+# plt.savefig("ParticlePlotDir/binnedmeans.png")
+# plt.close()
 
-plt.plot(np.arange(0,1,1./10), bin_medians,'or', label='binned medians')
-plt.legend()
-plt.xlabel('nu_score')
-plt.ylabel('nu_flash_chi2')
-plt.title('binned medians (10 bins)')
-plt.savefig("ParticlePlotDir/binnedmedians.png")
-plt.close()
-'''
+# plt.plot(np.arange(0,1,1./10), bin_medians,'or', label='binned medians')
+# plt.legend()
+# plt.xlabel('nu_score')
+# plt.ylabel('nu_flash_chi2')
+# plt.title('binned medians (10 bins)')
+# plt.savefig("ParticlePlotDir/binnedmedians.png")
+# plt.close()
+# '''
 # axi.scatter(*zip(*flat_zip))
 # axi.set_xlabel('nu_score')
 # axi.set_ylabel('nu_flash_chi2')
@@ -1052,50 +1052,50 @@ plt.close()
 # print "R squared for degree 2: {}".format(R2(chi,fit2,mean))
 # print "R squared for degree 3: {}".format(R2(chi,fit3,mean))
 
-var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Events"),
-('track_chi2_muon',chi2Range, 50,  "Chi2", "Number of Events"),
-('track_chi2_proton',chi2PRange, 35,  "Chi2", "Number of Events"),
-('track_chi2_ratio',chi2Range, 50,  "Chi2", "Number of Events"),
-('nu_score',trkScoreRange, 50,  "Neutrino ID", "Number of Events"),
-('nu_flash_chi2',(0, 200), 64, "Chi2", "Number of Events"),
-('daughters_start_contained',isSelectedRange, 2,  "Daugthers Contained", "Number of Events"),
-('nu_pdg',pdgRange, 30,  "Pandora PDG", "Number of Events"),
-('isFiducial',isSelectedRange, 2,  "Vertices in Fiducial Volume", "Number of Events"),
-('phi',phiRange, 64,   "Angle / pi (radians)", "Number of Primary Muons")]
+# var_list = [('track_length',lengthRange, 20,  "Track Length (cm)", "Number of Events"),
+# ('track_chi2_muon',chi2Range, 50,  "Chi2", "Number of Events"),
+# ('track_chi2_proton',chi2PRange, 35,  "Chi2", "Number of Events"),
+# ('track_chi2_ratio',chi2Range, 50,  "Chi2", "Number of Events"),
+# ('nu_score',trkScoreRange, 50,  "Neutrino ID", "Number of Events"),
+# ('nu_flash_chi2',(0, 200), 64, "Chi2", "Number of Events"),
+# ('daughters_start_contained',isSelectedRange, 2,  "Daugthers Contained", "Number of Events"),
+# ('nu_pdg',pdgRange, 30,  "Pandora PDG", "Number of Events"),
+# ('isFiducial',isSelectedRange, 2,  "Vertices in Fiducial Volume", "Number of Events"),
+# ('phi',phiRange, 64,   "Angle / pi (radians)", "Number of Primary Muons")]
 
-# makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (5,16), 11, "PrimMuonFlashChi2Ratio", ["Flash Chi2", "Chi2 Ratio", "Number of Events"])
+# # makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['flash_chi2_ratio'].to_numpy(), (5,16), 11, "PrimMuonFlashChi2Ratio", ["Flash Chi2", "Chi2 Ratio", "Number of Events"])
 
-uncut_wgt = incSliceScorekWeights
-long_wgt = incPrimMuonStackWeights
-chi2_wgt = overlayIsSelectedInclusiveWeights
-nochi2_wgt = overlayIsSelectedInclusiveWeights_noChi2
+# uncut_wgt = incSliceScorekWeights
+# long_wgt = incPrimMuonStackWeights
+# chi2_wgt = overlayIsSelectedInclusiveWeights
+# nochi2_wgt = overlayIsSelectedInclusiveWeights_noChi2
 
 
-for var,rge,bins,x,y in var_list:
-  uncut_stack = Stack(trackOverlay, trackDirt, trackExt,var)
-  long_stack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates,var,True)
-  chi2_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, var)
-  nochi2_stack = Stack(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2, var)
+# for var,rge,bins,x,y in var_list:
+#   uncut_stack = Stack(trackOverlay, trackDirt, trackExt,var)
+#   long_stack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates,var,True)
+#   chi2_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, var)
+#   nochi2_stack = Stack(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2, var)
 
-  makeDataMCHistogram(uncut_stack, uncut_wgt, trackData[var].to_numpy(), rge, bins, '{}_no cuts'.format(var),  ['{} all tracks'.format(var),x,y])
-  makeDataMCHistogram(long_stack, long_wgt, dataMuonCandidates.query('isLongestTrack == True')[var].to_numpy(), rge, bins, '{}_longest'.format(var), ['{} longest tracks'.format(var),x,y])
-  makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{}_flash'.format(var),  ['{} all cuts and flash'.format(var),x,y])
-  makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), ['{} all cuts no flash'.format(var),x,y])
-'''
+#   makeDataMCHistogram(uncut_stack, uncut_wgt, trackData[var].to_numpy(), rge, bins, '{}_no cuts'.format(var),  ['{} all tracks'.format(var),x,y])
+#   makeDataMCHistogram(long_stack, long_wgt, dataMuonCandidates.query('isLongestTrack == True')[var].to_numpy(), rge, bins, '{}_longest'.format(var), ['{} longest tracks'.format(var),x,y])
+#   makeDataMCHistogram(chi2_stack,chi2_wgt, dataInclusiveEvents[var].to_numpy(), rge, bins, '{}_flash'.format(var),  ['{} all cuts and flash'.format(var),x,y])
+#   makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), ['{} all cuts no flash'.format(var),x,y])
+# '''
 
-plot_list = [(overlayInclusiveEvents_noChi2Ratio0, dirtInclusiveEvents_noChi2Ratio0, extInclusiveEvents_noChi2Ratio0,dataInclusiveEvents_noChi2Ratio0,'1-0'),
-(overlayInclusiveEvents_noChi2Ratio1, dirtInclusiveEvents_noChi2Ratio1, extInclusiveEvents_noChi2Ratio1,dataInclusiveEvents_noChi2Ratio1,'1-1'),
-(overlayInclusiveEvents_noChi2Ratio2, dirtInclusiveEvents_noChi2Ratio2, extInclusiveEvents_noChi2Ratio2,dataInclusiveEvents_noChi2Ratio2,'1-2'),
-(overlayInclusiveEvents_noChi2Ratio3, dirtInclusiveEvents_noChi2Ratio3, extInclusiveEvents_noChi2Ratio3,dataInclusiveEvents_noChi2Ratio3,'1-3'),
-(overlayInclusiveEvents_noChi2Ratio4, dirtInclusiveEvents_noChi2Ratio4, extInclusiveEvents_noChi2Ratio4,dataInclusiveEvents_noChi2Ratio4,'1-4'),
-(overlayInclusiveEvents_noChi2Ratio5, dirtInclusiveEvents_noChi2Ratio5, extInclusiveEvents_noChi2Ratio5,dataInclusiveEvents_noChi2Ratio5,'1-5')]
+# plot_list = [(overlayInclusiveEvents_noChi2Ratio0, dirtInclusiveEvents_noChi2Ratio0, extInclusiveEvents_noChi2Ratio0,dataInclusiveEvents_noChi2Ratio0,'1-0'),
+# (overlayInclusiveEvents_noChi2Ratio1, dirtInclusiveEvents_noChi2Ratio1, extInclusiveEvents_noChi2Ratio1,dataInclusiveEvents_noChi2Ratio1,'1-1'),
+# (overlayInclusiveEvents_noChi2Ratio2, dirtInclusiveEvents_noChi2Ratio2, extInclusiveEvents_noChi2Ratio2,dataInclusiveEvents_noChi2Ratio2,'1-2'),
+# (overlayInclusiveEvents_noChi2Ratio3, dirtInclusiveEvents_noChi2Ratio3, extInclusiveEvents_noChi2Ratio3,dataInclusiveEvents_noChi2Ratio3,'1-3'),
+# (overlayInclusiveEvents_noChi2Ratio4, dirtInclusiveEvents_noChi2Ratio4, extInclusiveEvents_noChi2Ratio4,dataInclusiveEvents_noChi2Ratio4,'1-4'),
+# (overlayInclusiveEvents_noChi2Ratio5, dirtInclusiveEvents_noChi2Ratio5, extInclusiveEvents_noChi2Ratio5,dataInclusiveEvents_noChi2Ratio5,'1-5')]
 
-for overlay,dirt,ext,data,rge in plot_list:
-  chi2_phi = Stack(overlay, dirt, ext, 'phi', True)
-  chi2_nu = Stack(overlay, dirt, ext, 'nu_score', True)
-  chi2_wgt = Stack(overlay, dirt, ext, 'wgt', True)
-  makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0,1), 33, "nu_score_{}".format(rge), ["nu_score cuts {}".format(rge), "Neutrino ID", "Number of Events"])
-  makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi cuts {}".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
+# for overlay,dirt,ext,data,rge in plot_list:
+#   chi2_phi = Stack(overlay, dirt, ext, 'phi', True)
+#   chi2_nu = Stack(overlay, dirt, ext, 'nu_score', True)
+#   chi2_wgt = Stack(overlay, dirt, ext, 'wgt', True)
+#   makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0,1), 33, "nu_score_{}".format(rge), ["nu_score cuts {}".format(rge), "Neutrino ID", "Number of Events"])
+#   makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi cuts {}".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
 
 
 # df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents)]
@@ -1131,14 +1131,14 @@ for overlay,dirt,ext,data,rge in plot_list:
 # print "TrackScore Purity: {}".format(getPurity(overlayTrackScore, dirtTrackScore, extTrackScore))
 # print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
 
-# print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
-# print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
+print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
+print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
-# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
-# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
+print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
 
-# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
-# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
+print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 # print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 # print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
