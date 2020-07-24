@@ -1146,10 +1146,10 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 
 vx_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'vx')
 vy_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'vy')
-vy_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'vz')
+vz_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'vz')
 
 makeDataMCHistogram(vx_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vx'].to_numpy(), (0,250), 15, 'vx_daughters',  ['vx daughters cut','vx(cm)','Number of Events'])
 makeDataMCHistogram(vy_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vy'].to_numpy(), (-200,200), 15, 'vy_daughters',  ['vy daughters cut','vy(cm)','Number of Events'])
-makeDataMCHistogram(vy_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vz'].to_numpy(), (0,1000), 15, 'vz_daughters',  ['vz daughters cut','vz(cm)','Number of Events'])
+makeDataMCHistogram(vz_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vz'].to_numpy(), (0,1000), 15, 'vz_daughters',  ['vz daughters cut','vz(cm)','Number of Events'])
 
 sys.exit()
