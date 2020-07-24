@@ -1157,8 +1157,8 @@ vz_stack = Stack(overlayMuonCandidates.query('isLongestTrack == True'), dirtMuon
 
 # makeDataMCHistogram(incPrimMuonStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_length'].to_numpy(), lengthRange, 20, "PrimMuonL", ["Track Length", "Track Length (cm)", "Number of Events"])
 
-makeDataMCHistogram(vx_stack,incPrimMuonStackWeights, dataMuonCandidates['vx'].to_numpy(), (0,300), 15, 'vx_notfiducial',  ['vx not fiducial cut','vx(cm)','Number of Events'])
-makeDataMCHistogram(vy_stack,incPrimMuonStackWeights, dataMuonCandidates['vy'].to_numpy(), (-200,200), 15, 'vy_notfiducial',  ['vy not fiducial cut','vy(cm)','Number of Events'])
-makeDataMCHistogram(vz_stack,incPrimMuonStackWeights, dataMuonCandidates['vz'].to_numpy(), (0,1000), 15, 'vz_notfiducial',  ['vz not fiducial cut','vz(cm)','Number of Events'])
+makeDataMCHistogram(vx_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vx'].to_numpy(), (0,300), 15, 'vx_notfiducial',  ['vx not fiducial cut','vx(cm)','Number of Events'])
+makeDataMCHistogram(vy_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vy'].to_numpy(), (-200,200), 15, 'vy_notfiducial',  ['vy not fiducial cut','vy(cm)','Number of Events'])
+makeDataMCHistogram(vz_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vz'].to_numpy(), (0,1000), 15, 'vz_notfiducial',  ['vz not fiducial cut','vz(cm)','Number of Events'])
 
 sys.exit()
