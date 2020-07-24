@@ -1152,8 +1152,8 @@ vz_stack = Stack(overlayMuonCandidates.query('daughters_start_contained == True'
 
 # makeDataMCHistogram(incPrimMuonStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_length'].to_numpy(), lengthRange, 20, "PrimMuonL", ["Track Length", "Track Length (cm)", "Number of Events"])
 
-makeDataMCHistogram(vx_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vx'].to_numpy(), (0,250), 15, 'vx_daughters',  ['vx daughters cut','vx(cm)','Number of Events'])
-makeDataMCHistogram(vy_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vy'].to_numpy(), (-200,200), 15, 'vy_daughters',  ['vy daughters cut','vy(cm)','Number of Events'])
-makeDataMCHistogram(vz_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vz'].to_numpy(), (0,1000), 15, 'vz_daughters',  ['vz daughters cut','vz(cm)','Number of Events'])
+makeDataMCHistogram(vx_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True & daughters_start_contained == True')['vx'].to_numpy(), (0,250), 15, 'vx_daughters',  ['vx daughters cut','vx(cm)','Number of Events'])
+makeDataMCHistogram(vy_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True & daughters_start_contained == True')['vy'].to_numpy(), (-200,200), 15, 'vy_daughters',  ['vy daughters cut','vy(cm)','Number of Events'])
+makeDataMCHistogram(vz_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True & daughters_start_contained == True')['vz'].to_numpy(), (0,1000), 15, 'vz_daughters',  ['vz daughters cut','vz(cm)','Number of Events'])
 
 sys.exit()
