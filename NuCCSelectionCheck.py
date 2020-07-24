@@ -1147,10 +1147,10 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 # print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 # print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
 
-extV = extMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
-dirtV = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
-overlayV = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
-dataV = dataMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
+extV = extMuonCandidates.query('isLongestTrack == True & isFiducial == True' )
+dirtV = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True' )
+overlayV = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True' )
+dataV = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True' )
 
 wgt_stack = Stack(overlayV, dirtV, extV, 'wgt')
 vx_stack = Stack(overlayV, dirtV, extV, 'vx')
@@ -1161,8 +1161,8 @@ vz_stack = Stack(overlayV, dirtV, extV, 'vz')
 
 # makeDataMCHistogram(incPrimMuonStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_length'].to_numpy(), lengthRange, 20, "PrimMuonL", ["Track Length", "Track Length (cm)", "Number of Events"])
 
-makeDataMCHistogram(vx_stack, wgt_stack, dataMuonCandidates['vx'].to_numpy(), (0,300), 32, 'vx_notfiducial',  ['vx not fiducial cut','vx(cm)','Number of Events'])
-makeDataMCHistogram(vy_stack, wgt_stack, dataMuonCandidates['vy'].to_numpy(), (-200,200), 32, 'vy_notfiducial',  ['vy not fiducial cut','vy(cm)','Number of Events'])
-makeDataMCHistogram(vz_stack, wgt_stack, dataMuonCandidates['vz'].to_numpy(), (0,1000), 32, 'vz_notfiducial',  ['vz not fiducial cut','vz(cm)','Number of Events'])
+makeDataMCHistogram(vx_stack, wgt_stack, dataMuonCandidates['vx'].to_numpy(), (0,300), 32, 'vx_fiducial',  ['vx fiducial cut','vx(cm)','Number of Events'])
+makeDataMCHistogram(vy_stack, wgt_stack, dataMuonCandidates['vy'].to_numpy(), (-200,200), 32, 'vy_fiducial',  ['vy fiducial cut','vy(cm)','Number of Events'])
+makeDataMCHistogram(vz_stack, wgt_stack, dataMuonCandidates['vz'].to_numpy(), (0,1000), 32, 'vz_fiducial',  ['vz fiducial cut','vz(cm)','Number of Events'])
 
 sys.exit()
