@@ -911,7 +911,7 @@ dirtInclusiveEvents_noChi2 = dirtMuonCandidates.query('isLongestTrack == True & 
 
 overlayInclusiveEvents_noChi2 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
 
-dataInclusiveEvents_noChi2 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
+dataInclusiveEvents_noChi2 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
 
 
 extInclusiveEvents_noChi2Ratio5 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)' )
