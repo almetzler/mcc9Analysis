@@ -1144,14 +1144,14 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 # print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 # print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
 
-extMuonCandidates      = trackExt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore  & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False & isLongestTrack == True')
-dirtMuonCandidates     = trackDirt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False & isLongestTrack == True')
-overlayMuonCandidates  = trackOverlay.query('DuplicatedEvent == False & track_score > @minMuonTrackScore & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False & isLongestTrack == True')
-dataMuonCandidates    = trackData.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False & isLongestTrack == True')
+extMuonCandidates      = trackExt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore  & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False')
+dirtMuonCandidates     = trackDirt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False')
+overlayMuonCandidates  = trackOverlay.query('DuplicatedEvent == False & track_score > @minMuonTrackScore & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False')
+dataMuonCandidates    = trackData.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False')
 
-vx_stack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'vx')
-vy_stack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'vy')
-vz_stack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'vz')
+vx_stack = Stack(overlayMuonCandidates.query('isLongestTrack == True'), dirtMuonCandidates.query('isLongestTrack == True'), extMuonCandidates.query('isLongestTrack == True'), 'vx')
+vy_stack = Stack(overlayMuonCandidates.query('isLongestTrack == True'), dirtMuonCandidates.query('isLongestTrack == True'), extMuonCandidates.query('isLongestTrack == True'), 'vy')
+vz_stack = Stack(overlayMuonCandidates.query('isLongestTrack == True'), dirtMuonCandidates.query('isLongestTrack == True'), extMuonCandidates.query('isLongestTrack == True'), 'vz')
 
 # incPrimMuonStackWeights = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, 'wgt', True)
 
