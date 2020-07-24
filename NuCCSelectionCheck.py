@@ -794,10 +794,10 @@ incChiSqrPMuStack = Stack(overlayPIDScore, dirtPIDScore, extPIDScore, 'track_chi
 
 makeDataMCHistogram(incChiSqrPMuStack, incChiSqrPStackWeights, dataPIDScore['track_chi2_ratio'].to_numpy(), chi2Range, 50, "IncChi2Ratio", ["Chi2 Ratio", "Chi2", "Number of Tracks"])
 
-extMuonCandidates      = trackExt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore  & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == True')
-dirtMuonCandidates     = trackDirt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == True')
-overlayMuonCandidates  = trackOverlay.query('DuplicatedEvent == False & track_score > @minMuonTrackScore & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == True')
-dataMuonCandidates    = trackData.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == True')
+extMuonCandidates      = trackExt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore  & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False')
+dirtMuonCandidates     = trackDirt.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False')
+overlayMuonCandidates  = trackOverlay.query('DuplicatedEvent == False & track_score > @minMuonTrackScore & vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False')
+dataMuonCandidates    = trackData.query('DuplicatedEvent == False & track_score > @minMuonTrackScore &  vtx_distance < @maxVtxDist & track_length > @minTrackL & generation == @requiredGen & track_chi2_proton > @minProtonChi2 & track_chi2_muon < @maxMuonChi2 & track_chi2_ratio > @minRatioChi2 & isFiducial == False')
 
 # #Select only the primary muon track based on the longest track
 '''
@@ -1152,8 +1152,8 @@ vz_stack = Stack(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates, '
 
 # makeDataMCHistogram(incPrimMuonStack, incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['track_length'].to_numpy(), lengthRange, 20, "PrimMuonL", ["Track Length", "Track Length (cm)", "Number of Events"])
 
-makeDataMCHistogram(vx_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vx'].to_numpy(), (0,250), 15, 'vx_fiducial',  ['vx fiducial cut','vx(cm)','Number of Events'])
-makeDataMCHistogram(vy_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vy'].to_numpy(), (-200,200), 15, 'vy_fiducial',  ['vy fiducial cut','vy(cm)','Number of Events'])
-makeDataMCHistogram(vz_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vz'].to_numpy(), (0,1000), 15, 'vz_fiducial',  ['vz fiducial cut','vz(cm)','Number of Events'])
+makeDataMCHistogram(vx_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vx'].to_numpy(), (0,300), 15, 'vx_notfiducial',  ['vx not fiducial cut','vx(cm)','Number of Events'])
+makeDataMCHistogram(vy_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vy'].to_numpy(), (-200,200), 15, 'vy_notfiducial',  ['vy not fiducial cut','vy(cm)','Number of Events'])
+makeDataMCHistogram(vz_stack,incPrimMuonStackWeights, dataMuonCandidates.query('isLongestTrack == True')['vz'].to_numpy(), (0,1000), 15, 'vz_notfiducial',  ['vz not fiducial cut','vz(cm)','Number of Events'])
 
 sys.exit()
