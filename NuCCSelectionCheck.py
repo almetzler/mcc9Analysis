@@ -896,13 +896,13 @@ maxFlashChi2 = 10
 minNeutrinoScoreFlashFails = 0.4    #0.25
 maxFlashChi2Ratio  = 5
 
-extInclusiveEvents = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+extInclusiveEvents = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-dirtInclusiveEvents = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+dirtInclusiveEvents = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-overlayInclusiveEvents = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+overlayInclusiveEvents = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-dataInclusiveEvents = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+dataInclusiveEvents = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
 
 extInclusiveEvents_noChi2 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
@@ -1148,8 +1148,8 @@ vx_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents
 vy_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'vy')
 vz_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'vz')
 
-makeDataMCHistogram(vx_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vx'].to_numpy(), (0,250), 15, 'vx_daughters',  ['vx daughters cut','vx(cm)','Number of Events'])
-makeDataMCHistogram(vy_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vy'].to_numpy(), (-200,200), 15, 'vy_daughters',  ['vy daughters cut','vy(cm)','Number of Events'])
-makeDataMCHistogram(vz_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vz'].to_numpy(), (0,1000), 15, 'vz_daughters',  ['vz daughters cut','vz(cm)','Number of Events'])
+makeDataMCHistogram(vx_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vx'].to_numpy(), (0,250), 15, 'vx_nodaughters',  ['vx no daughters cut','vx(cm)','Number of Events'])
+makeDataMCHistogram(vy_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vy'].to_numpy(), (-200,200), 15, 'vy_nodaughters',  ['vy no daughters cut','vy(cm)','Number of Events'])
+makeDataMCHistogram(vz_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vz'].to_numpy(), (0,1000), 15, 'vz_nodaughters',  ['vz no daughters cut','vz(cm)','Number of Events'])
 
 sys.exit()
