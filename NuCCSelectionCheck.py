@@ -202,6 +202,9 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
 
   if '1-' in filename:
     axi.set_ylim(0.5,2)
+  
+  if 'vx_fiducial' in filename or 'vy_fiducial' in filename:
+    axi.set_ylim(-1,1)
 
   # ax = plt.gca()
   # ymax = ax.get_ylim()[1] 
