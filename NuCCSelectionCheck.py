@@ -992,10 +992,10 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 ## nu_score is the indepdendent 
 ## flash_chi2 is the dependent
 
-# fig, axi = plt.subplots()
-# flat_nu = [x for y in incPrimMuonNuScoreStack for x in y.tolist()]
-# flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
-# flat_zip = [x for x in zip(flat_nu,flat_chi) if x[1]<4000]
+fig, axi = plt.subplots()
+flat_nu = [x for y in incPrimMuonNuScoreStack for x in y.tolist()]
+flat_chi = [x for y in incPrimMuonChi2FlashStack for x in y.tolist()]
+flat_zip = [x for x in zip(flat_nu,flat_chi) if x[1]<4000]
 
 # nu = [x[0] for x in flat_zip]
 # chi = [x[1] for x in flat_zip]
