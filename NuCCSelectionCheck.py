@@ -1144,10 +1144,10 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 # print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 # print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
 
-extV = extMuonCandidates.query('isLongestTrack == True & isFiducial == True' )
-dirtV = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True' )
-overlayV = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True' )
-dataV = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True' )
+extV = extMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
+dirtV = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
+overlayV = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
+dataV = dataMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
 
 wgt_stack = Stack(overlayV, dirtV, extV, 'wgt')
 vx_stack = Stack(overlayV, dirtV, extV, 'vx')
