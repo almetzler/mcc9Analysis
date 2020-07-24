@@ -1148,8 +1148,8 @@ vx_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents
 vy_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'vy')
 vy_stack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'vz')
 
-makeDataMCHistogram(vx_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents[var].to_numpy(), (0,250), 15, 'vx_nodaughters'.format(var),  ['vx no daughters cut','vx(cm)','Number of Events'])
-makeDataMCHistogram(vy_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents[var].to_numpy(), (-200,200), 15, 'vy_nodaughters'.format(var),  ['vy no daughters cut','vx(cm)','Number of Events'])
-makeDataMCHistogram(vy_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents[var].to_numpy(), (0,1000), 15, 'vz_nodaughters'.format(var),  ['vz no daughters cut','vx(cm)','Number of Events'])
+makeDataMCHistogram(vx_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vx'].to_numpy(), (0,250), 15, 'vx_nodaughters',  ['vx no daughters cut','vx(cm)','Number of Events'])
+makeDataMCHistogram(vy_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vy'].to_numpy(), (-200,200), 15, 'vy_nodaughters',  ['vy no daughters cut','vx(cm)','Number of Events'])
+makeDataMCHistogram(vy_stack,overlayIsSelectedInclusiveWeights, dataInclusiveEvents['vz'].to_numpy(), (0,1000), 15, 'vz_nodaughters',  ['vz no daughters cut','vx(cm)','Number of Events'])
 
 sys.exit()
