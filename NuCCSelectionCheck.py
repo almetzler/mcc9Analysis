@@ -1138,27 +1138,27 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 # print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
 # print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
-# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
-# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
+print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
 
-# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
-# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
+print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 # print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 # print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
 
-extV = extMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
-dirtV = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
-overlayV = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
-dataV = dataMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
+# extV = extMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
+# dirtV = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
+# overlayV = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
+# dataV = dataMuonCandidates.query('isLongestTrack == True & isFiducial == False' )
 
-wgt_stack = Stack(overlayV, dirtV, extV, 'wgt')
-vx_stack = Stack(overlayV, dirtV, extV, 'vx')
-vy_stack = Stack(overlayV, dirtV, extV, 'vy')
-vz_stack = Stack(overlayV, dirtV, extV, 'vz')
+# wgt_stack = Stack(overlayV, dirtV, extV, 'wgt')
+# vx_stack = Stack(overlayV, dirtV, extV, 'vx')
+# vy_stack = Stack(overlayV, dirtV, extV, 'vy')
+# vz_stack = Stack(overlayV, dirtV, extV, 'vz')
 
-makeDataMCHistogram(vx_stack, wgt_stack, dataV['vx'].to_numpy(), (0,300), 32, 'vx_notfiducial',  ['vx fiducial cut (False)','vx(cm)','Number of Events'])
-makeDataMCHistogram(vy_stack, wgt_stack, dataV['vy'].to_numpy(), (-200,200), 32, 'vy_notfiducial',  ['vy fiducial cut (False)','vy(cm)','Number of Events'])
-makeDataMCHistogram(vz_stack, wgt_stack, dataV['vz'].to_numpy(), (0,1000), 32, 'vz_notfiducial',  ['vz fiducial cut (False)','vz(cm)','Number of Events'])
+# makeDataMCHistogram(vx_stack, wgt_stack, dataV['vx'].to_numpy(), (0,300), 32, 'vx_notfiducial',  ['vx fiducial cut (False)','vx(cm)','Number of Events'])
+# makeDataMCHistogram(vy_stack, wgt_stack, dataV['vy'].to_numpy(), (-200,200), 32, 'vy_notfiducial',  ['vy fiducial cut (False)','vy(cm)','Number of Events'])
+# makeDataMCHistogram(vz_stack, wgt_stack, dataV['vz'].to_numpy(), (0,1000), 32, 'vz_notfiducial',  ['vz fiducial cut (False)','vz(cm)','Number of Events'])
 
 sys.exit()
