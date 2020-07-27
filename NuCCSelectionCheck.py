@@ -434,7 +434,7 @@ minProtonChi2 = 60.0
 maxMuonChi2   = 30.0
 minRatioChi2  = 7.0
 minTrackScore = 0.5
-minNeutrinoScore = 0.4    #0.1
+minNeutrinoScore = 0.1    #0.1
 minMuonTrackScore = 0.85
 minTrackL = 20
 maxVtxDist = 4
@@ -896,7 +896,7 @@ makeDataMCHistogram(incPrimMuonFlashChi2Ratio, incPrimMuonStackWeights, dataMuon
 # #exec( "incPrimMuonIsSelectedStack   = "  + re.sub(r'VAR', 'nu_mu_cc_selected', overlayPrimMuonStack) )
 
 maxFlashChi2 = 10
-minNeutrinoScoreFlashFails = 0.4    #0.25
+minNeutrinoScoreFlashFails = 0.25    #0.25
 maxFlashChi2Ratio  = 5
 
 extInclusiveEvents = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
@@ -1087,19 +1087,19 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 #   makeDataMCHistogram(nochi2_stack, nochi2_wgt, dataInclusiveEvents_noChi2[var].to_numpy(),rge, bins, '{}_noflash'.format(var), ['{} all cuts no flash'.format(var),x,y])
 
 
-# plot_list = [(overlayInclusiveEvents_noChi2Ratio0, dirtInclusiveEvents_noChi2Ratio0, extInclusiveEvents_noChi2Ratio0,dataInclusiveEvents_noChi2Ratio0,'1-0'),
-# (overlayInclusiveEvents_noChi2Ratio1, dirtInclusiveEvents_noChi2Ratio1, extInclusiveEvents_noChi2Ratio1,dataInclusiveEvents_noChi2Ratio1,'1-1'),
-# (overlayInclusiveEvents_noChi2Ratio2, dirtInclusiveEvents_noChi2Ratio2, extInclusiveEvents_noChi2Ratio2,dataInclusiveEvents_noChi2Ratio2,'1-2'),
-# (overlayInclusiveEvents_noChi2Ratio3, dirtInclusiveEvents_noChi2Ratio3, extInclusiveEvents_noChi2Ratio3,dataInclusiveEvents_noChi2Ratio3,'1-3'),
-# (overlayInclusiveEvents_noChi2Ratio4, dirtInclusiveEvents_noChi2Ratio4, extInclusiveEvents_noChi2Ratio4,dataInclusiveEvents_noChi2Ratio4,'1-4'),
-# (overlayInclusiveEvents_noChi2Ratio5, dirtInclusiveEvents_noChi2Ratio5, extInclusiveEvents_noChi2Ratio5,dataInclusiveEvents_noChi2Ratio5,'1-5')]
+plot_list = [(overlayInclusiveEvents_noChi2Ratio0, dirtInclusiveEvents_noChi2Ratio0, extInclusiveEvents_noChi2Ratio0,dataInclusiveEvents_noChi2Ratio0,'1-0'),
+(overlayInclusiveEvents_noChi2Ratio1, dirtInclusiveEvents_noChi2Ratio1, extInclusiveEvents_noChi2Ratio1,dataInclusiveEvents_noChi2Ratio1,'1-1'),
+(overlayInclusiveEvents_noChi2Ratio2, dirtInclusiveEvents_noChi2Ratio2, extInclusiveEvents_noChi2Ratio2,dataInclusiveEvents_noChi2Ratio2,'1-2'),
+(overlayInclusiveEvents_noChi2Ratio3, dirtInclusiveEvents_noChi2Ratio3, extInclusiveEvents_noChi2Ratio3,dataInclusiveEvents_noChi2Ratio3,'1-3'),
+(overlayInclusiveEvents_noChi2Ratio4, dirtInclusiveEvents_noChi2Ratio4, extInclusiveEvents_noChi2Ratio4,dataInclusiveEvents_noChi2Ratio4,'1-4'),
+(overlayInclusiveEvents_noChi2Ratio5, dirtInclusiveEvents_noChi2Ratio5, extInclusiveEvents_noChi2Ratio5,dataInclusiveEvents_noChi2Ratio5,'1-5')]
 
-# for overlay,dirt,ext,data,rge in plot_list:
-#   chi2_phi = Stack(overlay, dirt, ext, 'phi', True)
-#   chi2_nu = Stack(overlay, dirt, ext, 'nu_score', True)
-#   chi2_wgt = Stack(overlay, dirt, ext, 'wgt', True)
-#   makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0,1), 33, "nu_score_{}".format(rge), ["nu_score cuts {}".format(rge), "Neutrino ID", "Number of Events"])
-#   makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi cuts {}".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
+for overlay,dirt,ext,data,rge in plot_list:
+  chi2_phi = Stack(overlay, dirt, ext, 'phi', True)
+  chi2_nu = Stack(overlay, dirt, ext, 'nu_score', True)
+  chi2_wgt = Stack(overlay, dirt, ext, 'wgt', True)
+  makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0,1), 33, "nu_score_{}".format(rge), ["nu_score".format(rge), "Neutrino ID", "Number of Events"])
+  makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
 
 
 # df_list = [(trackOverlay, trackDirt, trackExt),(overlayNuScore, dirtNuScore, extNuScore),(overlayTrackScore, dirtTrackScore, extTrackScore),(overlayPIDScore, dirtPIDScore, extPIDScore),(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates),(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents)]
