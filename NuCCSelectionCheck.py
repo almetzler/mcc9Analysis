@@ -1129,14 +1129,14 @@ makeDataMCHistogram(overlayPrimMuonPhiInclusiveStack_noChi2, overlayIsSelectedIn
 # print "Track Purity: {}".format(getPurity(trackOverlay, trackDirt, trackExt))
 # print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
 
-# print "NuScore Purity: {}".format(getPurity(overlayNuScore, dirtNuScore, extNuScore))
-# print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
+print "NuScore Purity: {}".format(getPurity(overlayNuScore, dirtNuScore, extNuScore))
+print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
 
-# print "TrackScore Purity: {}".format(getPurity(overlayTrackScore, dirtTrackScore, extTrackScore))
-# print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
+print "TrackScore Purity: {}".format(getPurity(overlayTrackScore, dirtTrackScore, extTrackScore))
+print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
 
-# print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
-# print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
+print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
+print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
 print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
 print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
