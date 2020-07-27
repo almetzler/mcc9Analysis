@@ -173,7 +173,9 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   np.nan_to_num(ratio, copy=False)
   np.nan_to_num(err, copy=False)
 
-  plt.errorbar(data_hist[0], ratio, yerr=err, fmt='o', color='black') #This ignores MC stats.
+  fig, axi = plt.subplots() #create subplots so I can put a textbox in
+
+  axi.errorbar(data_hist[0], ratio, yerr=err, fmt='o', color='black') #This ignores MC stats.
   try:
     plotTitle, xAxisTitle, yAxisTitle = Titles
   except(ValueError):
@@ -181,18 +183,18 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
     plotTitle  = ""
     xAxisTitle = ""
     yAxisTitle = "" 
-  plt.title(plotTitle)
-  plt.xlabel(xAxisTitle)
-  plt.ylabel("Data / MC")
+  
+  axi.set_title(plotTitle)
+  axi.set_xlabel(xAxisTitle)
+  axi.set_ylabel("Data / MC")
   text = r'$\int \frac{data}{MC} = %.3f$' % sumRatio
-  ax = plt.gca()
-  ymax = ax.get_ylim()[1] 
-  xmax = ax.get_xlim()[1]
-  #print "Min %.2f Max %.2f" % (ax.get_xlim()[0], ax.get_xlim()[1])
-  plt.text(0.7*xmax, 0.9*ymax, text, {'fontsize' : 18})
+
+  props = dict(boxstyle='round', facecolor='lightsteelblue', alpha=0.5)
+
+  axi.text(0.75, 1.1, text, transform=axi.transAxes, fontsize=14,
+        verticalalignment='top', bbox=props)
   plt.savefig("%s/%sRatio.png" % ( dir_name, filename) )
   plt.close()
-  
 
 def KEtoMomentum(T, restMass):
     TotalE = T + restMass
