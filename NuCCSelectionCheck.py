@@ -434,7 +434,7 @@ minProtonChi2 = 60.0
 maxMuonChi2   = 30.0
 minRatioChi2  = 7.0
 minTrackScore = 0.5
-minNeutrinoScore = 0.4    #0.1
+minNeutrinoScore = 0.1    #0.1
 minMuonTrackScore = 0.85
 minTrackL = 20
 maxVtxDist = 4
@@ -899,13 +899,13 @@ maxFlashChi2 = 10
 minNeutrinoScoreFlashFails = 0.25    #0.25
 maxFlashChi2Ratio  = 5
 
-extInclusiveEvents = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails) & daughters_start_contained == True')
+extInclusiveEvents = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-dirtInclusiveEvents = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails) & daughters_start_contained == True')
+dirtInclusiveEvents = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-overlayInclusiveEvents = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails) & daughters_start_contained == True')
+overlayInclusiveEvents = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-dataInclusiveEvents = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails) & daughters_start_contained == True')
+dataInclusiveEvents = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
 
 extInclusiveEvents_noChi2 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
