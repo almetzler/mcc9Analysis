@@ -159,7 +159,7 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
   plt.ylabel(yAxisTitle)
   
   if filename == 'nu_score_1-5':
-    plt.ylim(0,200)
+    plt.ylim(0,190)
 
   data_hist = dataify(dataList, nBins, binRange)
   plt.errorbar(data_hist[0], data_hist[1], yerr=data_hist[2], fmt='o', color='black')
@@ -925,20 +925,20 @@ overlayInclusiveEvents_noChi2 = overlayMuonCandidates.query('isLongestTrack == T
 dataInclusiveEvents_noChi2 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
 
 
-extInclusiveEvents_noChi2Ratio5 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)' )
-dirtInclusiveEvents_noChi2Ratio5 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
-overlayInclusiveEvents_noChi2Ratio5 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
-dataInclusiveEvents_noChi2Ratio5 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+extInclusiveEvents_noChi2Ratio5 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)' )
+dirtInclusiveEvents_noChi2Ratio5 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+overlayInclusiveEvents_noChi2Ratio5 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+dataInclusiveEvents_noChi2Ratio5 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-extInclusiveEvents_noChi2Ratio4 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True' )
-dirtInclusiveEvents_noChi2Ratio4 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True')
-overlayInclusiveEvents_noChi2Ratio4 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True')
-dataInclusiveEvents_noChi2Ratio4 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True')
+extInclusiveEvents_noChi2Ratio4 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True' )
+dirtInclusiveEvents_noChi2Ratio4 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True')
+overlayInclusiveEvents_noChi2Ratio4 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True')
+dataInclusiveEvents_noChi2Ratio4 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True')
 
-extInclusiveEvents_noChi2Ratio3 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained_calc == True' )
-dirtInclusiveEvents_noChi2Ratio3 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained_calc == True')
-overlayInclusiveEvents_noChi2Ratio3 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained_calc == True')
-dataInclusiveEvents_noChi2Ratio3 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained_calc == True')
+extInclusiveEvents_noChi2Ratio3 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True' )
+dirtInclusiveEvents_noChi2Ratio3 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True')
+overlayInclusiveEvents_noChi2Ratio3 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True')
+dataInclusiveEvents_noChi2Ratio3 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True')
 
 extInclusiveEvents_noChi2Ratio2 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg' )
 dirtInclusiveEvents_noChi2Ratio2 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg')
@@ -1137,36 +1137,36 @@ for overlay,dirt,ext,data,rge in plot_list:
 # print "Track Purity: {}".format(getPurity(trackOverlay, trackDirt, trackExt))
 # print "Track Efficiency: {}".format(getEfficiency(trackOverlay))
 
-print "NuScore Purity: {}".format(getPurity(overlayNuScore, dirtNuScore, extNuScore))
-print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
+# print "NuScore Purity: {}".format(getPurity(overlayNuScore, dirtNuScore, extNuScore))
+# print "NuScore Efficiency: {}".format(getEfficiency(overlayNuScore))
 
-print "TrackScore Purity: {}".format(getPurity(overlayTrackScore, dirtTrackScore, extTrackScore))
-print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
+# print "TrackScore Purity: {}".format(getPurity(overlayTrackScore, dirtTrackScore, extTrackScore))
+# print "TrackScore Efficiency: {}".format(getEfficiency(overlayTrackScore))
 
-print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
-print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
+# print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
+# print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
-print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
-print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
+# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
 
-print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
-print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
+# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 # print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 # print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
 
-extV = extMuonCandidates.query('isLongestTrack == True & daughters_start_contained_calc == True' )
-dirtV = dirtMuonCandidates.query('isLongestTrack == True & daughters_start_contained_calc == True' )
-overlayV = overlayMuonCandidates.query('isLongestTrack == True & daughters_start_contained_calc == True' )
-dataV = dataMuonCandidates.query('isLongestTrack == True & daughters_start_contained_calc == True' )
+# extV = extMuonCandidates.query('isLongestTrack == True & daughters_start_contained_calc == True' )
+# dirtV = dirtMuonCandidates.query('isLongestTrack == True & daughters_start_contained_calc == True' )
+# overlayV = overlayMuonCandidates.query('isLongestTrack == True & daughters_start_contained_calc == True' )
+# dataV = dataMuonCandidates.query('isLongestTrack == True & daughters_start_contained_calc == True' )
 
-wgt_stack = Stack(overlayV, dirtV, extV, 'wgt')
-vx_stack = Stack(overlayV, dirtV, extV, 'vx')
-vy_stack = Stack(overlayV, dirtV, extV, 'vy')
-vz_stack = Stack(overlayV, dirtV, extV, 'vz')
+# wgt_stack = Stack(overlayV, dirtV, extV, 'wgt')
+# vx_stack = Stack(overlayV, dirtV, extV, 'vx')
+# vy_stack = Stack(overlayV, dirtV, extV, 'vy')
+# vz_stack = Stack(overlayV, dirtV, extV, 'vz')
 
-makeDataMCHistogram(vx_stack, wgt_stack, dataV['vx'].to_numpy(), (0,300), 32, 'vx_daughters',  ['vx daughters cut','vx(cm)','Number of Events'])
-makeDataMCHistogram(vy_stack, wgt_stack, dataV['vy'].to_numpy(), (-200,200), 32, 'vy_daughters',  ['vy daughters cut ','vy(cm)','Number of Events'])
-makeDataMCHistogram(vz_stack, wgt_stack, dataV['vz'].to_numpy(), (0,1000), 32, 'vz_daughters',  ['vz daughters cut','vz(cm)','Number of Events'])
+# makeDataMCHistogram(vx_stack, wgt_stack, dataV['vx'].to_numpy(), (0,300), 32, 'vx_daughters',  ['vx daughters cut','vx(cm)','Number of Events'])
+# makeDataMCHistogram(vy_stack, wgt_stack, dataV['vy'].to_numpy(), (-200,200), 32, 'vy_daughters',  ['vy daughters cut ','vy(cm)','Number of Events'])
+# makeDataMCHistogram(vz_stack, wgt_stack, dataV['vz'].to_numpy(), (0,1000), 32, 'vz_daughters',  ['vz daughters cut','vz(cm)','Number of Events'])
 
 sys.exit()
