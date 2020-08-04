@@ -1147,11 +1147,11 @@ for overlay,dirt,ext,data,rge in plot_list:
 # print "PIDScore Purity: {}".format(getPurity(overlayPIDScore, dirtPIDScore, extPIDScore))
 # print "PIDScore Efficiency: {}".format(getEfficiency(overlayPIDScore))
 
-# print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
-# print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
+print "MuonCandidate Purity: {}".format(getPurity(overlayMuonCandidates, dirtMuonCandidates, extMuonCandidates))
+print "MuonCandidate Efficiency: {}".format(getEfficiency(overlayMuonCandidates))
 
-# print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
-# print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
+print "InclusiveEvents Purity: {}".format(getPurity(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents))
+print "InclusiveEvents Efficiency: {}".format(getEfficiency(overlayInclusiveEvents))
 
 # print "InclusiveEvents (No Chi2) Purity: {}".format(getPurity(overlayInclusiveEvents_noChi2, dirtInclusiveEvents_noChi2, extInclusiveEvents_noChi2))
 # print "InclusiveEvents (No Chi2) Efficiency: {}".format(getEfficiency(overlayInclusiveEvents_noChi2))
