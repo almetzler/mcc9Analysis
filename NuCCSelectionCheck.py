@@ -159,7 +159,7 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
   plt.ylabel(yAxisTitle)
   
   if filename == 'nu_score_1-5':
-    plt.ylim(0,175)
+    plt.ylim(0,200)
 
   data_hist = dataify(dataList, nBins, binRange)
   plt.errorbar(data_hist[0], data_hist[1], yerr=data_hist[2], fmt='o', color='black')
