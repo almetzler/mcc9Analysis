@@ -480,8 +480,8 @@ ExtTemplateWeight = (1.0 + 1.00000e-02)
 #Do this for "overlay" simulation, beam data, and off-beam data
 overlayDaughters = uproot.open(InputFiles[0])["NuCCanalyzer"]["Daughters"]
 trackOverlay   = pd.DataFrame(overlayDaughters.arrays(["track_range_mom_mu", "track_mcs_mom", "track_range_mom_p", "track_is_muon_candidate", "track_score", "track_chi2_proton", "track_chi2_muon", "track_dirx", "track_diry", "track_dirz", "vx", "vy", "vz", "track_endx", "track_endy", "track_endz", "track_length", "vtx_distance", "generation", "mc_pdg", "run", "subrun", "event"] ) )
-trackOverlay.insert(trackOverlay.shape[1], "daughters_start_contained", [checkContained(x, y, z) for x, y, z in zip(trackOverlay['vx'], trackOverlay['vy'], trackOverlay['vz'])] )
-filteredEvents   = pd.DataFrame(overlayEvents.arrays(["run", "subrun", "event", "mc_nu_interaction_type", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "nu_pdg", "nu_vx", "nu_vy", "nu_vz", "mc_nu_vx", "mc_nu_vy", "mc_nu_vz",  "mc_nu_ccnc", "nu_mu_cc_selected", "mc_nu_lepton_energy", "mc_nu_energy", "mc_nu_lepton_theta"]) )
+trackOverlay.insert(trackOverlay.shape[1], "daughters_start_contained_calc", [checkContained(x, y, z) for x, y, z in zip(trackOverlay['vx'], trackOverlay['vy'], trackOverlay['vz'])] )
+filteredEvents   = pd.DataFrame(overlayEvents.arrays(["run", "subrun", "event", "mc_nu_interaction_type", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "nu_pdg", "daughters_start_contained", "nu_vx", "nu_vy", "nu_vz", "mc_nu_vx", "mc_nu_vy", "mc_nu_vz",  "mc_nu_ccnc", "nu_mu_cc_selected", "mc_nu_lepton_energy", "mc_nu_energy", "mc_nu_lepton_theta"]) )
 filteredEvents.insert(filteredEvents.shape[1], "isFiducial", [isFiducial(x, y, z) for x, y, z in zip(filteredEvents['nu_vx'], filteredEvents['nu_vy'], filteredEvents['nu_vz'])] )
 filteredEvents.insert(filteredEvents.shape[1], "isTrueFiducial", [isFiducial(x, y, z) for x, y, z in zip(filteredEvents['mc_nu_vx'], filteredEvents['mc_nu_vy'], filteredEvents['mc_nu_vz'])] )
 filteredEvents.eval('flash_chi2_ratio = nu_flash_chi2 / obvious_cosmic_chi2', inplace=True)
@@ -507,15 +507,15 @@ dirtSplineWeights.replace([np.inf], 0.0, inplace=True)
 
 dataDaughters = uproot.open(InputFiles[1])["NuCCanalyzer"]["Daughters"]
 trackData     = pd.DataFrame(dataDaughters.arrays(["track_range_mom_mu", "track_mcs_mom", "track_range_mom_p", "track_is_muon_candidate", "track_score", "track_chi2_proton", "track_chi2_muon", "track_dirx", "track_diry", "track_dirz","track_dirx", "track_diry", "track_dirz", "vx", "vy", "vz", "track_endx", "track_endy", "track_endz", "track_length", "vtx_distance", "is_track_daughter", "generation", "run", "subrun", "event"] ) )
-trackData.insert(trackData.shape[1], "daughters_start_contained", [checkContained(x, y, z) for x, y, z in zip(trackData['vx'], trackData['vy'], trackData['vz'])] )
-filteredData  = pd.DataFrame(bnbEvents.arrays(["run", "subrun", "event", "nu_mu_cc_selected", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "nu_vx", "nu_vy", "nu_vz", "nu_pdg"]) )
+trackData.insert(trackData.shape[1], "daughters_start_contained_calc", [checkContained(x, y, z) for x, y, z in zip(trackData['vx'], trackData['vy'], trackData['vz'])] )
+filteredData  = pd.DataFrame(bnbEvents.arrays(["run", "subrun", "event", "nu_mu_cc_selected", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "daughters_start_contained", "nu_vx", "nu_vy", "nu_vz", "nu_pdg"]) )
 filteredData.insert(filteredData.shape[1], "isFiducial", [isFiducial(x, y, z) for x, y, z in zip(filteredData['nu_vx'], filteredData['nu_vy'], filteredData['nu_vz'])] )
 filteredData.eval('flash_chi2_ratio = nu_flash_chi2 / obvious_cosmic_chi2', inplace=True)
 
 extDaughtersC1 = uproot.open(InputFiles[2])["NuCCanalyzer"]["Daughters"]
 trackExtC1     = pd.DataFrame(extDaughtersC1.arrays(["track_range_mom_mu", "track_mcs_mom", "track_range_mom_p", "track_is_muon_candidate", "track_score", "track_chi2_proton", "track_chi2_muon", "track_dirx", "track_diry", "track_dirz", "track_dirx", "track_diry", "track_dirz", "vx", "vy", "vz", "track_endx", "track_endy", "track_endz", "track_length", "vtx_distance", "is_track_daughter", "generation", "run", "subrun", "event"] ) )
-trackExtC1.insert(trackExtC1.shape[1], "daughters_start_contained", [checkContained(x, y, z) for x, y, z in zip(trackExtC1['vx'], trackExtC1['vy'], trackExtC1['vz'])] )
-filteredExtC1  = pd.DataFrame(extEventsC1.arrays(["run", "subrun", "event", "nu_mu_cc_selected", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "nu_vx", "nu_vy", "nu_vz", "nu_pdg"]) )
+trackExtC1.insert(trackExtC1.shape[1], "daughters_start_contained_calc", [checkContained(x, y, z) for x, y, z in zip(trackExtC1['vx'], trackExtC1['vy'], trackExtC1['vz'])] )
+filteredExtC1  = pd.DataFrame(extEventsC1.arrays(["run", "subrun", "event", "nu_mu_cc_selected", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "daughters_start_contained", "nu_vx", "nu_vy", "nu_vz", "nu_pdg"]) )
 filteredExtC1.insert(filteredExtC1.shape[1], "isFiducial", [isFiducial(x, y, z) for x, y, z in zip(filteredExtC1['nu_vx'], filteredExtC1['nu_vy'], filteredExtC1['nu_vz'])] )
 filteredExtC1.eval('flash_chi2_ratio = nu_flash_chi2 / obvious_cosmic_chi2', inplace=True)
 
@@ -524,8 +524,8 @@ if(weightSeperately):
 
 extDaughtersC2 = uproot.open(InputFiles[4])["NuCCanalyzer"]["Daughters"]
 trackExtC2     = pd.DataFrame(extDaughtersC2.arrays(["track_range_mom_mu", "track_mcs_mom", "track_range_mom_p", "track_is_muon_candidate", "track_score", "track_chi2_proton", "track_chi2_muon", "track_dirx", "track_diry", "track_dirz", "track_dirx", "track_diry", "track_dirz", "vx", "vy", "vz", "track_endx", "track_endy", "track_endz", "track_length", "vtx_distance", "is_track_daughter", "generation", "run", "subrun", "event"] ) )
-trackExtC2.insert(trackExtC2.shape[1], "daughters_start_contained", [checkContained(x, y, z) for x, y, z in zip(trackExtC2['vx'], trackExtC2['vy'], trackExtC2['vz'])] )
-filteredExtC2  = pd.DataFrame(extEventsC2.arrays(["run", "subrun", "event", "nu_mu_cc_selected", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "nu_vx", "nu_vy", "nu_vz", "nu_pdg"]) )
+trackExtC2.insert(trackExtC2.shape[1], "daughters_start_contained_calc", [checkContained(x, y, z) for x, y, z in zip(trackExtC2['vx'], trackExtC2['vy'], trackExtC2['vz'])] )
+filteredExtC2  = pd.DataFrame(extEventsC2.arrays(["run", "subrun", "event", "nu_mu_cc_selected", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "daughters_start_contained", "nu_vx", "nu_vy", "nu_vz", "nu_pdg"]) )
 filteredExtC2.insert(filteredExtC2.shape[1], "isFiducial", [isFiducial(x, y, z) for x, y, z in zip(filteredExtC2['nu_vx'], filteredExtC2['nu_vy'], filteredExtC2['nu_vz'])] )
 filteredExtC2.eval('flash_chi2_ratio = nu_flash_chi2 / obvious_cosmic_chi2', inplace=True)
 
@@ -534,8 +534,8 @@ if(weightSeperately):
 
 dirtDaughters = uproot.open(InputFiles[3])["NuCCanalyzer"]["Daughters"]
 trackDirt     = pd.DataFrame(dirtDaughters.arrays(["track_range_mom_mu", "track_mcs_mom", "track_range_mom_p", "track_is_muon_candidate", "track_score", "track_chi2_proton", "track_chi2_muon", "track_dirx", "track_diry", "track_dirz", "track_dirx", "track_diry", "track_dirz", "vx", "vy", "vz", "track_endx", "track_endy", "track_endz", "track_length", "vtx_distance", "is_track_daughter", "generation", "run", "subrun", "event"] ) )
-trackDirt.insert(trackDirt.shape[1], "daughters_start_contained", [checkContained(x, y, z) for x, y, z in zip(trackDirt['vx'], trackDirt['vy'], trackDirt['vz'])] )
-filteredDirt  = pd.DataFrame(dirtEvents.arrays(["run", "subrun", "event", "nu_mu_cc_selected", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "nu_vx", "nu_vy", "nu_vz", "nu_pdg"]) )
+trackDirt.insert(trackDirt.shape[1], "daughters_start_contained_calc", [checkContained(x, y, z) for x, y, z in zip(trackDirt['vx'], trackDirt['vy'], trackDirt['vz'])] )
+filteredDirt  = pd.DataFrame(dirtEvents.arrays(["run", "subrun", "event", "nu_mu_cc_selected", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "daughters_start_contained", "nu_vx", "nu_vy", "nu_vz", "nu_pdg"]) )
 filteredDirt.insert(filteredDirt.shape[1], "isFiducial", [isFiducial(x, y, z) for x, y, z in zip(filteredDirt['nu_vx'], filteredDirt['nu_vy'], filteredDirt['nu_vz'])] )
 filteredDirt.eval('flash_chi2_ratio = nu_flash_chi2 / obvious_cosmic_chi2', inplace=True)
 
@@ -635,7 +635,7 @@ numberFiltered = 0
 #by doing this, we have the complete event information for each track.
 #Really what we want is to look at the particles' properties as a funciton of the underlying event information
 #This is extendible to any event varaible we want to associate to a particle
-interactionInfo = ("mc_channel", "nu_mu_cc_selected","nu_score", "nu_pdg", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "mc_nu_vx", "mc_nu_vy", "mc_nu_vz", "isFiducial", "isTrueFiducial", "mc_Ehad", "mc_expQ2", "mc_expXbj", "mc_expY", "mc_expW","isTrueCC") 
+interactionInfo = ("mc_channel", "nu_mu_cc_selected","nu_score", "nu_pdg", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "daughters_start_contained", "mc_nu_vx", "mc_nu_vy", "mc_nu_vz", "isFiducial", "isTrueFiducial", "mc_Ehad", "mc_expQ2", "mc_expXbj", "mc_expY", "mc_expW","isTrueCC") 
 
 for field in interactionInfo:
   trackOverlay   = trackOverlay.join(filteredEvents['%s' % field], on=["run", "subrun", "event"])
@@ -643,12 +643,12 @@ for field in interactionInfo:
 trackOverlay = trackOverlay.join(overlayCVWeights['wgt_tune'], on=["run", "subrun", "event"])
 trackOverlay = trackOverlay.join(overlaySplineWeights['wgt_spline'], on=["run", "subrun", "event"])
 
-extInfo = { "nu_mu_cc_selected", "nu_score", "nu_pdg", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "isFiducial", "wgt" }
+extInfo = { "nu_mu_cc_selected", "nu_score", "nu_pdg", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "daughters_start_contained", "isFiducial", "wgt" }
 
 for field in extInfo:
   trackExt   = trackExt.join(filteredExt['%s' % field], on=["run", "subrun", "event"])
 
-dirtInfo = ("nu_mu_cc_selected", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "isFiducial", "nu_pdg")
+dirtInfo = ("nu_mu_cc_selected", "nu_score", "nu_flash_chi2", "obvious_cosmic_chi2", "flash_chi2_ratio", "nu_vx", "nu_vy", "nu_vz", "daughters_start_contained", "isFiducial", "nu_pdg")
 
 for field in dirtInfo:
   trackDirt = trackDirt.join(filteredDirt['%s' % field], on=["run", "subrun", "event"])
