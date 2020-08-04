@@ -158,6 +158,9 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
   plt.xlabel(xAxisTitle)
   plt.ylabel(yAxisTitle)
   
+  if filename == 'nu_score_1-5':
+    plt.ylim(0,175)
+
   data_hist = dataify(dataList, nBins, binRange)
   plt.errorbar(data_hist[0], data_hist[1], yerr=data_hist[2], fmt='o', color='black')
   plt.savefig("%s/%s.png" % ( dir_name, filename) )
@@ -922,20 +925,20 @@ overlayInclusiveEvents_noChi2 = overlayMuonCandidates.query('isLongestTrack == T
 dataInclusiveEvents_noChi2 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & flash_chi2_ratio < @maxFlashChi2Ratio & nu_score > @minNeutrinoScore & nu_score > @minNeutrinoScoreFlashFails')
 
 
-extInclusiveEvents_noChi2Ratio5 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)' )
-dirtInclusiveEvents_noChi2Ratio5 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
-overlayInclusiveEvents_noChi2Ratio5 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
-dataInclusiveEvents_noChi2Ratio5 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+extInclusiveEvents_noChi2Ratio5 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)' )
+dirtInclusiveEvents_noChi2Ratio5 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+overlayInclusiveEvents_noChi2Ratio5 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
+dataInclusiveEvents_noChi2Ratio5 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True & (nu_flash_chi2 < @maxFlashChi2 | nu_score > @minNeutrinoScoreFlashFails)')
 
-extInclusiveEvents_noChi2Ratio4 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True' )
-dirtInclusiveEvents_noChi2Ratio4 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True')
-overlayInclusiveEvents_noChi2Ratio4 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True')
-dataInclusiveEvents_noChi2Ratio4 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained == True')
+extInclusiveEvents_noChi2Ratio4 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True' )
+dirtInclusiveEvents_noChi2Ratio4 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True')
+overlayInclusiveEvents_noChi2Ratio4 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True')
+dataInclusiveEvents_noChi2Ratio4 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & nu_score > @minNeutrinoScore & daughters_start_contained_calc == True')
 
-extInclusiveEvents_noChi2Ratio3 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True' )
-dirtInclusiveEvents_noChi2Ratio3 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True')
-overlayInclusiveEvents_noChi2Ratio3 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True')
-dataInclusiveEvents_noChi2Ratio3 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained == True')
+extInclusiveEvents_noChi2Ratio3 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained_calc == True' )
+dirtInclusiveEvents_noChi2Ratio3 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained_calc == True')
+overlayInclusiveEvents_noChi2Ratio3 = overlayMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained_calc == True')
+dataInclusiveEvents_noChi2Ratio3 = dataMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg & daughters_start_contained_calc == True')
 
 extInclusiveEvents_noChi2Ratio2 = extMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg' )
 dirtInclusiveEvents_noChi2Ratio2 = dirtMuonCandidates.query('isLongestTrack == True & isFiducial == True & nu_pdg == @numupdg')
