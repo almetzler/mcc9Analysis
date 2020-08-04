@@ -1103,7 +1103,7 @@ for overlay,dirt,ext,data,rge in plot_list:
   chi2_phi = Stack(overlay, dirt, ext, 'phi', True)
   chi2_nu = Stack(overlay, dirt, ext, 'nu_score', True)
   chi2_wgt = Stack(overlay, dirt, ext, 'wgt', True)
-  makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0,1), 33, "nu_score_{}".format(rge), ["nu_score".format(rge), "Neutrino ID", "Number of Events"])
+  makeDataMCHistogram(chi2_nu, chi2_wgt, data['nu_score'].to_numpy(), (0.2,0.8), 33, "nu_score_{}".format(rge), ["nu_score".format(rge), "Neutrino ID", "Number of Events"])
   makeDataMCHistogram(chi2_phi, chi2_wgt, data['phi'].to_numpy(), phiRange, 64, "phi_{}".format(rge), ["phi".format(rge), "Angle / pi (radians)", "Number of Primary Muons"])
 
 
