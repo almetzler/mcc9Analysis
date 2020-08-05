@@ -175,8 +175,10 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   elif tpe == 'particle':
     dir_name = 'ParticlePlotDir'
   if type(nBins) == list:
-    cBins = len(nBins)
-  mcSum = np.full(cBins, 0.0 )
+    mcSum = np.full(len(nBins), 0.0 )
+  else:
+    mcSum = np.full(nBins, 0.0 )
+  
   for mc, weight in zip(mcList, mcWeights):
      mc_hist   = np.histogram(mc, bins=nBins, range=binRange, weights = weight )
      np.add(mc_hist[0], mcSum, out=mcSum)
