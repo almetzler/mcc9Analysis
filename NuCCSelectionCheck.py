@@ -985,7 +985,7 @@ makeDataMCHistogram(overlayIsSelectedInclusiveStack, overlayIsSelectedInclusiveW
 
 # exec( "overlayPrimMuonChi2FlashInclusiveStack     = "  + re.sub(r'VAR', 'nu_flash_chi2', overlayInclusiveStack) )
 
-chi2bins = list(np.arange(0,5,.5))+list(np.arange(5,20,1))+list(np.arange(20,100,5))+list(np.arange(100,210,10))
+chi2bins = list(np.arange(0,1,1))+list(np.arange(1,2,.2))+list(np.arange(2,20,1))+list(np.arange(20,100,5))+list(np.arange(100,210,10))
 overlayPrimMuonChi2FlashInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'nu_flash_chi2')
 
 makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['nu_flash_chi2'].to_numpy(), (0,200), chi2bins, "InclusiveEventsPrimMuonFlashChi2", ["Flash Chi2", "Chi2", "Number of Events"])
