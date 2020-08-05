@@ -175,7 +175,7 @@ def makeDataMCRatioHistogram(mcList, mcWeights, dataList, binRange, nBins, filen
   elif tpe == 'particle':
     dir_name = 'ParticlePlotDir'
   if type(nBins) == list:
-    mcSum = np.full(len(nBins), 0.0 )
+    mcSum = np.full(len(nBins)-1, 0.0 )
   else:
     mcSum = np.full(nBins, 0.0 )
   
