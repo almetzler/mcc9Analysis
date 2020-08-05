@@ -985,7 +985,7 @@ makeDataMCHistogram(overlayIsSelectedInclusiveStack, overlayIsSelectedInclusiveW
 
 # exec( "overlayPrimMuonChi2FlashInclusiveStack     = "  + re.sub(r'VAR', 'nu_flash_chi2', overlayInclusiveStack) )
 
-chi2bins = list(np.arange(0,0.5,0.5))+list(np.arange(0.5,2,0.1))+list(np.arange(2,4,0.5))+list(np.arange(4,15,1))+list(np.arange(15,240,5))+list(np.arange(40,220,20))
+chi2bins = list(np.arange(0,0.5,0.5))+list(np.arange(0.5,2,0.1))+list(np.arange(2,4,0.5))+list(np.arange(4,15,1))+list(np.arange(15,40,5))+list(np.arange(40,220,20))
 zoomList = list(np.arange(0,0.5,0.5))+list(np.arange(0.5,2,0.1))+list(np.arange(2,4,0.5))+list(np.arange(4,15,1))
 overlayPrimMuonChi2FlashInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'nu_flash_chi2')
 
