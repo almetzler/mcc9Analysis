@@ -158,8 +158,8 @@ def makeDataMCHistogram(mcList, mcWeights, dataList, binRange, nBins, filename, 
   plt.xlabel(xAxisTitle)
   plt.ylabel(yAxisTitle)
   
-  # if filename == 'nu_score_1-5':
-  #   plt.ylim(0,190)
+  if 'InclusiveEventsPrimMuonFlashChi2' in filename:
+    plt.yscale('log')
 
   data_hist = dataify(dataList, nBins, binRange)
   plt.errorbar(data_hist[0], data_hist[1], yerr=data_hist[2], fmt='o', color='black')
@@ -989,7 +989,7 @@ chi2bins = list(np.arange(0,0.6,0.6))+list(np.arange(0.6,2,0.2))+list(np.arange(
 zoomList = list(np.arange(0,0.6,0.6))+list(np.arange(0.6,2,0.2))+list(np.arange(2,4,0.5))+list(np.arange(4,15,1))
 overlayPrimMuonChi2FlashInclusiveStack = Stack(overlayInclusiveEvents, dirtInclusiveEvents, extInclusiveEvents, 'nu_flash_chi2')
 
-makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['nu_flash_chi2'].to_numpy(), (0,200), chi2bins, "InclusiveEventsPrimMuonFlashChi2", ["Flash Chi2", "Chi2", "Number of Events"])
+makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['nu_flash_chi2'].to_numpy(), (0,200), 64, "InclusiveEventsPrimMuonFlashChi2", ["Flash Chi2", "Chi2", "Number of Events"])
 makeDataMCHistogram(overlayPrimMuonChi2FlashInclusiveStack, overlayIsSelectedInclusiveWeights, dataInclusiveEvents['nu_flash_chi2'].to_numpy(), (0,3), zoomList, "InclusiveEventsPrimMuonFlashChi2Zoom", ["Flash Chi2", "Chi2", "Number of Events"])
 
 # exec( "overlayPrimMuonPhiInclusiveStack     = "  + re.sub(r'VAR', 'phi', overlayInclusiveStack) )
