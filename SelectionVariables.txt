@@ -1,0 +1,27 @@
+_fHasCandidateNeutrino
+_fHasCandidateMuon
+_fNChargedPiCandidates
+_fNProtonCandidates
+_fNLeadCandidates
+_fNSubleadCandidates
+_fNPi0Candidates
+_fNPairCandidates
+_fNOtherFancyPairs
+_fNShowers
+_fNHiMassPairs
+#Seperate these into a truth variables txt
+_fNpi0
+_fNmuon
+_fNproton
+_fNpiplus
+_fNneutron
+_fNuCCNC
+_fNuMode
+#_fNuEner
+_fNuVtxX
+_fNuVtxY
+_fNuVtxZ
+_fNuPDG
+_fNuInFV
+_fResNum 
+#YourMom

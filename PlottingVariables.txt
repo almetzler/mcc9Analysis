@@ -1,0 +1,87 @@
+#Candidate Events
+_fCandidatePi0Momentum
+_fCandidatePi0Energy  
+_fCandidatePi0Costheta
+_fCandidatePi0Angle12 
+_fCandidatePi0Mass    
+#Two Mip (mu + pi) sideband
+_fTwoMIPPi0Momentum
+_fTwoMIPPi0Energy 
+_fTwoMIPPi0Costheta
+_fTwoMIPPi0Angle12 
+_fTwoMIPPi0Mass
+#Multi shower pair sideband 
+_fMultiPairPi0Angle12
+_fMultiPairPi0Mass
+_fMultiPairPi0Momentum
+_fMultiPairPi0Energy
+_fMultiPairPi0Costheta
+_fMultiPairSubleadDist3d
+#High pair mass sideband
+_fHiMassPi0Momentum
+_fHiMassPi0Energy
+_fHiMassPi0Costheta
+_fHiMassPi0Angle12 
+_fHiMassPi0Mass
+#Track Variables
+#_fTrackTrueComposition
+#_fTrackIsContained
+#_fTrackDist3d
+#_fTrackAng3d
+_fTrackPID
+#_fTrackStartX
+#_fTrackStartY
+#_fTrackStartZ
+#_fTrackEndX
+#_fTrackEndY
+#_fTrackEndZ
+#_fTrackMomentum
+#_fTrackMCSMomentum
+#_fTrackRangeMomentum
+#_fTrackLength
+#_fTrackCostheta
+#_fTrackPhi
+#_fTrackThetaXZ
+#_fTrackThetaYZ
+# Shower varialbes
+#Aleixs work on these
+_fTrackShowerScore
+_fShowerLength
+_fShowerOpenAngle
+_fShowerCostheta
+_fShowerPhi
+_fShowerThetaXZ
+_fShowerThetaYZ
+_fShowerDist3d
+_fShowerAng3d
+_fShowerStartX
+_fShowerStartY
+_fShowerStartZ
+_fShowerEnergy0
+_fShowerEnergy1
+_fShowerEnergy2
+#Primary Muon Variables
+#_fCandidateMuonTrueComposition
+#_fCandidateMuonIsContained
+#_fCandidateMuonDist3d
+#_fCandidateMuonAng3d
+_fCandidateMuonPID
+#_fCandidateMuonStartX
+#_fCandidateMuonStartY
+#_fCandidateMuonStartZ
+#_fCandidateMuonEndX
+#_fCandidateMuonEndY
+#_fCandidateMuonEndZ
+_fCandidateMuonMomentum
+#_fCandidateMuonMCSMomentum
+#_fCandidateMuonRangeMomentum
+#_fCandidateMuonLength
+_fCandidateMuonCostheta
+#_fCandidateMuonPhi
+#_fCandidateMuonThetaXZ
+#_fCandidateMuonThetaYZ
+#_fCandidateMuonMomentumResolution
+#_fCandidateMuonRangeMomentumResolution
+#_fCandidateMuonMCSMomentumResolution
+#_fCandidateMuonAngleResolution
+_fFlashChi2
