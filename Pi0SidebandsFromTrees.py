@@ -333,5 +333,6 @@ Plotter.makeMCOnlyStack(highMassEvents, '_fHiMassPi0Mass',InvariantMassRange, 25
 
 #print eventsWithShowers.loc[:1000, ['LeadingShowerIdx', 'passesEnergy', 'passesAngle', 'passesConvD']]
 
+print 'done'
 
 sys.exit()
