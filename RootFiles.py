@@ -75,16 +75,16 @@ eventsExt.insert(eventsExt.shape[1], "wgt", extWeights)
 
 eventsExtJSON = eventsExt.to_json(orient = 'index')
 with open("Data/eventsExt",'w') as fle:
-    json.dump(eventsExtJSON,fle)
+    fle.write(json.dumps(eventsExtJSON))
 
 eventsOnBeamJSON = eventsOnBeam.to_json(orient='index')
 with open("Data/eventsOnBeam",'w') as fle:
-    json.dump(eventsOnBeamJSON,fle)
+    fle.write(json.dumps(eventsOnBeamJSON))
 
 eventsOverlayJSON = eventsOverlay.to_json(orient='index')
 with open("Data/eventsOverlay",'w') as fle:
-    json.dump(eventsOverlayJSON,fle)
+    fle.write(json.dumps(eventsOverlayJSON))
 
 eventsDirtJSON = eventsDirt.to_json(orient='index')
 with open("Data/eventsDirt",'w') as fle:
-    json.dump(eventsDirtJSON,fle)
+    fle.write(json.dumps(eventsDirtJSON))
