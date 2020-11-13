@@ -80,26 +80,38 @@ with open(filepath, 'w') as f:
 
 '''        
 
-eventsExtJSON = eventsExt.to_json(orient = 'split')
-with open("Data/eventsExt",'w') as fle:
-    for chunk in json.JSONEncoder().iterencode(eventsExtJSON):
-        fle.write(json.dumps(chunk))
+# eventsExtJSON = eventsExt.to_json(orient = 'split')
+# with open("Data/eventsExt",'w') as fle:
+#     for chunk in json.JSONEncoder().iterencode(eventsExtJSON):
+#         fle.write(json.dumps(chunk))
+# print('eventExt done')
+
+# eventsOnBeamJSON = eventsOnBeam.to_json(orient='split')
+# with open("Data/eventsOnBeam",'w') as fle: 
+#     for chunk in json.JSONEncoder().iterencode(eventsOnBeamJSON):
+#         fle.write(json.dumps(chunk))
+# print('eventsOnBeam done')
+
+# eventsOverlayJSON = eventsOverlay.to_json(orient='split')
+# with open("Data/eventsOverlay",'w') as fle:
+#     for chunk in json.JSONEncoder().iterencode(eventsOverlayJSON):
+#         fle.write(json.dumps(chunk))
+# print('eventsOverlay done')
+
+# eventsDirtJSON = eventsDirt.to_json(orient='split')
+# with open("Data/eventsDirt",'w') as fle:
+#     for chunk in json.JSONEncoder().iterencode(eventsDirtJSON):
+#         fle.write(json.dumps(chunk))
+# print('eventsDirt done')
+
+eventsExtJSON = eventsExt.to_csv("Data/eventsExt")
 print('eventExt done')
 
-eventsOnBeamJSON = eventsOnBeam.to_json(orient='split')
-with open("Data/eventsOnBeam",'w') as fle: 
-    for chunk in json.JSONEncoder().iterencode(eventsOnBeamJSON):
-        fle.write(json.dumps(chunk))
+eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam")
 print('eventsOnBeam done')
 
-eventsOverlayJSON = eventsOverlay.to_json(orient='split')
-with open("Data/eventsOverlay",'w') as fle:
-    for chunk in json.JSONEncoder().iterencode(eventsOverlayJSON):
-        fle.write(json.dumps(chunk))
+eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay")
 print('eventsOverlay done')
 
-eventsDirtJSON = eventsDirt.to_json(orient='split')
-with open("Data/eventsDirt",'w') as fle:
-    for chunk in json.JSONEncoder().iterencode(eventsDirtJSON):
-        fle.write(json.dumps(chunk))
+eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt")
 print('eventsDirt done')
