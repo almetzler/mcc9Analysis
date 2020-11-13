@@ -73,18 +73,33 @@ eventsDirt.eval('wgt = pot_wgt*_fCVWeight', inplace=True)
 extWeights              = np.full(eventsExt.shape[0],  (bnbSpills / extTriggersC1) )
 eventsExt.insert(eventsExt.shape[1], "wgt", extWeights)
 
+'''
+with open(filepath, 'w') as f:
+    for chunk in json.JSONEncoder().iterencode(object_to_encode):
+        f.write(chunk)
+
+'''        
+
 eventsExtJSON = eventsExt.to_json(orient = 'index')
 with open("Data/eventsExt",'w') as fle:
-    fle.write(json.dumps(eventsExtJSON))
+    for chunk in json.JSONEncoder().iterencode(eventsExtJSON):
+        fle.write(json.dumps(chunk))
+print('eventExt done')
 
 eventsOnBeamJSON = eventsOnBeam.to_json(orient='index')
-with open("Data/eventsOnBeam",'w') as fle:
-    fle.write(json.dumps(eventsOnBeamJSON))
+with open("Data/eventsOnBeam",'w') as fle: 
+    for chunk in json.JSONEncoder().iterencode(eventsOnBeamJSON):
+        fle.write(json.dumps(chunk))
+print('eventsOnBeam done')
 
 eventsOverlayJSON = eventsOverlay.to_json(orient='index')
 with open("Data/eventsOverlay",'w') as fle:
-    fle.write(json.dumps(eventsOverlayJSON))
+    for chunk in json.JSONEncoder().iterencode(eventsOverlayJSON):
+        fle.write(json.dumps(chunk))
+print('eventsOverlay done')
 
 eventsDirtJSON = eventsDirt.to_json(orient='index')
 with open("Data/eventsDirt",'w') as fle:
-    fle.write(json.dumps(eventsDirtJSON))
+    for chunk in json.JSONEncoder().iterencode(eventsDirtJSON):
+        fle.write(json.dumps(chunk))
+print('eventsDirt done')
