@@ -105,17 +105,17 @@ with open(filepath, 'w') as f:
 # print('eventsDirt done')
 
 # eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv")
-print(eventsExt.size)
+print(eventsExt.shape)
 print('eventExt done')
 
 # eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv")
-print(eventsOnBeam.size)
+print(eventsOnBeam.shape)
 print('eventsOnBeam done')
 
 # eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv")
-print(eventsOverlay.size)
+print(eventsOverlay.shape)
 print('eventsOverlay done')
 
 # eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv")
-print(eventsDirt.size)
+print(eventsDirt.shape)
 print('eventsDirt done')
