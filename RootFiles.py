@@ -104,18 +104,18 @@ with open(filepath, 'w') as f:
 #         fle.write(json.dumps(chunk))
 # print('eventsDirt done')
 
-# eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv")
-print(eventsExt.shape)
+eventsExtJSON = eventsExt.to_hdf("Data/eventsExt.h5")
+# print(eventsExt.shape)
 print('eventExt done')
 
-# eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv")
-print(eventsOnBeam.shape)
+eventsOnBeamJSON = eventsOnBeam.to_hdf("Data/eventsOnBeam.h5")
+# print(eventsOnBeam.shape)
 print('eventsOnBeam done')
 
-# eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv")
-print(eventsOverlay.shape)
+eventsOverlayJSON = eventsOverlay.to_hdf("Data/eventsOverlay.h5")
+# print(eventsOverlay.shape)
 print('eventsOverlay done')
 
-# eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv")
-print(eventsDirt.shape)
+eventsDirtJSON = eventsDirt.to_hdf("Data/eventsDirt.h5")
+# print(eventsDirt.shape)
 print('eventsDirt done')
