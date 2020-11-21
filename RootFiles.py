@@ -104,18 +104,18 @@ data types that have given me a memory error :/
 #         fle.write(json.dumps(chunk))
 # print('eventsDirt done')
 
-eventsOverlayJSON = eventsOverlay.to_hdf("Data/eventsOverlay.h5", key='df')
+eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv", chunksize=1)
 # print(eventsOverlay.shape)
 print('eventsOverlay done')
 
-eventsExtJSON = eventsExt.to_hdf("Data/eventsExt.h5", key='df')
+eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv", chunksize=1)
 # print(eventsExt.shape)
 print('eventExt done')
 
-eventsOnBeamJSON = eventsOnBeam.to_hdf("Data/eventsOnBeam.h5", key='df')
+eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv", chunksize=1)
 # print(eventsOnBeam.shape)
 print('eventsOnBeam done')
 
-eventsDirtJSON = eventsDirt.to_hdf("Data/eventsDirt.h5", key='df')
+eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv", chunksize=1)
 # print(eventsDirt.shape)
 print('eventsDirt done')
