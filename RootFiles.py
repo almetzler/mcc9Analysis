@@ -74,10 +74,10 @@ extWeights              = np.full(eventsExt.shape[0],  (bnbSpills / extTriggersC
 eventsExt.insert(eventsExt.shape[1], "wgt", extWeights)
 
 '''
-with open(filepath, 'w') as f:
-    for chunk in json.JSONEncoder().iterencode(object_to_encode):
-        f.write(chunk)
-
+data types that have given me a memory error :/
+- json
+- csv
+- hdf5
 '''        
 
 # eventsExtJSON = eventsExt.to_json(orient = 'split')
@@ -104,6 +104,10 @@ with open(filepath, 'w') as f:
 #         fle.write(json.dumps(chunk))
 # print('eventsDirt done')
 
+eventsOverlayJSON = eventsOverlay.to_hdf("Data/eventsOverlay.h5", key='df')
+# print(eventsOverlay.shape)
+print('eventsOverlay done')
+
 eventsExtJSON = eventsExt.to_hdf("Data/eventsExt.h5", key='df')
 # print(eventsExt.shape)
 print('eventExt done')
@@ -111,10 +115,6 @@ print('eventExt done')
 eventsOnBeamJSON = eventsOnBeam.to_hdf("Data/eventsOnBeam.h5", key='df')
 # print(eventsOnBeam.shape)
 print('eventsOnBeam done')
-
-eventsOverlayJSON = eventsOverlay.to_hdf("Data/eventsOverlay.h5", key='df')
-# print(eventsOverlay.shape)
-print('eventsOverlay done')
 
 eventsDirtJSON = eventsDirt.to_hdf("Data/eventsDirt.h5", key='df')
 # print(eventsDirt.shape)
