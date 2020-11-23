@@ -73,6 +73,7 @@ eventsDirt.eval('wgt = pot_wgt*_fCVWeight', inplace=True)
 extWeights              = np.full(eventsExt.shape[0],  (bnbSpills / extTriggersC1) )
 eventsExt.insert(eventsExt.shape[1], "wgt", extWeights)
 
+print eventsDirt.head()
 '''
 data types that have given me a memory error :/
 - json
@@ -104,18 +105,18 @@ data types that have given me a memory error :/
 #         fle.write(json.dumps(chunk))
 # print('eventsDirt done')
 
-eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv", chunksize=1)
+# eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv", chunksize=1)
 # print(eventsExt.shape)
 print('eventExt done')
 
-eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv", chunksize=1)
+# eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv", chunksize=1)
 # print(eventsOverlay.shape)
 print('eventsOverlay done')
 
-eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv", chunksize=1)
+# eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv", chunksize=1)
 # print(eventsOnBeam.shape)
 print('eventsOnBeam done')
 
-eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv", chunksize=1)
+# eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv", chunksize=1)
 # print(eventsDirt.shape)
 print('eventsDirt done')
