@@ -191,23 +191,23 @@ signalMassHigh   = 180.0
 #Python library to read in ROOT ntuples files.
 # bnbEvents        = uproot.open(InputFiles[1])["efficiency/eventtree"]
 # eventsExt    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
-eventsExt = pd.read_csv('../Data/eventsExt.csv')
+eventsExt = pd.read_csv('../Data/eventsExt.csv', index_col = 0)
 
 # bnbEvents        = uproot.open(InputFiles[2])["efficiency/eventtree"]
 # eventsOnBeam    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
-eventsOnBeam = pd.read_csv('../Data/eventsOnBeam.csv')
+eventsOnBeam = pd.read_csv('../Data/eventsOnBeam.csv', index_col = 0)
 
 selectionVariables.append("_fCVWeight")
 
 # bnbEvents        = uproot.open(InputFiles[0])["efficiency/eventtree"]
 # eventsOverlay    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
-eventsOverlay = pd.read_csv('../Data/eventsOverlay.csv')
+eventsOverlay = pd.read_csv('../Data/eventsOverlay.csv', index_col = 0)
 
 selectionVariables.append("_fNuEnergy")
 
 # bnbEvents        = uproot.open(InputFiles[3])["efficiency/eventtree"]
 # eventsDirt    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
-eventsDirt = pd.read_csv('../Data/eventsDirt.csv')
+eventsDirt = pd.read_csv('../Data/eventsDirt.csv', index_col = 0)
 
 print(eventsDirt.head())
 # overlayPOT    = uproot.open(InputFiles[0])["efficiency/tree"]

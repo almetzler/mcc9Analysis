@@ -105,18 +105,18 @@ data types that have given me a memory error :/
 #         fle.write(json.dumps(chunk))
 # print('eventsDirt done')
 
-# eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv", chunksize=1)
+eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv", chunksize=1, float_format='%g')
 # print(eventsExt.shape)
 print('eventExt done')
 
-# eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv", chunksize=1)
+eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv", chunksize=1, float_format='%g')
 # print(eventsOverlay.shape)
 print('eventsOverlay done')
 
-# eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv", chunksize=1)
+eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv", chunksize=1, float_format='%g')
 # print(eventsOnBeam.shape)
 print('eventsOnBeam done')
 
-# eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv", chunksize=1)
+eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv", chunksize=1, float_format='%g')
 # print(eventsDirt.shape)
 print('eventsDirt done')
