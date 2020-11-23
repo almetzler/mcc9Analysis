@@ -62,7 +62,7 @@ class PlotUtils:
      try:
        plotTitle, xAxisTitle, yAxisTitle = Titles
      except(ValueError):
-       print "Pleast provide three titles for plot name, x and y axis names" 
+       print ("Pleast provide three titles for plot name, x and y axis names" )
        plotTitle  = ""
        xAxisTitle = ""
        yAxisTitle = "" 
@@ -116,7 +116,7 @@ class PlotUtils:
        xBins, yBins = binRange
    
      except(ValueError):
-       print "Please provide a range of bins for each axis"
+       print ("Please provide a range of bins for each axis")
        return
    
      plt.hist2d(mc[0], mc[1], bins=nBins, range=binRange, cmin=zMin, normed=True)
@@ -125,7 +125,7 @@ class PlotUtils:
      try:
        plotTitle, xAxisTitle, yAxisTitle = Titles
      except(ValueError):
-       print "Pleast provide three titles for plot name, x and y axis names" 
+       print ("Pleast provide three titles for plot name, x and y axis names" )
        plotTitle  = ""
        xAxisTitle = ""
        yAxisTitle = "" 

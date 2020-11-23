@@ -1,5 +1,6 @@
-import ROOT, math, sys, os
-import uproot
+# import ROOT, math, sys, os
+import math, sys, os
+# import uproot
 import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -10,7 +11,7 @@ import re
 import functools
 import scipy as sci
 from mpl_toolkits.mplot3d import Axes3D
-from ROOT import TH1, TAxis, gROOT, TCanvas
+# from ROOT import TH1, TAxis, gROOT, TCanvas
 from scipy import stats
 
 #Custom
@@ -188,45 +189,49 @@ signalMassLow    = 60.0
 signalMassHigh   = 180.0
 
 #Python library to read in ROOT ntuples files.
-bnbEvents        = uproot.open(InputFiles[1])["efficiency/eventtree"]
-eventsExt    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
+# bnbEvents        = uproot.open(InputFiles[1])["efficiency/eventtree"]
+# eventsExt    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
+eventsExt = pd.read_csv('../Data/eventsExt.csv')
 
-bnbEvents        = uproot.open(InputFiles[2])["efficiency/eventtree"]
-eventsOnBeam    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
+# bnbEvents        = uproot.open(InputFiles[2])["efficiency/eventtree"]
+# eventsOnBeam    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
+eventsOnBeam = pd.read_csv('../Data/eventsOnBeam.csv')
 
 selectionVariables.append("_fCVWeight")
 
-bnbEvents        = uproot.open(InputFiles[0])["efficiency/eventtree"]
-eventsOverlay    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
+# bnbEvents        = uproot.open(InputFiles[0])["efficiency/eventtree"]
+# eventsOverlay    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
+eventsOverlay = pd.read_csv('../Data/eventsOverlay.csv')
 
 selectionVariables.append("_fNuEnergy")
 
-bnbEvents        = uproot.open(InputFiles[3])["efficiency/eventtree"]
-eventsDirt    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
+# bnbEvents        = uproot.open(InputFiles[3])["efficiency/eventtree"]
+# eventsDirt    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
+eventsDirt = pd.read_csv('../Data/eventsDirt.csv')
 
-overlayPOT    = uproot.open(InputFiles[0])["efficiency/tree"]
-dirtPOT       = uproot.open(InputFiles[3])["efficiency/tree"]
+# overlayPOT    = uproot.open(InputFiles[0])["efficiency/tree"]
+# dirtPOT       = uproot.open(InputFiles[3])["efficiency/tree"]
 
-sumOverlayPOT = (pd.Series(overlayPOT.array("pot"))).sum()
-sumDirtPOT    = (pd.Series(dirtPOT.array("pot"))).sum()
+# sumOverlayPOT = (pd.Series(overlayPOT.array("pot"))).sum()
+# sumDirtPOT    = (pd.Series(dirtPOT.array("pot"))).sum()
 
-overlayWeights = np.full(eventsOverlay.shape[0], dataPOT / sumOverlayPOT )
-dirtWeights    = np.full(eventsDirt.shape[0], dataPOT / sumDirtPOT)
+# overlayWeights = np.full(eventsOverlay.shape[0], dataPOT / sumOverlayPOT )
+# dirtWeights    = np.full(eventsDirt.shape[0], dataPOT / sumDirtPOT)
 
-eventsOverlay.insert(eventsOverlay.shape[1], "pot_wgt", overlayWeights )
-eventsDirt.insert(eventsDirt.shape[1], "pot_wgt", dirtWeights )
+# eventsOverlay.insert(eventsOverlay.shape[1], "pot_wgt", overlayWeights )
+# eventsDirt.insert(eventsDirt.shape[1], "pot_wgt", dirtWeights )
 
-eventsOverlay.insert(eventsOverlay.shape[1], "flash_wgt", [getFlashWgt(x) for x in eventsOverlay['_fFlashChi2']])
+# eventsOverlay.insert(eventsOverlay.shape[1], "flash_wgt", [getFlashWgt(x) for x in eventsOverlay['_fFlashChi2']])
 
-eventsOverlay.eval('wgt = pot_wgt*_fCVWeight*flash_wgt', inplace=True)
-eventsDirt.eval('wgt = pot_wgt*_fCVWeight', inplace=True)   
+# eventsOverlay.eval('wgt = pot_wgt*_fCVWeight*flash_wgt', inplace=True)
+# eventsDirt.eval('wgt = pot_wgt*_fCVWeight', inplace=True)   
 
-extWeights              = np.full(eventsExt.shape[0],  (bnbSpills / extTriggersC1) )
-eventsExt.insert(eventsExt.shape[1], "wgt", extWeights)
+# extWeights              = np.full(eventsExt.shape[0],  (bnbSpills / extTriggersC1) )
+# eventsExt.insert(eventsExt.shape[1], "wgt", extWeights)
 
 #SAVE THIS
 #print trackOverlay.loc[:100,['isContained', 'track_range_mom_mu', 'track_mcs_mom', 'track_mom_best']]
-
+'''
 eventsWithShowers      = eventsOverlay.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
 dirtEventsWithShowers  = eventsDirt.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
 extEventsWithShowers   = eventsExt.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
@@ -332,7 +337,7 @@ Plotter.makeMCOnlyStack(highMassEvents, '_fHiMassPi0Mass',InvariantMassRange, 25
 #Plotter.makeMCStackedHistogram(Stack[0], Stack[1], InvariantMassRange, 25, "HiMassPi0Mass", legend=Stack[2], xlimits=(175, 400))
 
 #print eventsWithShowers.loc[:1000, ['LeadingShowerIdx', 'passesEnergy', 'passesAngle', 'passesConvD']]
-
-print 'done'
+'''
+print ('done')
 
 sys.exit()
