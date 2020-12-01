@@ -73,8 +73,8 @@ eventsDirt.eval('wgt = pot_wgt*_fCVWeight', inplace=True)
 extWeights              = np.full(eventsExt.shape[0],  (bnbSpills / extTriggersC1) )
 eventsExt.insert(eventsExt.shape[1], "wgt", extWeights)
 
-print eventsDirt.head()
-print eventsOverlay['_fTrackPID'].head()
+# print eventsDirt.head()
+# print eventsOverlay['_fTrackPID'].head()
 '''
 data types that have given me a memory error :/
 - json
@@ -106,18 +106,18 @@ data types that have given me a memory error :/
 #         fle.write(json.dumps(chunk))
 # print('eventsDirt done')
 
-# eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv", chunksize=1, float_format='%g')
+eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv", chunksize=1, float_format='%g', na_rep=np.nan)
 # print(eventsExt.shape)
 print('eventExt done')
 
-# eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv", chunksize=1, float_format='%g')
+eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv", chunksize=1, float_format='%g', na_rep=np.nan)
 # print(eventsOverlay.shape)
 print('eventsOverlay done')
 
-# eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv", chunksize=1, float_format='%g')
+eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv", chunksize=1, float_format='%g', na_rep=np.nan)
 # print(eventsOnBeam.shape)
 print('eventsOnBeam done')
 
-# eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv", chunksize=1, float_format='%g')
+eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv", chunksize=1, float_format='%g', na_rep=np.nan)
 # print(eventsDirt.shape)
 print('eventsDirt done')

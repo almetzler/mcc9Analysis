@@ -276,6 +276,7 @@ twoMIPEventsDirt       = dirtEventsWithShowers.query('_fNChargedPiCandidates > 0
 twoMIPEventsExt        = extEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
 twoMIPEventsData       = dataEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
 
+'''
 TagNaNMIPs(twoMIPEventsOverlay)
 TagNaNMIPs(twoMIPEventsDirt)
 TagNaNMIPs(twoMIPEventsExt)
@@ -343,7 +344,7 @@ Plotter.makeMCOnlyStack(highMassEvents, '_fHiMassPi0Mass',InvariantMassRange, 25
 #Plotter.makeMCStackedHistogram(Stack[0], Stack[1], InvariantMassRange, 25, "HiMassPi0Mass", legend=Stack[2], xlimits=(175, 400))
 
 #print eventsWithShowers.loc[:1000, ['LeadingShowerIdx', 'passesEnergy', 'passesAngle', 'passesConvD']]
-
+'''
 print ('done')
 
 sys.exit()
