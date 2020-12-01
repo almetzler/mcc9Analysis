@@ -214,7 +214,7 @@ eventsDirt = pd.read_csv('../Data/eventsDirt.csv', index_col = 0)
 eventsDirt.fillna(np.nan, inplace = True)
 
 print(eventsDirt.head())
-print(eventsOverlay['_fTrackPID'].dtypes)
+print(eventsOverlay['_fTrackPID'].head())
 # overlayPOT    = uproot.open(InputFiles[0])["efficiency/tree"]
 # dirtPOT       = uproot.open(InputFiles[3])["efficiency/tree"]
 
