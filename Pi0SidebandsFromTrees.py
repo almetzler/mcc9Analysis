@@ -210,6 +210,7 @@ selectionVariables.append("_fNuEnergy")
 eventsDirt = pd.read_csv('../Data/eventsDirt.csv', index_col = 0)
 
 print(eventsDirt.head())
+print(eventsOverlay.dtypes)
 # overlayPOT    = uproot.open(InputFiles[0])["efficiency/tree"]
 # dirtPOT       = uproot.open(InputFiles[3])["efficiency/tree"]
 
