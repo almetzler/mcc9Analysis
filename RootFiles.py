@@ -74,7 +74,7 @@ extWeights              = np.full(eventsExt.shape[0],  (bnbSpills / extTriggersC
 eventsExt.insert(eventsExt.shape[1], "wgt", extWeights)
 
 print eventsDirt.head()
-print eventsOverlay.dtypes
+print eventsOverlay['_fTrackPID'].dtypes
 '''
 data types that have given me a memory error :/
 - json

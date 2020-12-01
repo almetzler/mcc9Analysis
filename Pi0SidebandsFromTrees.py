@@ -192,25 +192,29 @@ signalMassHigh   = 180.0
 # bnbEvents        = uproot.open(InputFiles[1])["efficiency/eventtree"]
 # eventsExt    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
 eventsExt = pd.read_csv('../Data/eventsExt.csv', index_col = 0)
+eventsExt.fillna(np.nan, inplace = True)
 
 # bnbEvents        = uproot.open(InputFiles[2])["efficiency/eventtree"]
 # eventsOnBeam    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
 eventsOnBeam = pd.read_csv('../Data/eventsOnBeam.csv', index_col = 0)
+eventsOnBeam.fillna(np.nan, inplace = True)
 
 selectionVariables.append("_fCVWeight")
 
 # bnbEvents        = uproot.open(InputFiles[0])["efficiency/eventtree"]
 # eventsOverlay    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
 eventsOverlay = pd.read_csv('../Data/eventsOverlay.csv', index_col = 0)
+eventsOverlay.fillna(np.nan, inplace = True)
 
 selectionVariables.append("_fNuEnergy")
 
 # bnbEvents        = uproot.open(InputFiles[3])["efficiency/eventtree"]
 # eventsDirt    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
 eventsDirt = pd.read_csv('../Data/eventsDirt.csv', index_col = 0)
+eventsDirt.fillna(np.nan, inplace = True)
 
 print(eventsDirt.head())
-print(eventsOverlay.dtypes)
+print(eventsOverlay['_fTrackPID'].dtypes)
 # overlayPOT    = uproot.open(InputFiles[0])["efficiency/tree"]
 # dirtPOT       = uproot.open(InputFiles[3])["efficiency/tree"]
 
@@ -233,7 +237,7 @@ print(eventsOverlay.dtypes)
 
 #SAVE THIS
 #print trackOverlay.loc[:100,['isContained', 'track_range_mom_mu', 'track_mcs_mom', 'track_mom_best']]
-'''
+
 eventsWithShowers      = eventsOverlay.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
 dirtEventsWithShowers  = eventsDirt.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
 extEventsWithShowers   = eventsExt.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
@@ -339,7 +343,7 @@ Plotter.makeMCOnlyStack(highMassEvents, '_fHiMassPi0Mass',InvariantMassRange, 25
 #Plotter.makeMCStackedHistogram(Stack[0], Stack[1], InvariantMassRange, 25, "HiMassPi0Mass", legend=Stack[2], xlimits=(175, 400))
 
 #print eventsWithShowers.loc[:1000, ['LeadingShowerIdx', 'passesEnergy', 'passesAngle', 'passesConvD']]
-'''
+
 print ('done')
 
 sys.exit()
