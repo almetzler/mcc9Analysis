@@ -108,9 +108,9 @@ def TagNaNMIPs(InputFrame):
   In case 2, we should keep the events. As long as there is one other MIP like particle, the upstream C code counts the primary muon regardless of it's log(chi2) 
   '''
   maxMIPPID = -0.9
-  InputFrame.insert(InputFrame.shape[1], "isMIP", [map(lambda p : p <= maxMIPPID, x) for x in InputFrame['_fTrackPID'] ] )
-  InputFrame.insert(InputFrame.shape[1], "isNanMIP", [map(lambda p : math.isnan(p), x) for x in InputFrame['_fTrackPID'] ] )
-  InputFrame.insert(InputFrame.shape[1], "primMuonIsMIP", [(lambda p : p <= maxMIPPID)(x) for x in InputFrame['_fCandidateMuonPID'] ]  )
+  InputFrame.insert(InputFrame.shape[1], "isMIP", [map(lambda p : p <= maxMIPPID, x) for x in InputFrame['_fTrackPID'].astype('float64') ] )
+  InputFrame.insert(InputFrame.shape[1], "isNanMIP", [map(lambda p : math.isnan(p), x) for x in InputFrame['_fTrackPID'].astype('float64') ] )
+  InputFrame.insert(InputFrame.shape[1], "primMuonIsMIP", [(lambda p : p <= maxMIPPID)(x) for x in InputFrame['_fCandidateMuonPID'].astype('float64') ]  )
   InputFrame.insert(InputFrame.shape[1], "NumMIP", [sum(l) for l in InputFrame['isMIP'] ] )
   InputFrame.insert(InputFrame.shape[1], "NumNanMIP", [sum(l) for l in InputFrame['isNanMIP'] ] )
 
@@ -213,8 +213,8 @@ selectionVariables.append("_fNuEnergy")
 eventsDirt = pd.read_csv('../Data/eventsDirt.csv', index_col = 0)
 eventsDirt.fillna(np.nan, inplace = True)
 
-print(eventsDirt.head())
-print(eventsOverlay['_fTrackPID'].head())
+# print(eventsDirt.head())
+# print(eventsOverlay['_fTrackPID'].head())
 # overlayPOT    = uproot.open(InputFiles[0])["efficiency/tree"]
 # dirtPOT       = uproot.open(InputFiles[3])["efficiency/tree"]
 
@@ -276,13 +276,12 @@ twoMIPEventsDirt       = dirtEventsWithShowers.query('_fNChargedPiCandidates > 0
 twoMIPEventsExt        = extEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
 twoMIPEventsData       = dataEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
 
-'''
+
 TagNaNMIPs(twoMIPEventsOverlay)
 TagNaNMIPs(twoMIPEventsDirt)
 TagNaNMIPs(twoMIPEventsExt)
 TagNaNMIPs(twoMIPEventsData)
-
-
+'''
 Plotter.makeDataMCStack(twoMIPEventsOverlay.query('NumNanMIP == 0'), twoMIPEventsDirt.query('NumNanMIP == 0'), twoMIPEventsExt.query('NumNanMIP == 0'), twoMIPEventsData.query('NumNanMIP == 0'), '_fTwoMIPPi0Mass', InvariantMassRange, 25, "TwoMIPPi0Mass", {}, limits)
 limits["xlimits"] = ()
 limits["Titles"]  = ["Number of MIPs (Two MIP Sideband)", "N MIPs", "Number of Events"]

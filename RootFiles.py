@@ -78,8 +78,12 @@ eventsExt.insert(eventsExt.shape[1], "wgt", extWeights)
 '''
 data types that have given me a memory error :/
 - json
-- csv
 - hdf5
+
+other data types
+- csv with chunk size
+  - didnt serialize/deserialize well
+  - to_csv("Data/eventsExt.csv", chunksize=1, float_format='%g', na_rep=np.nan)
 '''        
 
 # eventsExtJSON = eventsExt.to_json(orient = 'split')
@@ -106,18 +110,18 @@ data types that have given me a memory error :/
 #         fle.write(json.dumps(chunk))
 # print('eventsDirt done')
 
-eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv", chunksize=1, float_format='%g', na_rep=np.nan)
+eventsExtJSON = eventsExt.to_hdf("Data/eventsExt.h5", mode='w')
 # print(eventsExt.shape)
 print('eventExt done')
 
-eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv", chunksize=1, float_format='%g', na_rep=np.nan)
+eventsOverlayJSON = eventsOverlay.to_hdf("Data/eventsOverlay.h5", mode='w')
 # print(eventsOverlay.shape)
 print('eventsOverlay done')
 
-eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv", chunksize=1, float_format='%g', na_rep=np.nan)
+eventsOnBeamJSON = eventsOnBeam.to_hdf("Data/eventsOnBeam.h5", mode='w')
 # print(eventsOnBeam.shape)
 print('eventsOnBeam done')
 
-eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv", chunksize=1, float_format='%g', na_rep=np.nan)
+eventsDirtJSON = eventsDirt.to_hdf("Data/eventsDirt.h5", mode='w')
 # print(eventsDirt.shape)
 print('eventsDirt done')
