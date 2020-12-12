@@ -110,18 +110,18 @@ other data types
 #         fle.write(json.dumps(chunk))
 # print('eventsDirt done')
 
-eventsExtJSON = eventsExt.to_hdf("Data/eventsExt.h5", mode='w')
+eventsExtJSON = eventsExt.to_hdf("Data/eventsExt.h5", key = 'df', mode='w')
 # print(eventsExt.shape)
 print('eventExt done')
 
-eventsOverlayJSON = eventsOverlay.to_hdf("Data/eventsOverlay.h5", mode='w')
+eventsOverlayJSON = eventsOverlay.to_hdf("Data/eventsOverlay.h5", key = 'df', mode='w')
 # print(eventsOverlay.shape)
 print('eventsOverlay done')
 
-eventsOnBeamJSON = eventsOnBeam.to_hdf("Data/eventsOnBeam.h5", mode='w')
+eventsOnBeamJSON = eventsOnBeam.to_hdf("Data/eventsOnBeam.h5", key = 'df', mode='w')
 # print(eventsOnBeam.shape)
 print('eventsOnBeam done')
 
-eventsDirtJSON = eventsDirt.to_hdf("Data/eventsDirt.h5", mode='w')
+eventsDirtJSON = eventsDirt.to_hdf("Data/eventsDirt.h5", key = 'df', mode='w')
 # print(eventsDirt.shape)
 print('eventsDirt done')
