@@ -16,6 +16,7 @@ from scipy import stats
 
 #Custom
 from PlotUtils import PlotUtils
+pd.show_versions()
 
 ####################################################################################################
 
@@ -170,7 +171,7 @@ def expDegSix(x):
   3.65915734e-01]
    return(np.exp(-p[0]*x)*(p[1]*pow(x, 6) + p[2]*pow(x,5) + p[3]*pow(x,4) + p[4]*pow(x,3) + p[5]*pow(x,2) + p[6]*x + p[7]) + p[8])  
 
-
+'''
 #InputFiles = ["/uboone/data/users/suprajab/MCC9/March2020/CCpi0Trees/bnb_eventtree.root", "/uboone/data/users/suprajab/MCC9/March2020/CCpi0Trees/ext_eventtree.root", "/uboone/data/users/suprajab/MCC9/March2020/CCpi0Trees/dirt_eventtree.root"]
 InputFiles  = ["/uboone/data/users/joelam/CCPi0Ntuples/Run1Overlay.root", "/uboone/data/users/joelam/CCPi0Ntuples/RunC1Ext.root", "/uboone/data/users/joelam/CCPi0Ntuples/Run1Data.root", "/uboone/data/users/joelam/CCPi0Ntuples/Run1Dirt.root"]
 with open("SelectionVariables.txt") as file:
@@ -281,7 +282,7 @@ TagNaNMIPs(twoMIPEventsOverlay)
 TagNaNMIPs(twoMIPEventsDirt)
 TagNaNMIPs(twoMIPEventsExt)
 TagNaNMIPs(twoMIPEventsData)
-'''
+
 Plotter.makeDataMCStack(twoMIPEventsOverlay.query('NumNanMIP == 0'), twoMIPEventsDirt.query('NumNanMIP == 0'), twoMIPEventsExt.query('NumNanMIP == 0'), twoMIPEventsData.query('NumNanMIP == 0'), '_fTwoMIPPi0Mass', InvariantMassRange, 25, "TwoMIPPi0Mass", {}, limits)
 limits["xlimits"] = ()
 limits["Titles"]  = ["Number of MIPs (Two MIP Sideband)", "N MIPs", "Number of Events"]

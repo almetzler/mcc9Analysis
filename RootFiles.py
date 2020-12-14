@@ -110,18 +110,22 @@ other data types
 #         fle.write(json.dumps(chunk))
 # print('eventsDirt done')
 
-eventsExtJSON = eventsExt.to_hdf("Data/eventsExt.h5", key = 'df', mode='w', encoding = 'UTF-8')
+eventsExtJSON = eventsExt.to_csv("Data/eventsExt.csv", chunksize=1, sep='|')
+# eventsExt.to_hdf("Data/eventsExt.h5", key = 'df', mode='w', encoding = 'UTF-8')
 # print(eventsExt.shape)
 print('eventExt done')
 
-eventsOverlayJSON = eventsOverlay.to_hdf("Data/eventsOverlay.h5", key = 'df', mode='w', encoding = 'UTF-8')
+eventsOverlayJSON = eventsOverlay.to_csv("Data/eventsOverlay.csv", chunksize=1, sep='|')
+# eventsOverlay.to_hdf("Data/eventsOverlay.h5", key = 'df', mode='w', encoding = 'UTF-8')
 # print(eventsOverlay.shape)
 print('eventsOverlay done')
 
-eventsOnBeamJSON = eventsOnBeam.to_hdf("Data/eventsOnBeam.h5", key = 'df', mode='w', encoding = 'UTF-8')
+eventsOnBeamJSON = eventsOnBeam.to_csv("Data/eventsOnBeam.csv", chunksize=1, sep='|')
+# eventsOnBeam.to_hdf("Data/eventsOnBeam.h5", key = 'df', mode='w', encoding = 'UTF-8')
 # print(eventsOnBeam.shape)
 print('eventsOnBeam done')
 
-eventsDirtJSON = eventsDirt.to_hdf("Data/eventsDirt.h5", key = 'df', mode='w', encoding = 'UTF-8')
+eventsDirtJSON = eventsDirt.to_csv("Data/eventsDirt.csv", chunksize=1, sep='|')
+# eventsDirt.to_hdf("Data/eventsDirt.h5", key = 'df', mode='w', encoding = 'UTF-8')
 # print(eventsDirt.shape)
 print('eventsDirt done')
