@@ -40,6 +40,32 @@ def LoadTrackWeights(InputFrame):
   showerL = InputFrame['_fTrackPID'].str.len()#This is a dummy variable to get the number of tracks
   InputFrame.insert(InputFrame.shape[1], "TrackWeights", [np.full(N, wgt) for wgt, N in zip(weights.to_numpy(dtype=object), showerL.to_numpy(dtype=object) ) ] ) 
 
+def DefineEventType(isCC, isFV, nuPDG, nPi0, nPiP, nMuon):
+    if(not isFV):
+       return Plotter.eventDict["OOFV"]
+    if(nuPDG != 14):
+       return Plotter.eventDict["Non numu"]
+    
+    if(isCC == 0):
+      if(nPi0 == 1 and nPiP == 0 and nMuon == 1):
+        return Plotter.eventDict["1 Pi0 0 PiP"]
+      elif(nPi0 == 1 and nPiP > 0):
+        return Plotter.eventDict["1 Pi0 N PiP"]
+      elif(nPi0 == 0):
+        return Plotter.eventDict["CC 0 Pi0"]
+      elif(nPi0 > 1): 
+        return Plotter.eventDict["CC N Pi0"]
+      else:
+        return Plotter.eventDict["CC Other"]
+    
+    else:
+      if(nPi0 == 0):
+        return Plotter.eventDict["NC 0 Pi0"]
+      elif(nPi0 > 1): 
+        return Plotter.eventDict["NC N Pi0"]
+      else:
+        return Plotter.eventDict["NC Other"]                  
+
 def LoadEventTypes(inputFrame):
     inputFrame.insert(inputFrame.shape[1], "mc_EventType", [DefineEventType(i, j, k, x, y, z) for i,  j, k, x, y, z in zip(inputFrame['_fNuCCNC'], inputFrame['_fNuInFV'], inputFrame['_fNuPDG'], inputFrame['_fNpi0'], inputFrame['_fNpiplus'],  inputFrame['_fNmuon'])] )
 
