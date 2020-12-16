@@ -222,11 +222,11 @@ selectionVariables.append("_fNuEnergy")
 
 # bnbEvents        = uproot.open(InputFiles[3])["efficiency/eventtree"]
 # eventsDirt    = pd.DataFrame(bnbEvents.arrays(selectionVariables) )
-eventsDirt = pd.read_pickle('../Data/eventsDirt.pkl')
+# eventsDirt = pd.read_pickle('../Data/eventsDirt.pkl')
 # pd.read_csv('../Data/eventsDirt.csv', index_col = 0, sep='|')
 # pd.read_hdf('../Data/eventsDirt.h5', key = 'df')
-eventsDirt.fillna(np.nan, inplace = True)
-print('dirt loaded')
+# eventsDirt.fillna(np.nan, inplace = True)
+# print('dirt loaded')
 
 # print(eventsDirt.head())
 # print(eventsOverlay['_fTrackPID'].head())
@@ -254,9 +254,13 @@ print('dirt loaded')
 #print trackOverlay.loc[:100,['isContained', 'track_range_mom_mu', 'track_mcs_mom', 'track_mom_best']]
 
 # eventsWithShowers      = eventsOverlay.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
+eventsWithShowers = pd.read_pickle("../Data/eventsOverlayShower.pkl")
 # dirtEventsWithShowers  = eventsDirt.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
+dirtEventsWithShowers = pd.read_pickle("../Data/eventsDirtShower.pkl")
 # extEventsWithShowers   = eventsExt.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
+extEventsWithShowers = pd.read_pickle("../Data/eventsExtShower.pkl")
 # dataEventsWithShowers  = eventsOnBeam.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
+dataEventsWithShowers = pd.read_pickle("../Data/eventsDataShower.pkl")
 
 # LoadEventTypes(eventsWithShowers)
 
@@ -272,38 +276,38 @@ print('dirt loaded')
 #TagSubLeadingShower(eventsWithShowers)
 #Build up frames of the signal events and various sidebands
 Plotter.setWeightName('wgt')
-# singalEventsOverlay = eventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-singalEventsOverlay = pd.read_pickle("../Data/eventsOverlaySig.pkl")
-# singalEventsDirt    = dirtEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-singalEventsDirt = pd.read_pickle("../Data/eventsDirtSig.pkl")
-# singalEventsExt     = extEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-singalEventsExt = pd.read_pickle("../Data/eventsExtSig.pkl")
-# signalEventsData    = dataEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-signalEventsData = pd.read_pickle("../Data/eventsOnBeamSig.pkl")
+singalEventsOverlay = eventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# singalEventsOverlay = pd.read_pickle("../Data/eventsOverlaySig.pkl")
+singalEventsDirt    = dirtEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# singalEventsDirt = pd.read_pickle("../Data/eventsDirtSig.pkl")
+singalEventsExt     = extEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# singalEventsExt = pd.read_pickle("../Data/eventsExtSig.pkl")
+signalEventsData    = dataEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# signalEventsData = pd.read_pickle("../Data/eventsOnBeamSig.pkl")
 
 
-# InvariantMassRange = (0, 500)
-# axesLabels = ["Pi0 Invariant Mass (Two MIP Sideband)", "Invaraint Mass (MeV/c2)", "Number of Events"]
-# limits = {"xlimits" : (200, ), "Titles" : axesLabels }
-# Plotter.makeDataMCStack(singalEventsOverlay, singalEventsDirt, singalEventsExt, signalEventsData, '_fCandidatePi0Mass',(0, 500), 25, "SignalPi0Mass", {}, limits)
+InvariantMassRange = (0, 500)
+axesLabels = ["Pi0 Invariant Mass (Two MIP Sideband)", "Invaraint Mass (MeV/c2)", "Number of Events"]
+limits = {"xlimits" : (200, ), "Titles" : axesLabels }
+Plotter.makeDataMCStack(singalEventsOverlay, singalEventsDirt, singalEventsExt, signalEventsData, '_fCandidatePi0Mass',(0, 500), 25, "SignalPi0Mass", {}, limits)
 
 
 # #2 Mip+
-# twoMIPEventsOverlay    = eventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-twoMIPEventsOverlay = pd.read_pickle("../Data/eventsOverlayMIP.pkl")
-# twoMIPEventsDirt       = dirtEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-twoMIPEventsDirt = pd.read_pickle("../Data/eventsDirtMIP.pkl")
-# twoMIPEventsExt        = extEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-twoMIPEventsExt = pd.read_pickle("../Data/eventsExtMIP.pkl")
-# twoMIPEventsData       = dataEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-twoMIPEventsData = pd.read_pickle("../Data/eventsOnBeamMIP.pkl")
+twoMIPEventsOverlay    = eventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# twoMIPEventsOverlay = pd.read_pickle("../Data/eventsOverlayMIP.pkl")
+twoMIPEventsDirt       = dirtEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# twoMIPEventsDirt = pd.read_pickle("../Data/eventsDirtMIP.pkl")
+twoMIPEventsExt        = extEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# twoMIPEventsExt = pd.read_pickle("../Data/eventsExtMIP.pkl")
+twoMIPEventsData       = dataEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# twoMIPEventsData = pd.read_pickle("../Data/eventsOnBeamMIP.pkl")
 
 
 TagNaNMIPs(twoMIPEventsOverlay)
 TagNaNMIPs(twoMIPEventsDirt)
 TagNaNMIPs(twoMIPEventsExt)
 TagNaNMIPs(twoMIPEventsData)
-'''
+
 Plotter.makeDataMCStack(twoMIPEventsOverlay.query('NumNanMIP == 0'), twoMIPEventsDirt.query('NumNanMIP == 0'), twoMIPEventsExt.query('NumNanMIP == 0'), twoMIPEventsData.query('NumNanMIP == 0'), '_fTwoMIPPi0Mass', InvariantMassRange, 25, "TwoMIPPi0Mass", {}, limits)
 limits["xlimits"] = ()
 limits["Titles"]  = ["Number of MIPs (Two MIP Sideband)", "N MIPs", "Number of Events"]
@@ -365,7 +369,7 @@ Plotter.makeMCOnlyStack(highMassEvents, '_fHiMassPi0Mass',InvariantMassRange, 25
 #Plotter.makeMCStackedHistogram(Stack[0], Stack[1], InvariantMassRange, 25, "HiMassPi0Mass", legend=Stack[2], xlimits=(175, 400))
 
 #print eventsWithShowers.loc[:1000, ['LeadingShowerIdx', 'passesEnergy', 'passesAngle', 'passesConvD']]
-'''
+
 print ('done')
 
 sys.exit()

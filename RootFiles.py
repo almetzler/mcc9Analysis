@@ -127,30 +127,30 @@ dirtEventsWithShowers  = eventsDirt.query('_fNLeadCandidates > 0 and _fNSubleadC
 extEventsWithShowers   = eventsExt.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
 dataEventsWithShowers  = eventsOnBeam.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
 
-LoadEventTypes(eventsWithShowers)
+# LoadEventTypes(eventsWithShowers)
 
-LoadShowerWeights(eventsWithShowers)
-LoadTrackWeights(eventsWithShowers)
-LoadShowerWeights(dirtEventsWithShowers)
-LoadTrackWeights(dirtEventsWithShowers)
-LoadShowerWeights(extEventsWithShowers)
-LoadTrackWeights(extEventsWithShowers)
+# LoadShowerWeights(eventsWithShowers)
+# LoadTrackWeights(eventsWithShowers)
+# LoadShowerWeights(dirtEventsWithShowers)
+# LoadTrackWeights(dirtEventsWithShowers)
+# LoadShowerWeights(extEventsWithShowers)
+# LoadTrackWeights(extEventsWithShowers)
 
-Plotter.setWeightName('wgt')
-singalEventsOverlay = eventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-singalEventsDirt    = dirtEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-singalEventsExt     = extEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-signalEventsData    = dataEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# Plotter.setWeightName('wgt')
+# singalEventsOverlay = eventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# singalEventsDirt    = dirtEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# singalEventsExt     = extEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# signalEventsData    = dataEventsWithShowers.query('_fNChargedPiCandidates == 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
 
-InvariantMassRange = (0, 500)
-axesLabels = ["Pi0 Invariant Mass (Two MIP Sideband)", "Invaraint Mass (MeV/c2)", "Number of Events"]
-limits = {"xlimits" : (200, ), "Titles" : axesLabels }
+# InvariantMassRange = (0, 500)
+# axesLabels = ["Pi0 Invariant Mass (Two MIP Sideband)", "Invaraint Mass (MeV/c2)", "Number of Events"]
+# limits = {"xlimits" : (200, ), "Titles" : axesLabels }
 
-#2 Mip+
-twoMIPEventsOverlay    = eventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-twoMIPEventsDirt       = dirtEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-twoMIPEventsExt        = extEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
-twoMIPEventsData       = dataEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# #2 Mip+
+# twoMIPEventsOverlay    = eventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# twoMIPEventsDirt       = dirtEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# twoMIPEventsExt        = extEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
+# twoMIPEventsData       = dataEventsWithShowers.query('_fNChargedPiCandidates > 0 and _fNShowers >= 2 and _fNLeadCandidates >= 1 and _fNSubleadCandidates >= 1 and _fNPairCandidates == 1 and _fNOtherFancyPairs == 0')
 
 '''
 data types that have given me a memory error :/
@@ -165,29 +165,33 @@ other data types
 pickle worked :)
 '''        
 
-eventsExtMIP = twoMIPEventsExt.to_pickle("Data/eventsExtMIP.pkl")
-eventsExtSig = singalEventsExt.to_pickle("Data/eventsExtSig.pkl")
+# eventsExtMIP = twoMIPEventsExt.to_pickle("Data/eventsExtMIP.pkl")
+# eventsExtSig = singalEventsExt.to_pickle("Data/eventsExtSig.pkl")
+eventsExtShower = extEventsWithShowers.to_pickle("Data/eventsExtShower.pkl")
 # eventsExt.to_csv("Data/eventsExt.csv", chunksize=1, sep='|')
 # eventsExt.to_hdf("Data/eventsExt.h5", key = 'df', mode='w', encoding = 'UTF-8')
 # print(eventsExt.shape)
 print('eventExt done')
 
-eventsOverlayMIP = twoMIPEventsOverlay.to_pickle("Data/eventsOverlayMIP.pkl")
-eventsOverlaySig = singalEventsOverlay.to_pickle("Data/eventsOverlaySig.pkl")
+# eventsOverlayMIP = twoMIPEventsOverlay.to_pickle("Data/eventsOverlayMIP.pkl")
+# eventsOverlaySig = singalEventsOverlay.to_pickle("Data/eventsOverlaySig.pkl")
+eventsOverlayShower = eventsWithShowers.to_pickle("Data/eventsOverlayShower.pkl")
 # eventsOverlay.to_csv("Data/eventsOverlay.csv", chunksize=1, sep='|')
 # eventsOverlay.to_hdf("Data/eventsOverlay.h5", key = 'df', mode='w', encoding = 'UTF-8')
 # print(eventsOverlay.shape)
 print('eventsOverlay done')
 
-eventsOnBeamMIP = twoMIPEventsData.to_pickle("Data/eventsOnBeamMIP.pkl")
-eventsOnBeamSig = signalEventsData.to_pickle("Data/eventsOnBeamSig.pkl")
+# eventsOnBeamMIP = twoMIPEventsData.to_pickle("Data/eventsOnBeamMIP.pkl")
+# eventsOnBeamSig = signalEventsData.to_pickle("Data/eventsOnBeamSig.pkl")
+eventsDataShower = dataEventsWithShowers.to_pickle("Data/eventsDataShower.pkl")
 # eventsOnBeam.to_csv("Data/eventsOnBeam.csv", chunksize=1, sep='|')
 # eventsOnBeam.to_hdf("Data/eventsOnBeam.h5", key = 'df', mode='w', encoding = 'UTF-8')
 # print(eventsOnBeam.shape)
 print('eventsOnBeam done')
 
-eventsDirtMIP = twoMIPEventsDirt.to_pickle("Data/eventsDirtMIP.pkl")
-eventsDirtSig = singalEventsDirt.to_pickle("Data/eventsDirtSig.pkl")
+# eventsDirtMIP = twoMIPEventsDirt.to_pickle("Data/eventsDirtMIP.pkl")
+# eventsDirtSig = singalEventsDirt.to_pickle("Data/eventsDirtSig.pkl")
+eventsDirtShower = dirtEventsWithShowers.to_pickle("Data/eventsDirtShower.pkl")
 # eventsDirt.to_csv("Data/eventsDirt.csv", chunksize=1, sep='|')
 # eventsDirt.to_hdf("Data/eventsDirt.h5", key = 'df', mode='w', encoding = 'UTF-8')
 # print(eventsDirt.shape)
