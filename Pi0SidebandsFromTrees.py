@@ -262,14 +262,14 @@ extEventsWithShowers = pd.read_pickle("../Data/eventsExtShower.pkl")
 # dataEventsWithShowers  = eventsOnBeam.query('_fNLeadCandidates > 0 and _fNSubleadCandidates > 0 and _fHasCandidateNeutrino == 1 and _fHasCandidateMuon == 1')
 dataEventsWithShowers = pd.read_pickle("../Data/eventsDataShower.pkl")
 
-# LoadEventTypes(eventsWithShowers)
+LoadEventTypes(eventsWithShowers)
 
-# LoadShowerWeights(eventsWithShowers)
-# LoadTrackWeights(eventsWithShowers)
-# LoadShowerWeights(dirtEventsWithShowers)
-# LoadTrackWeights(dirtEventsWithShowers)
-# LoadShowerWeights(extEventsWithShowers)
-# LoadTrackWeights(extEventsWithShowers)
+LoadShowerWeights(eventsWithShowers)
+LoadTrackWeights(eventsWithShowers)
+LoadShowerWeights(dirtEventsWithShowers)
+LoadTrackWeights(dirtEventsWithShowers)
+LoadShowerWeights(extEventsWithShowers)
+LoadTrackWeights(extEventsWithShowers)
 
 #Tag the leading showers
 #TagLeadingShower(eventsWithShowers)
