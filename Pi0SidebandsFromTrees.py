@@ -271,6 +271,11 @@ LoadTrackWeights(dirtEventsWithShowers)
 LoadShowerWeights(extEventsWithShowers)
 LoadTrackWeights(extEventsWithShowers)
 
+TagNaNMIPs(eventsWithShowers)
+TagNaNMIPs(dirtEventsWithShowers)
+TagNaNMIPs(extEventsWithShowers)
+TagNaNMIPs(dataEventsWithShowers)
+
 #Tag the leading showers
 #TagLeadingShower(eventsWithShowers)
 #TagSubLeadingShower(eventsWithShowers)
@@ -303,17 +308,23 @@ twoMIPEventsData       = dataEventsWithShowers.query('_fNChargedPiCandidates > 0
 # twoMIPEventsData = pd.read_pickle("../Data/eventsOnBeamMIP.pkl")
 
 
-TagNaNMIPs(twoMIPEventsOverlay)
-TagNaNMIPs(twoMIPEventsDirt)
-TagNaNMIPs(twoMIPEventsExt)
-TagNaNMIPs(twoMIPEventsData)
-
+# TagNaNMIPs(twoMIPEventsOverlay)
+# TagNaNMIPs(twoMIPEventsDirt)
+# TagNaNMIPs(twoMIPEventsExt)
+# TagNaNMIPs(twoMIPEventsData)
+Plotter.makeDataMCStack(eventsWithShowers.query('NumNanMIP == 0'), dirtEventsWithShowers.query('NumNanMIP == 0'), extEventsWithShowers.query('NumNanMIP == 0'), dataEventsWithShowers.query('NumNanMIP == 0'), '_fTwoMIPPi0Mass', InvariantMassRange, 25, "SignalInvPi0Mass", {}, limits)
 Plotter.makeDataMCStack(twoMIPEventsOverlay.query('NumNanMIP == 0'), twoMIPEventsDirt.query('NumNanMIP == 0'), twoMIPEventsExt.query('NumNanMIP == 0'), twoMIPEventsData.query('NumNanMIP == 0'), '_fTwoMIPPi0Mass', InvariantMassRange, 25, "TwoMIPPi0Mass", {}, limits)
 limits["xlimits"] = ()
 limits["Titles"]  = ["Number of MIPs (Two MIP Sideband)", "N MIPs", "Number of Events"]
 NumPairsRange = (0,10)
 Plotter.makeDataMCStack(twoMIPEventsOverlay.query('NumNanMIP == 0'), twoMIPEventsDirt.query('NumNanMIP == 0'), twoMIPEventsExt.query('NumNanMIP == 0'), twoMIPEventsData.query('NumNanMIP == 0'), 'NumMIP', NumPairsRange, 10, "TwoMIPNumMIPs", {}, limits)
 
+print(f'{eventsWithShowers.query("_fTwoMIPPi0Mass > 0").shape} {twoMIPEventsOverlay.shape}')
+print(f"{dirtEventsWithShowers.query('_fTwoMIPPi0Mass > 0').shape} {twoMIPEventsDirt.shape}")
+print(f"{extEventsWithShowers.query('_fTwoMIPPi0Mass > 0').shape} {twoMIPEventsExt.shape}")
+print(f"{dataEventsWithShowers.query('_fTwoMIPPi0Mass > 0').shape} {twoMIPEventsData.shape}")
+# print(eventsWithShowers.query("NumNanMIP == 0 and _fTwoMIPPi0Mass > 0")['_fTwoMIPPi0Mass'])
+# print(twoMIPEventsOverlay.query("NumNanMIP == 0")['_fTwoMIPPi0Mass'])
 
 #twoMIPEvents = twoMIPEvents['_fTrackPID'].fillna(9999.9)
 
